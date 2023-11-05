@@ -4,7 +4,7 @@
 
 namespace MehenEngine
 {
-	class MEHEN_ENGINE_API Application
+	class MHN_ENGINE_API Application
 	{
 	public:
 		Application();
