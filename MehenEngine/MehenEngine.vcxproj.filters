@@ -15,13 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\MehenEngine\Core.h">
+    <ClInclude Include="src\MehenEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\MehenEngine\Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\MehenEngine.h">
+    <ClInclude Include="src\MehenEngine\Core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\MehenEngine\EntryPoint.h">
