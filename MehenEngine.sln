@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D53B42A1-AC01-46DA-AEE1-17E71D9A85B1}"
 	ProjectSection(SolutionItems) = preProject
 		premake5.lua = premake5.lua
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
@@ -34,5 +35,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6AD37566-0345-4651-B09F-C178DC7BACF5}
 	EndGlobalSection
 EndGlobal
