@@ -1,19 +1,24 @@
 #pragma once
 
 #include "Core.h"
+#include "Events/Event.h"
+#include "Window.h"
 
 namespace MehenEngine
 {
-	class MHN_ENGINE_API Application
+	class MHN_API Application
 	{
 	public:
 		Application();
 		virtual ~Application();
 
 		void Run();
-
+	private:
+		std::unique_ptr<Window> m_Window;
+		bool m_Running = true;
 	};
 
+	// To be defined in CLIENT
 	Application* CreateApplication();
 
 }

@@ -1,14 +1,16 @@
 #include "MhnPCHeader.h"
 #include "Application.h"
 
-#include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
 #include "MehenEngine/Log.h"
+
+#include <GLFW/glfw3.h>
 
 namespace MehenEngine
 {
 	Application::Application()
 	{
+		m_Window = std::unique_ptr<Window>(Window::Create());
 	}
 
 	Application::~Application()
@@ -17,9 +19,12 @@ namespace MehenEngine
 
 	void Application::Run()
 	{
-		WindowResizeEvent resizeEvent(1280, 720);
-		MHN_GAME_TRACE(resizeEvent);
+		while (m_Running)
+		{
+			glClearColor(1, 0, 1, 1);
+			glClear(GL_COLOR_BUFFER_BIT);
 
-		while (true);
+			m_Window->OnUpdate();
+		}
 	}
 }

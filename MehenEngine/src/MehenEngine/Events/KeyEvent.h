@@ -6,7 +6,7 @@
 
 namespace MehenEngine
 {
-	class MHN_ENGINE_API KeyEvent : public Event
+	class MHN_API KeyEvent : public Event
 	{
 	public:
 		inline int GetKeyCode() const { return m_KeyCode; }
@@ -21,7 +21,7 @@ namespace MehenEngine
 
 	};
 
-	class MHN_ENGINE_API KeyPressedEvent : public KeyEvent
+	class MHN_API KeyPressedEvent : public KeyEvent
 	{
 	public:
 		KeyPressedEvent(int keycode, int repeatCount)
@@ -43,7 +43,7 @@ namespace MehenEngine
 
 	};
 
-	class MHN_ENGINE_API KeyReleasedEvent : public KeyEvent
+	class MHN_API KeyReleasedEvent : public KeyEvent
 	{
 	public:
 		KeyReleasedEvent(int keycode)

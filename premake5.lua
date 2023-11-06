@@ -21,6 +21,12 @@ workspace "MehenEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}" 
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "MehenEngine/vendor/GLFW/include"
+
+include "MehenEngine/vendor/GLFW"
+
 project "MehenEngine"
 	location "MehenEngine"
 	kind "SharedLib"
@@ -41,7 +47,14 @@ project "MehenEngine"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"

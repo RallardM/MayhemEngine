@@ -3,6 +3,7 @@
 #pragma once
 
 #include "MehenEngine/Core.h"
+#include "MhnPCHeader.h"
 
 namespace MehenEngine
 {
@@ -31,7 +32,7 @@ namespace MehenEngine
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
-	class MHN_ENGINE_API Event
+	class MHN_API Event
 	{
 		friend class EventDispatcher;
 	public:

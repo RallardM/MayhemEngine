@@ -7,6 +7,12 @@
     <Filter Include="MehenEngine\Events">
       <UniqueIdentifier>{8C905D8E-7874-1EE4-E1D4-1837CDD70866}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platforms">
+      <UniqueIdentifier>{DDACA145-4917-56BC-9255-0762FEFE3311}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platforms\Windows">
+      <UniqueIdentifier>{17E40808-83FA-069E-CC71-92BF38C7D725}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\MehenEngine.h" />
@@ -34,7 +40,13 @@
     <ClInclude Include="src\MehenEngine\Log.h">
       <Filter>MehenEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\MehenEngine\Window.h">
+      <Filter>MehenEngine</Filter>
+    </ClInclude>
     <ClInclude Include="src\MhnPCHeader.h" />
+    <ClInclude Include="src\Platforms\Windows\WindowsWindow.h">
+      <Filter>Platforms\Windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\MehenEngine\Application.cpp">
@@ -44,5 +56,8 @@
       <Filter>MehenEngine</Filter>
     </ClCompile>
     <ClCompile Include="src\MhnPCHeader.cpp" />
+    <ClCompile Include="src\Platforms\Windows\WindowsWindow.cpp">
+      <Filter>Platforms\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
