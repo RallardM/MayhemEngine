@@ -1,3 +1,6 @@
 [submodule "MehenEngine/vendor/spdlog"]
 	path = MehenEngine/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "MehenEngine/Vendor/GLFW"]
+	path = MehenEngine/Vendor/GLFW
+	url = https://github.com/glfw/glfw
