@@ -59,7 +59,7 @@ project "MehenEngine"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 		
 		defines
@@ -76,6 +76,7 @@ project "MehenEngine"
 	filter "configurations:Debug"
 		defines "MHN_DEBUG"
 		symbols "On"
+		runtime "Debug"
 
 	filter "configurations:Release"
 		defines "MHN_RELEASE"
