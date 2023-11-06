@@ -4,9 +4,6 @@
 
 #include "MehenEngine/Core.h"
 
-#include <string>
-#include <functional>
-
 namespace MehenEngine
 {
 	enum class EventType

@@ -4,8 +4,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace MehenEngine
 {
 	class MHN_ENGINE_API KeyEvent : public Event

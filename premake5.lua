@@ -29,6 +29,9 @@ project "MehenEngine"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "MhnPCHeader.h"
+	pchsource "MehenEngine/src/MhnPCHeader.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",

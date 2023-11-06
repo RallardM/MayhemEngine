@@ -6,6 +6,7 @@
 // %v - message
 // %$ - end color
 
+#include "MhnPCHeader.h"
 
 #include "Log.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
