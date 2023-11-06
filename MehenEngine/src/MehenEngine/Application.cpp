@@ -10,7 +10,7 @@ namespace MehenEngine
 {
 	Application::Application()
 	{
-		m_Window = std::unique_ptr<Window>(Window::Create());
+		m_window = std::unique_ptr<Window>(Window::Create());
 	}
 
 	Application::~Application()
@@ -19,12 +19,12 @@ namespace MehenEngine
 
 	void Application::Run()
 	{
-		while (m_Running)
+		while (m_running)
 		{
 			glClearColor(1, 0, 1, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
-			m_Window->OnUpdate();
+			m_window->OnUpdate();
 		}
 	}
 }

@@ -22,11 +22,11 @@ namespace MehenEngine
 }
 
 // Core log macros
-#define MHN_ENGINE_TRACE(...) ::MehenEngine::Log::GetCoreLogger()->trace(__VA_ARGS__)
-#define MHN_ENGINE_INFO(...)  ::MehenEngine::Log::GetCoreLogger()->info(__VA_ARGS__)
-#define MHN_ENGINE_WARN(...)  ::MehenEngine::Log::GetCoreLogger()->warn(__VA_ARGS__)
-#define MHN_ENGINE_ERROR(...) ::MehenEngine::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define MHN_ENGINE_FATAL(...) ::MehenEngine::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define MHN_ENGINE_TRACE(...)	 ::MehenEngine::Log::GetCoreLogger()->trace(__VA_ARGS__)
+#define MHN_ENGINE_INFO(...)	 ::MehenEngine::Log::GetCoreLogger()->info(__VA_ARGS__)
+#define MHN_ENGINE_WARN(...)	 ::MehenEngine::Log::GetCoreLogger()->warn(__VA_ARGS__)
+#define MHN_ENGINE_ERROR(...)	 ::MehenEngine::Log::GetCoreLogger()->error(__VA_ARGS__)
+#define MHN_ENGINE_FATAL(...)	 ::MehenEngine::Log::GetCoreLogger()->fatal(__VA_ARGS__)
 
 // Client log macros
 #define MHN_GAME_TRACE(...)      ::MehenEngine::Log::GetClientLogger()->trace(__VA_ARGS__)

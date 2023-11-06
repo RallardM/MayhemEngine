@@ -23,9 +23,9 @@ namespace MehenEngine
 
 	void WindowsWindow::Init(const WindowProps& props)
 	{
-		m_Data.Title = props.Title;
-		m_Data.Width = props.Width;
-		m_Data.Height = props.Height;
+		m_data.Title = props.Title;
+		m_data.Width = props.Width;
+		m_data.Height = props.Height;
 
 		MHN_ENGINE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
@@ -37,31 +37,31 @@ namespace MehenEngine
 			s_GLFWInitialized = true;
 		}
 
-		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		glfwSetWindowUserPointer(m_Window, &m_Data);
+		m_window = glfwCreateWindow((int)props.Width, (int)props.Height, m_data.Title.c_str(), nullptr, nullptr);
+		glfwMakeContextCurrent(m_window);
+		glfwSetWindowUserPointer(m_window, &m_data);
 		SetVSync(true);
 	}
 
 	void WindowsWindow::Shutdown()
 	{
-		glfwDestroyWindow(m_Window);
+		glfwDestroyWindow(m_window);
 	}
 
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		glfwSwapBuffers(m_window);
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
 	{
 		glfwSwapInterval(enabled ? 1 : 0);
-		m_Data.VSync = enabled;
+		m_data.VSync = enabled;
 	}
 
 	bool WindowsWindow::IsVSync() const
 	{
-		return m_Data.VSync;
+		return m_data.VSync;
 	}
 }
