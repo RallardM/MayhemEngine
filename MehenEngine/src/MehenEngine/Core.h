@@ -9,3 +9,5 @@
 #else
 	#error MehenEngine only supports Windows!
 #endif //  MHN_PLATFORM_WINDOWS
+
+#define BIT(x) (1 << x)

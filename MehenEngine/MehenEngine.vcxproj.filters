@@ -4,6 +4,9 @@
     <Filter Include="MehenEngine">
       <UniqueIdentifier>{A85179E5-1407-F2DA-9DFB-EBB109B0E8DE}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MehenEngine\Events">
+      <UniqueIdentifier>{8C905D8E-7874-1EE4-E1D4-1837CDD70866}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\MehenEngine.h" />
@@ -15,6 +18,18 @@
     </ClInclude>
     <ClInclude Include="src\MehenEngine\EntryPoint.h">
       <Filter>MehenEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MehenEngine\Events\ApplicationEvent.h">
+      <Filter>MehenEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MehenEngine\Events\Event.h">
+      <Filter>MehenEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MehenEngine\Events\KeyEvent.h">
+      <Filter>MehenEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MehenEngine\Events\MouseEvent.h">
+      <Filter>MehenEngine\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\MehenEngine\Log.h">
       <Filter>MehenEngine</Filter>
