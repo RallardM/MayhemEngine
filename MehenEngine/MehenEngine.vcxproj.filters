@@ -46,6 +46,12 @@
     <ClInclude Include="src\MehenEngine\ImGui\ImGuiLayer.h">
       <Filter>MehenEngine\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\MehenEngine\Input.h">
+      <Filter>MehenEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MehenEngine\KeyCodes.h">
+      <Filter>MehenEngine</Filter>
+    </ClInclude>
     <ClInclude Include="src\MehenEngine\Layer.h">
       <Filter>MehenEngine</Filter>
     </ClInclude>
@@ -55,6 +61,9 @@
     <ClInclude Include="src\MehenEngine\Log.h">
       <Filter>MehenEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\MehenEngine\MouseButtonCodes.h">
+      <Filter>MehenEngine</Filter>
+    </ClInclude>
     <ClInclude Include="src\MehenEngine\Window.h">
       <Filter>MehenEngine</Filter>
     </ClInclude>
@@ -62,13 +71,12 @@
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="src\MehenEngine\Input.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
-    <ClInclude Include="src\MehenEngine\KeyCodes.h" />
-    <ClInclude Include="src\MehenEngine\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\MehenEngine\Application.cpp">
@@ -90,9 +98,11 @@
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>
