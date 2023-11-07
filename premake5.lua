@@ -6,6 +6,7 @@
 
 workspace "MehenEngine"
 	architecture "x64"
+	startproject "SandboxGame"
 
 	configurations
 	{
@@ -27,9 +28,11 @@ IncludeDir["GLFW"] = "MehenEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "MehenEngine/vendor/Glad/include"
 IncludeDir["ImGui"] = "MehenEngine/vendor/imgui"
 
-include "MehenEngine/vendor/GLFW"
-include "MehenEngine/vendor/Glad"
-include "MehenEngine/vendor/imgui"
+group "Dependencies"
+		include "MehenEngine/vendor/GLFW"
+		include "MehenEngine/vendor/Glad"
+		include "MehenEngine/vendor/imgui"
+group ""
 
 project "MehenEngine"
 	location "MehenEngine"
@@ -79,7 +82,7 @@ project "MehenEngine"
 
 		postbuildcommands
 		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/SandboxGame")
+			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/SandboxGame/\"")
 		}
 
 	filter "configurations:Debug"
