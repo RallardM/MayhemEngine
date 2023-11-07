@@ -4,3 +4,6 @@
 [submodule "MehenEngine/vendor/GLFW"]
 	path = MehenEngine/vendor/GLFW
 	url = https://github.com/RallardM/glfw.git
+[submodule "MehenEngine/vendor/imgui"]
+	path = MehenEngine/vendor/imgui
+	url = https://github.com/RallardM/imgui
