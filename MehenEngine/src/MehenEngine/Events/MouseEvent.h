@@ -6,7 +6,7 @@
 
 namespace MehenEngine
 {
-	class MHN_API MouseMovedEvent : public Event
+	class MEHEN_API MouseMovedEvent : public Event
 	{
 	public:
 		MouseMovedEvent(float x, float y) : m_MouseX(x), m_MouseY(y) {}
@@ -29,7 +29,7 @@ namespace MehenEngine
 
 	};
 
-	class MHN_API MouseScrolledEvent : public Event
+	class MEHEN_API MouseScrolledEvent : public Event
 	{
 	public:
 		MouseScrolledEvent(float xOffset, float yOffset) : m_xOffset(xOffset), m_yOffset(yOffset) {}
@@ -52,20 +52,20 @@ namespace MehenEngine
 
 	};
 
-	class MHN_API MouseButtonEvent : public Event
+	class MEHEN_API MouseButtonEvent : public Event
 	{
 	public:
-		inline int GetMouseButton() const { return m_Button; }
+		inline int GetMouseButton() const { return m_button; }
 
 		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 	protected:
-		MouseButtonEvent(int button) : m_Button(button) {}
+		MouseButtonEvent(int button) : m_button(button) {}
 
 		int m_button;
 
 	};
 
-	class MHN_API MouseButtonPressedEvent : public MouseButtonEvent
+	class MEHEN_API MouseButtonPressedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonPressedEvent(int button) : MouseButtonEvent(button) {}
@@ -73,7 +73,7 @@ namespace MehenEngine
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseButtonPressedEvent: " << m_Button;
+			ss << "MouseButtonPressedEvent: " << m_button;
 			return ss.str();
 		}
 
@@ -81,7 +81,7 @@ namespace MehenEngine
 
 	};
 
-	class MHN_API MouseButtonReleasedEvent : public MouseButtonEvent
+	class MEHEN_API MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonReleasedEvent(int button) : MouseButtonEvent(button) {}
@@ -89,7 +89,7 @@ namespace MehenEngine
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseButtonReleasedEvent: " << m_Button;
+			ss << "MouseButtonReleasedEvent: " << m_button;
 			return ss.str();
 		}
 

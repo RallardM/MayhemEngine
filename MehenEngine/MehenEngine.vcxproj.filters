@@ -44,9 +44,11 @@
       <Filter>MehenEngine</Filter>
     </ClInclude>
     <ClInclude Include="src\MhnPCHeader.h" />
-    <ClInclude Include="src\Platforms\Windows\WindowsWindow.h">
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platforms\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="src\MehenEngine\Layer.h" />
+    <ClInclude Include="LayerStack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\MehenEngine\Application.cpp">
@@ -56,8 +58,10 @@
       <Filter>MehenEngine</Filter>
     </ClCompile>
     <ClCompile Include="src\MhnPCHeader.cpp" />
-    <ClCompile Include="src\Platforms\Windows\WindowsWindow.cpp">
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platforms\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\MehenEngine\Layer.cpp" />
+    <ClCompile Include="LayerStack.cpp" />
   </ItemGroup>
 </Project>

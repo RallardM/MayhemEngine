@@ -156,6 +156,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="LayerStack.h" />
+    <ClInclude Include="src\MehenEngine\Layer.h" />
     <ClInclude Include="src\MehenEngine.h" />
     <ClInclude Include="src\MehenEngine\Application.h" />
     <ClInclude Include="src\MehenEngine\Core.h" />
@@ -167,15 +169,17 @@
     <ClInclude Include="src\MehenEngine\Log.h" />
     <ClInclude Include="src\MehenEngine\Window.h" />
     <ClInclude Include="src\MhnPCHeader.h" />
-    <ClInclude Include="src\Platforms\Windows\WindowsWindow.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="LayerStack.cpp" />
+    <ClCompile Include="src\MehenEngine\Layer.cpp" />
     <ClCompile Include="src\MehenEngine\Application.cpp" />
     <ClCompile Include="src\MehenEngine\Log.cpp" />
     <ClCompile Include="src\MhnPCHeader.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\Platforms\Windows\WindowsWindow.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">

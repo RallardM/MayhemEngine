@@ -23,7 +23,7 @@ namespace MehenEngine
 	};
 
 	// Interface representing a desktop system based Window
-	class MHN_API Window
+	class MEHEN_API Window
 	{
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;

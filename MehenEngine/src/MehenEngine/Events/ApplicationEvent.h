@@ -6,7 +6,7 @@
 
 namespace MehenEngine
 {
-	class MHN_API WindowResizeEvent : public Event
+	class MEHEN_API WindowResizeEvent : public Event
 	{
 	public:
 		WindowResizeEvent(unsigned int width, unsigned int height)
@@ -30,7 +30,7 @@ namespace MehenEngine
 
 	};
 
-	class MHN_API WindowCloseEvent : public Event
+	class MEHEN_API WindowCloseEvent : public Event
 	{
 	public:
 		WindowCloseEvent() {}
@@ -40,7 +40,7 @@ namespace MehenEngine
 
 	};
 
-	class MHN_API AppTickEvent : public Event
+	class MEHEN_API AppTickEvent : public Event
 	{
 	public:
 		AppTickEvent() {}
@@ -50,7 +50,7 @@ namespace MehenEngine
 
 	};
 
-	class MHN_API AppUpdateEvent : public Event
+	class MEHEN_API AppUpdateEvent : public Event
 	{
 	public:
 		AppUpdateEvent() {}
@@ -60,7 +60,7 @@ namespace MehenEngine
 
 	};
 
-	class MHN_API AppRenderEvent : public Event
+	class MEHEN_API AppRenderEvent : public Event
 	{
 	public:
 		AppRenderEvent() {}

@@ -32,7 +32,7 @@ namespace MehenEngine
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
-	class MHN_API Event
+	class MEHEN_API Event
 	{
 		friend class EventDispatcher;
 	public:

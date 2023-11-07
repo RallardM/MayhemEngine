@@ -8,7 +8,7 @@
 
 namespace MehenEngine
 {
-	class MHN_API Log
+	class MEHEN_API Log
 	{
 	public:
 		static void Init();

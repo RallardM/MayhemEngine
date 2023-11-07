@@ -6,7 +6,7 @@
 
 namespace MehenEngine
 {
-	class MHN_API KeyEvent : public Event
+	class MEHEN_API KeyEvent : public Event
 	{
 	public:
 		inline int GetKeyCode() const { return m_KeyCode; }
@@ -21,18 +21,18 @@ namespace MehenEngine
 
 	};
 
-	class MHN_API KeyPressedEvent : public KeyEvent
+	class MEHEN_API KeyPressedEvent : public KeyEvent
 	{
 	public:
 		KeyPressedEvent(int keycode, int repeatCount)
-			: KeyEvent(keycode), m_RepeatCount(repeatCount) {}
+			: KeyEvent(keycode), m_repeatCount(repeatCount) {}
 
-		inline int GetRepeatCount() const { return m_RepeatCount; }
+		inline int GetRepeatCount() const { return m_repeatCount; }
 
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "KeyPressedEvent: " << m_KeyCode << " (" << m_RepeatCount << " repeats)";
+			ss << "KeyPressedEvent: " << m_KeyCode << " (" << m_repeatCount << " repeats)";
 			return ss.str();
 		}
 
@@ -43,7 +43,7 @@ namespace MehenEngine
 
 	};
 
-	class MHN_API KeyReleasedEvent : public KeyEvent
+	class MEHEN_API KeyReleasedEvent : public KeyEvent
 	{
 	public:
 		KeyReleasedEvent(int keycode)
