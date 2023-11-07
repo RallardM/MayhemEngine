@@ -21,12 +21,16 @@ namespace MehenEngine
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* layer);
 
+		inline static Application& Get() { return *_Instance; }
+		inline Window& GetWindow() { return *m_window; }
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 
+		static Application* _Instance;
+
 		std::unique_ptr<Window> m_window;
-		bool m_running = true;
 		LayerStack m_layerStack;
+		bool m_running = true;
 
 	};
 
