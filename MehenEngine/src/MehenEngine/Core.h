@@ -10,6 +10,10 @@
 	#error MehenEngine only supports Windows!
 #endif //  MHN_PLATFORM_WINDOWS
 
+#ifdef MHN_DEBUG
+	#define MHN_ENABLE_ASSERTS
+#endif // MHN_DEBUG
+
 // Tutorial : https://youtu.be/88dmtleVywk?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&t=1218
 #ifdef MHN_ENABLE_ASSERTS
 	#define MHN_ASSERT(x, ...) { if(!(x)) { MHN_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
