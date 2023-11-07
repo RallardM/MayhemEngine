@@ -6,6 +6,8 @@
 #include "MehenEngine/Events/MouseEvent.h"
 #include "MehenEngine/Events/KeyEvent.h"
 
+#include "Glad/glad.h"
+
 namespace MehenEngine
 {
 	static bool s_GLFWInitialized = false;
@@ -48,6 +50,8 @@ namespace MehenEngine
 
 		m_window = glfwCreateWindow((int)props.Width, (int)props.Height, m_data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_window);
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		MHN_ENGINE_ASSERT(status, "Failed to initialize Glad!");
 		glfwSetWindowUserPointer(m_window, &m_data);
 		SetVSync(true);
 

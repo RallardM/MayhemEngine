@@ -24,8 +24,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "MehenEngine/vendor/GLFW/include"
+IncludeDir["Glad"] = "MehenEngine/vendor/Glad/include"
 
 include "MehenEngine/vendor/GLFW"
+include "MehenEngine/vendor/Glad"
 
 project "MehenEngine"
 	location "MehenEngine"
@@ -48,12 +50,14 @@ project "MehenEngine"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -66,7 +70,8 @@ project "MehenEngine"
 		defines
 		{
 			"MHN_PLATFORM_WINDOWS",
-			"MHN_BUILD_DLL"
+			"MHN_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
@@ -122,7 +127,7 @@ project "SandboxGame"
 		
 		defines
 		{
-			"MHN_PLATFORM_WINDOWS",
+			"MHN_PLATFORM_WINDOWS"
 		}
 
 	filter "configurations:Debug"
