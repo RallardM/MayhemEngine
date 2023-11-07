@@ -67,8 +67,7 @@ project "MehenEngine"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
-		--staticruntime "Off"
+		staticruntime "Off"
 		systemversion "latest"
 		
 		defines
@@ -85,24 +84,24 @@ project "MehenEngine"
 
 	filter "configurations:Debug"
 		defines "MHN_DEBUG"
-		buildoptions "/MDd"
-		symbols "On"
 		runtime "Debug"
+		symbols "On"
 
 	filter "configurations:Release"
 		defines "MHN_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "MHN_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 project "SandboxGame"
 	location "SandboxGame"
 	kind "ConsoleApp"
 	language "C++"
+	staticruntime "Off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -126,7 +125,6 @@ project "SandboxGame"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 		
 		defines
@@ -136,15 +134,15 @@ project "SandboxGame"
 
 	filter "configurations:Debug"
 		defines "MHN_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "MHN_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "MHN_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
