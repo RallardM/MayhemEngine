@@ -67,6 +67,8 @@
     </ClInclude>
     <ClInclude Include="src\MehenEngine\Input.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\MehenEngine\KeyCodes.h" />
+    <ClInclude Include="src\MehenEngine\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\MehenEngine\Application.cpp">

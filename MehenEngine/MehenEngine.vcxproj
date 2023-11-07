@@ -166,9 +166,11 @@
     <ClInclude Include="src\MehenEngine\Events\MouseEvent.h" />
     <ClInclude Include="src\MehenEngine\Input.h" />
     <ClInclude Include="src\MehenEngine\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\MehenEngine\KeyCodes.h" />
     <ClInclude Include="src\MehenEngine\Layer.h" />
     <ClInclude Include="src\MehenEngine\LayerStack.h" />
     <ClInclude Include="src\MehenEngine\Log.h" />
+    <ClInclude Include="src\MehenEngine\MouseButtonCodes.h" />
     <ClInclude Include="src\MehenEngine\Window.h" />
     <ClInclude Include="src\MhnPCHeader.h" />
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />

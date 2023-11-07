@@ -28,11 +28,23 @@ public:
 	void OnUpdate() override
 	{
 		MEHEN_GAME_INFO("ExampleLayer::Update");
+
+		if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_TAB))
+		{
+			MEHEN_GAME_TRACE("Tab key is pressed (poll)!");
+		}
+			
 	}
 
 	void OnEvent(MehenEngine::Event& event) override
 	{
-		MEHEN_GAME_TRACE("{0}", event);
+		if (event.GetEventType() == MehenEngine::EventType::KeyPressed)
+		{
+			MehenEngine::KeyPressedEvent& e = (MehenEngine::KeyPressedEvent&)event;
+			if (e.GetKeyCode() == MEHEN_KEY_TAB)
+				MEHEN_GAME_TRACE("Tab key is pressed (event)!");
+			MEHEN_GAME_TRACE("{0}", (char)e.GetKeyCode());
+		}
 	}
 };
 

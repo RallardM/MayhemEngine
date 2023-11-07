@@ -53,9 +53,6 @@ namespace MehenEngine
 			{
 				layer->OnUpdate();
 			}
-
-			auto[x, y] = Input::GetMousePosition();
-			MEHEN_ENGINE_TRACE("{0}, {1}", x, y);
 				
 			m_window->OnUpdate();
 		}
