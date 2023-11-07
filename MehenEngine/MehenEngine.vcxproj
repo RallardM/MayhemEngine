@@ -84,8 +84,9 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <MinimalRebuild>false</MinimalRebuild>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/MDd %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -111,8 +112,9 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -139,8 +141,9 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -156,8 +159,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="LayerStack.h" />
-    <ClInclude Include="src\MehenEngine\Layer.h" />
     <ClInclude Include="src\MehenEngine.h" />
     <ClInclude Include="src\MehenEngine\Application.h" />
     <ClInclude Include="src\MehenEngine\Core.h" />
@@ -166,15 +167,17 @@
     <ClInclude Include="src\MehenEngine\Events\Event.h" />
     <ClInclude Include="src\MehenEngine\Events\KeyEvent.h" />
     <ClInclude Include="src\MehenEngine\Events\MouseEvent.h" />
+    <ClInclude Include="src\MehenEngine\Layer.h" />
+    <ClInclude Include="src\MehenEngine\LayerStack.h" />
     <ClInclude Include="src\MehenEngine\Log.h" />
     <ClInclude Include="src\MehenEngine\Window.h" />
     <ClInclude Include="src\MhnPCHeader.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LayerStack.cpp" />
-    <ClCompile Include="src\MehenEngine\Layer.cpp" />
     <ClCompile Include="src\MehenEngine\Application.cpp" />
+    <ClCompile Include="src\MehenEngine\Layer.cpp" />
+    <ClCompile Include="src\MehenEngine\LayerStack.cpp" />
     <ClCompile Include="src\MehenEngine\Log.cpp" />
     <ClCompile Include="src\MhnPCHeader.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

@@ -59,7 +59,8 @@ project "MehenEngine"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "Off"
+		staticruntime "On"
+		--staticruntime "Off"
 		systemversion "latest"
 		
 		defines
@@ -75,15 +76,18 @@ project "MehenEngine"
 
 	filter "configurations:Debug"
 		defines "MHN_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 		runtime "Debug"
 
 	filter "configurations:Release"
 		defines "MHN_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "MHN_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 project "SandboxGame"
@@ -123,12 +127,15 @@ project "SandboxGame"
 
 	filter "configurations:Debug"
 		defines "MHN_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "MHN_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "MHN_DIST"
+		buildoptions "/MD"
 		optimize "On"

@@ -12,7 +12,7 @@ namespace MehenEngine
 
 	static void GLFWErrorCallback(int error, const char* description)
 	{
-		MHN_ENGINE_ERROR("GLFW Error ({0}): {1}", error, description);
+		MEHEN_ENGINE_ERROR("GLFW Error ({0}): {1}", error, description);
 	}
 
 	Window* Window::Create(const WindowProps& props)
@@ -36,7 +36,7 @@ namespace MehenEngine
 		m_data.Width = props.Width;
 		m_data.Height = props.Height;
 
-		MHN_ENGINE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
+		MEHEN_ENGINE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
 		if (!s_GLFWInitialized)
 		{

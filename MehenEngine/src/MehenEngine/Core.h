@@ -13,7 +13,7 @@
 // Tutorial : https://youtu.be/88dmtleVywk?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&t=1218
 #ifdef MHN_ENABLE_ASSERTS
 	#define MHN_ASSERT(x, ...) { if(!(x)) { MHN_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
-	#define MHN_ENGINE_ASSERT(x, ...) { if(!(x)) { MHN_ENGINE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+	#define MHN_ENGINE_ASSERT(x, ...) { if(!(x)) { MEHEN_ENGINE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 #else
 	#define MHN_ASSERT(x, ...)
 	#define MHN_ENGINE_ASSERT(x, ...)

@@ -7,7 +7,7 @@ namespace MehenEngine
 {
 	MehenEngine::LayerStack::LayerStack()
 	{
-		m_layerInsertIndex = m_layers.begin();
+		m_layerInsert = m_layers.begin();
 	}
 
 	LayerStack::~LayerStack()
@@ -18,7 +18,7 @@ namespace MehenEngine
 
 	void LayerStack::PushLayer(Layer* layer)
 	{
-		m_layerInsertIndex = m_layers.emplace(m_layerInsertIndex, layer);
+		m_layerInsert = m_layers.emplace(m_layerInsert, layer);
 	}
 
 	void LayerStack::PushOverlay(Layer* overlay)
@@ -32,7 +32,7 @@ namespace MehenEngine
 		if (it != m_layers.end())
 		{
 			m_layers.erase(it);
-			m_layerInsertIndex--;
+			m_layerInsert--;
 		}
 	}
 

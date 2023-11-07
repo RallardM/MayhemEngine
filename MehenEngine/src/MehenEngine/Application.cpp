@@ -27,6 +27,11 @@ namespace MehenEngine
 			glClearColor(1, 0, 1, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
+			for (Layer* layer : m_layerStack)
+			{
+				layer->OnUpdate();
+			}
+				
 			m_window->OnUpdate();
 		}
 	}
@@ -36,7 +41,24 @@ namespace MehenEngine
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 
-		MHN_ENGINE_TRACE("{0}", e);
+		for (auto it = m_layerStack.end(); it != m_layerStack.begin();)
+		{
+			(*--it)->OnEvent(e);
+			if (e.m_handled)
+			{
+				break;
+			}
+		}
+	}
+
+	void Application::PushLayer(Layer* layer)
+	{
+		m_layerStack.PushLayer(layer);
+	}
+
+	void Application::PushOverlay(Layer* layer)
+	{
+		m_layerStack.PushOverlay(layer);
 	}
 
 	bool Application::OnWindowClose(WindowCloseEvent& e)
