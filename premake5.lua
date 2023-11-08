@@ -14,11 +14,6 @@ workspace "MehenEngine"
 		"Release",
 		"Dist"
 	}
-	
-	flags
-	{
-		"MultiProcessorCompile"
-	}
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}" 
 
@@ -35,10 +30,13 @@ group "Dependencies"
 		include "MehenEngine/vendor/imgui"
 group ""
 
+-- Main Project --------------------------------------------------
 project "MehenEngine"
 	location "MehenEngine"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -49,7 +47,14 @@ project "MehenEngine"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
+	}
+
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
 	}
 
 	includedirs
@@ -70,9 +75,8 @@ project "MehenEngine"
 		"opengl32.lib"
 	}
 
+-- Platforms -----------------------------------------------------
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "Off"
 		systemversion "latest"
 		
 		defines
@@ -82,31 +86,28 @@ project "MehenEngine"
 			"GLFW_INCLUDE_NONE"
 		}
 
-		postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/SandboxGame/\"")
-		}
-
 	filter "configurations:Debug"
 		defines "MHN_DEBUG"
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "MHN_RELEASE"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "MHN_DIST"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
+-- Game Project -----------------------------------------------------
 project "SandboxGame"
 	location "SandboxGame"
 	kind "ConsoleApp"
 	language "C++"
-	staticruntime "Off"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -123,6 +124,7 @@ project "SandboxGame"
 	{
 		"MehenEngine/vendor/spdlog/include",
 		"MehenEngine/src",
+		"MehenEngine/vendor",
 		"%{IncludeDir.glm}"
 	}
 
@@ -132,7 +134,6 @@ project "SandboxGame"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
 		
 		defines
@@ -143,14 +144,14 @@ project "SandboxGame"
 	filter "configurations:Debug"
 		defines "MHN_DEBUG"
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "MHN_RELEASE"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "MHN_DIST"
 		runtime "Release"
-		optimize "On"
+		optimize "on"

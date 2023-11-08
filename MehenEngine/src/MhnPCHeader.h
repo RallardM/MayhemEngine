@@ -1,6 +1,7 @@
 // Tutorial : https://youtu.be/UQ718BrbQ5E?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
 #pragma once
 
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <memory>
 #include <utility>

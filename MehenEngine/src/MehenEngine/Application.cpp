@@ -36,6 +36,9 @@ namespace MehenEngine
 
 		m_window = std::unique_ptr<Window>(Window::Create());
 		m_window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+
+		m_imguiLayer = new ImGuiLayer();
+		PushOverlay(m_imguiLayer);
 	}
 
 	Application::~Application()
@@ -53,7 +56,16 @@ namespace MehenEngine
 			{
 				layer->OnUpdate();
 			}
-				
+
+			m_imguiLayer->Begin();
+
+			for (Layer* layer : m_layerStack)
+			{
+				layer->OnImGuiRender();
+			}
+
+			m_imguiLayer->End();
+
 			m_window->OnUpdate();
 		}
 	}

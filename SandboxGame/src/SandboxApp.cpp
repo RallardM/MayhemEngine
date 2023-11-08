@@ -16,6 +16,8 @@
 
 #include <MehenEngine.h>
 
+#include "imgui/imgui.h"
+
 class ExampleLayer : public MehenEngine::Layer
 {
 public:
@@ -36,6 +38,13 @@ public:
 			
 	}
 
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World!");
+		ImGui::End();
+	}
+
 	void OnEvent(MehenEngine::Event& event) override
 	{
 		if (event.GetEventType() == MehenEngine::EventType::KeyPressed)
@@ -54,7 +63,6 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushOverlay(new MehenEngine::ImGuiLayer());
 	}
 
 	~Sandbox()

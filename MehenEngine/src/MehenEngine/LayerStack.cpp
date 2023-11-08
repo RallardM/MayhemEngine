@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// Tutorial : https://youtu.be/_Kj6BSfM6P4?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
+ // Tutorial : https://youtu.be/_Kj6BSfM6P4?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
 
 #include "MhnPCHeader.h"
 #include "LayerStack.h"
@@ -23,18 +23,20 @@ namespace MehenEngine
 {
 	MehenEngine::LayerStack::LayerStack()
 	{
-		m_layerInsert = m_layers.begin();
 	}
 
 	LayerStack::~LayerStack()
 	{
 		for (Layer* layer : m_layers)
+		{
 			delete layer;
+		}
 	}
 
 	void LayerStack::PushLayer(Layer* layer)
 	{
-		m_layerInsert = m_layers.emplace(m_layerInsert, layer);
+		m_layers.emplace(m_layers.begin() + m_layerInsertIndex, layer);
+		m_layerInsertIndex++;
 	}
 
 	void LayerStack::PushOverlay(Layer* overlay)
@@ -48,7 +50,7 @@ namespace MehenEngine
 		if (it != m_layers.end())
 		{
 			m_layers.erase(it);
-			m_layerInsert--;
+			m_layerInsertIndex--;
 		}
 	}
 
@@ -56,6 +58,8 @@ namespace MehenEngine
 	{
 		auto it = std::find(m_layers.begin(), m_layers.end(), overlay);
 		if (it != m_layers.end())
+		{
 			m_layers.erase(it);
+		}
 	}
 }

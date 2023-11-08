@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef  MHN_PLATFORM_WINDOWS
+#if MHN_DYNAMIC_LINK
 	#ifdef MHN_BUILD_DLL
 		#define MEHEN_API __declspec(dllexport)
 	#else 
 		#define MEHEN_API __declspec(dllimport)
 	#endif // MHN_BUILD_DLL
+#else
+	#define MEHEN_API
+#endif // MHN_DYNAMIC_LINK
 #else
 	#error MehenEngine only supports Windows!
 #endif //  MHN_PLATFORM_WINDOWS

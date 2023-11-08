@@ -7,6 +7,8 @@
 #include "MehenEngine/Events/Event.h"
 #include "MehenEngine/Events/ApplicationEvent.h"
 
+#include "MehenEngine/ImGui/ImGuiLayer.h"
+
 namespace MehenEngine
 {
 	class MEHEN_API Application
@@ -23,12 +25,15 @@ namespace MehenEngine
 
 		inline static Application& Get() { return *_Instance; }
 		inline Window& GetWindow() { return *m_window; }
+
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		static Application* _Instance;
 
 		std::unique_ptr<Window> m_window;
+		ImGuiLayer* m_imguiLayer;
+
 		LayerStack m_layerStack;
 		bool m_running = true;
 
