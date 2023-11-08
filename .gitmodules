@@ -4,9 +4,9 @@
 [submodule "MehenEngine/vendor/GLFW"]
 	path = MehenEngine/vendor/GLFW
 	url = https://github.com/RallardM/glfw.git
-[submodule "MehenEngine/vendor/imgui"]
-	path = MehenEngine/vendor/imgui
-	url = https://github.com/RallardM/imgui
 [submodule "MehenEngine/vendor/glm"]
 	path = MehenEngine/vendor/glm
 	url = https://github.com/g-truc/glm
+[submodule "MehenEngine/vendor/imgui"]
+	path = MehenEngine/vendor/imgui
+	url = https://github.com/RallardM/imgui
