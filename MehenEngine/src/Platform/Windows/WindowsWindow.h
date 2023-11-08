@@ -1,6 +1,7 @@
 #pragma once
 
 #include "MehenEngine/Window.h"
+#include "MehenEngine/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
 
@@ -30,6 +31,7 @@ namespace MehenEngine
 		virtual void Shutdown();
 
 		GLFWwindow* m_window;
+		GraphicsContext* m_context;
 
 		struct WindowData
 		{

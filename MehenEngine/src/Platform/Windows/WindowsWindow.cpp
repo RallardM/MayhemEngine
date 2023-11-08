@@ -22,7 +22,7 @@
 #include "MehenEngine/Events/MouseEvent.h"
 #include "MehenEngine/Events/KeyEvent.h"
 
-#include "Glad/glad.h"
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace MehenEngine
 {
@@ -54,6 +54,7 @@ namespace MehenEngine
 		m_data.Width = props.Width;
 		m_data.Height = props.Height;
 
+
 		MEHEN_ENGINE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
 		if (!s_GLFWInitialized)
@@ -65,9 +66,10 @@ namespace MehenEngine
 		}
 
 		m_window = glfwCreateWindow((int)props.Width, (int)props.Height, m_data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		MHN_ENGINE_ASSERT(status, "Failed to initialize Glad!");
+
+		m_context = new OpenGLContext(m_window);
+		m_context->Init();
+
 		glfwSetWindowUserPointer(m_window, &m_data);
 		SetVSync(true);
 
@@ -171,7 +173,7 @@ namespace MehenEngine
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_window);
+		m_context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

@@ -143,6 +143,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\MehenEngine\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Platform\OpenGl\OpenGLContext.h" />
     <ClInclude Include="src\MehenEngine.h" />
     <ClInclude Include="src\MehenEngine\Application.h" />
     <ClInclude Include="src\MehenEngine\Core.h" />
@@ -580,6 +582,7 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGl\OpenGLContext.cpp" />
     <ClCompile Include="src\MehenEngine\Application.cpp" />
     <ClCompile Include="src\MehenEngine\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\MehenEngine\ImGui\ImGuiLayer.cpp" />
