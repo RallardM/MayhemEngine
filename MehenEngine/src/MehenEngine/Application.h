@@ -11,6 +11,7 @@
 
 // TEMPORARY
 #include "MehenEngine/Renderer/Shader.h"
+#include "MehenEngine/Renderer/Buffer.h"
 
 namespace MehenEngine
 {
@@ -26,7 +27,6 @@ namespace MehenEngine
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* layer);
 
-		inline static Application& Get() { return *_Instance; }
 		inline Window& GetWindow() { return *m_window; }
 
 	private:
@@ -38,10 +38,11 @@ namespace MehenEngine
 		ImGuiLayer* m_imguiLayer;
 
 		LayerStack m_layerStack;
-		unsigned int m_vertexArray, m_vertexBuffer, m_indexBuffer;
 		bool m_running = true;
 
 		std::unique_ptr<Shader> m_shader;
+		std::unique_ptr<VertexBuffer> m_vertexBuffer;
+		std::unique_ptr<IndexBuffer> m_indexBuffer;
 	};
 
 	// To be defined in CLIENT

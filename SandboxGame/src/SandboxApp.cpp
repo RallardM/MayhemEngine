@@ -43,7 +43,7 @@ public:
 
 	void OnEvent(MehenEngine::Event& event) override
 	{
-		if (event.GetEventType() == MehenEngine::EventType::KeyPressed)
+		if (event.GetEventType() == MehenEngine::E_EventType::KeyPressed)
 		{
 
 			MehenEngine::KeyPressedEvent& e = (MehenEngine::KeyPressedEvent&)event;
