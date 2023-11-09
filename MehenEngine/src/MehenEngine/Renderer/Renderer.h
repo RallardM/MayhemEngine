@@ -10,9 +10,12 @@ namespace MehenEngine
 
 	class Renderer
 	{
+
 	public:
-		inline static E_RendererAPI GetAPI() const { return m_API; }
+		inline static E_RendererAPI GetAPI() { return s_RendererAPI; }
+
 	private:
-		inline E_RendererAPI SetAPI(E_RendererAPI api) { m_API = api; }
+		static E_RendererAPI s_RendererAPI;
+
 	};
 }

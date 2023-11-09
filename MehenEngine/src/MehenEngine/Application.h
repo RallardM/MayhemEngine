@@ -28,21 +28,25 @@ namespace MehenEngine
 		void PushOverlay(Layer* layer);
 
 		inline Window& GetWindow() { return *m_window; }
+		inline static Application& Get() { return *_Instance; }
 
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		static Application* _Instance;
 
-		std::unique_ptr<Window> m_window;
-		ImGuiLayer* m_imguiLayer;
-
-		LayerStack m_layerStack;
-		bool m_running = true;
-
 		std::unique_ptr<Shader> m_shader;
 		std::unique_ptr<VertexBuffer> m_vertexBuffer;
 		std::unique_ptr<IndexBuffer> m_indexBuffer;
+		std::unique_ptr<Window> m_window;
+
+		ImGuiLayer* m_imguiLayer;
+
+		LayerStack m_layerStack;
+
+		unsigned int m_vertexArray, m_vertexBufferId, m_indexBufferId;
+
+		bool m_running = true;
 	};
 
 	// To be defined in CLIENT
