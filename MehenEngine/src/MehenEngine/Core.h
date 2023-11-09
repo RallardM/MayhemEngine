@@ -1,31 +1,31 @@
 #pragma once
 
-#ifdef  MHN_PLATFORM_WINDOWS
-#if MHN_DYNAMIC_LINK
-	#ifdef MHN_BUILD_DLL
+#ifdef  MEHEN_PLATFORM_WINDOWS
+#if MEHEN_DYNAMIC_LINK
+	#ifdef MEHEN_BUILD_DLL
 		#define MEHEN_API __declspec(dllexport)
 	#else 
 		#define MEHEN_API __declspec(dllimport)
-	#endif // MHN_BUILD_DLL
+	#endif // MEHEN_BUILD_DLL
 #else
 	#define MEHEN_API
-#endif // MHN_DYNAMIC_LINK
+#endif // MEHEN_DYNAMIC_LINK
 #else
 	#error MehenEngine only supports Windows!
-#endif //  MHN_PLATFORM_WINDOWS
+#endif //  MEHEN_PLATFORM_WINDOWS
 
-#ifdef MHN_DEBUG
-	#define MHN_ENABLE_ASSERTS
-#endif // MHN_DEBUG
+#ifdef MEHEN_DEBUG
+	#define MEHEN_ENABLE_ASSERTS
+#endif // MEHEN_DEBUG
 
 // Tutorial : https://youtu.be/88dmtleVywk?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT&t=1218
-#ifdef MHN_ENABLE_ASSERTS
-	#define MHN_ASSERT(x, ...) { if(!(x)) { MHN_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
-	#define MHN_ENGINE_ASSERT(x, ...) { if(!(x)) { MEHEN_ENGINE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#ifdef MEHEN_ENABLE_ASSERTS
+	#define MEHEN_GAME_ASSERT(x, ...) { if(!(x)) { MEHEN_GAME_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+	#define MEHEN_ENGINE_ASSERT(x, ...) { if(!(x)) { MEHEN_ENGINE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 #else
-	#define MHN_ASSERT(x, ...)
-	#define MHN_ENGINE_ASSERT(x, ...)
-#endif // MHN_ENABLE_ASSERTS
+	#define MEHEN_GAME_ASSERT(x, ...)
+	#define MEHEN_ENGINE_ASSERT(x, ...)
+#endif // MEHEN_ENABLE_ASSERTS
 
 #define BIT(x) (1 << x)
 

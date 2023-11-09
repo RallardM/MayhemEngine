@@ -60,7 +60,7 @@ namespace MehenEngine
 		if (!s_GLFWInitialized)
 		{
 			int success = glfwInit();
-			MHN_ENGINE_ASSERT(success, "Could not initialize GLFW!");
+			MEHEN_ENGINE_ASSERT(success, "Could not initialize GLFW!");
 			glfwSetErrorCallback(GLFWErrorCallback);
 			s_GLFWInitialized = true;
 		}

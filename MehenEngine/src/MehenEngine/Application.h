@@ -9,6 +9,9 @@
 
 #include "MehenEngine/ImGui/ImGuiLayer.h"
 
+// TEMPORARY
+#include "MehenEngine/Renderer/Shader.h"
+
 namespace MehenEngine
 {
 	class MEHEN_API Application
@@ -35,8 +38,10 @@ namespace MehenEngine
 		ImGuiLayer* m_imguiLayer;
 
 		LayerStack m_layerStack;
+		unsigned int m_vertexArray, m_vertexBuffer, m_indexBuffer;
 		bool m_running = true;
 
+		std::unique_ptr<Shader> m_shader;
 	};
 
 	// To be defined in CLIENT

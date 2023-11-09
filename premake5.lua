@@ -81,23 +81,23 @@ project "MehenEngine"
 		
 		defines
 		{
-			"MHN_PLATFORM_WINDOWS",
-			"MHN_BUILD_DLL",
+			"MEHEN_PLATFORM_WINDOWS",
+			"MEHEN_BUILD_DLL",
 			"GLFW_INCLUDE_NONE"
 		}
 
 	filter "configurations:Debug"
-		defines "MHN_DEBUG"
+		defines "MEHEN_DEBUG"
 		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
-		defines "MHN_RELEASE"
+		defines "MEHEN_RELEASE"
 		runtime "Release"
 		optimize "on"
 
 	filter "configurations:Dist"
-		defines "MHN_DIST"
+		defines "MEHEN_DIST"
 		runtime "Release"
 		optimize "on"
 
@@ -138,20 +138,20 @@ project "SandboxGame"
 		
 		defines
 		{
-			"MHN_PLATFORM_WINDOWS"
+			"MEHEN_PLATFORM_WINDOWS"
 		}
 
 	filter "configurations:Debug"
-		defines "MHN_DEBUG"
+		defines "MEHEN_DEBUG"
 		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
-		defines "MHN_RELEASE"
+		defines "MEHEN_RELEASE"
 		runtime "Release"
 		optimize "on"
 
 	filter "configurations:Dist"
-		defines "MHN_DIST"
+		defines "MEHEN_DIST"
 		runtime "Release"
 		optimize "on"

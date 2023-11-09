@@ -16,6 +16,6 @@
 
 #include "MehenEngine/Log.h"
 
-#ifdef MHN_PLATFORM_WINDOWS
+#ifdef MEHEN_PLATFORM_WINDOWS
 #include <Windows.h>
-#endif // MHN_PLATFORM_WINDOWS
+#endif // MEHEN_PLATFORM_WINDOWS

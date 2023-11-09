@@ -13,8 +13,14 @@
     <Filter Include="src\MehenEngine\ImGui">
       <UniqueIdentifier>{A9ADC0D5-151A-7CD0-DE0D-142E4A399E38}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\MehenEngine\Renderer">
+      <UniqueIdentifier>{C51F3E9D-B144-8D1D-DA8F-72ADC6138C3B}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\OpenGl">
+      <UniqueIdentifier>{55A49437-C105-7245-4A73-B8F7B6D3A804}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
@@ -87,11 +93,20 @@
     <ClInclude Include="src\MehenEngine\MouseButtonCodes.h">
       <Filter>src\MehenEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\MehenEngine\Renderer\GraphicsContext.h">
+      <Filter>src\MehenEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MehenEngine\Renderer\Shader.h">
+      <Filter>src\MehenEngine\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\MehenEngine\Window.h">
       <Filter>src\MehenEngine</Filter>
     </ClInclude>
     <ClInclude Include="src\MhnPCHeader.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGl\OpenGLContext.h">
+      <Filter>src\Platform\OpenGl</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>src\Platform\Windows</Filter>
@@ -1367,8 +1382,14 @@
     <ClCompile Include="src\MehenEngine\Log.cpp">
       <Filter>src\MehenEngine</Filter>
     </ClCompile>
+    <ClCompile Include="src\MehenEngine\Renderer\Shader.cpp">
+      <Filter>src\MehenEngine\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\MhnPCHeader.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGl\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGl</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>

@@ -76,7 +76,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>MhnPCHeader.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;MHN_PLATFORM_WINDOWS;MHN_BUILD_DLL;GLFW_INCLUDE_NONE;MHN_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;MEHEN_PLATFORM_WINDOWS;MEHEN_BUILD_DLL;GLFW_INCLUDE_NONE;MEHEN_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -97,7 +97,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>MhnPCHeader.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;MHN_PLATFORM_WINDOWS;MHN_BUILD_DLL;GLFW_INCLUDE_NONE;MHN_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;MEHEN_PLATFORM_WINDOWS;MEHEN_BUILD_DLL;GLFW_INCLUDE_NONE;MEHEN_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -122,7 +122,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>MhnPCHeader.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;MHN_PLATFORM_WINDOWS;MHN_BUILD_DLL;GLFW_INCLUDE_NONE;MHN_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;MEHEN_PLATFORM_WINDOWS;MEHEN_BUILD_DLL;GLFW_INCLUDE_NONE;MEHEN_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -143,8 +143,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\MehenEngine\Renderer\GraphicsContext.h" />
-    <ClInclude Include="src\Platform\OpenGl\OpenGLContext.h" />
     <ClInclude Include="src\MehenEngine.h" />
     <ClInclude Include="src\MehenEngine\Application.h" />
     <ClInclude Include="src\MehenEngine\Core.h" />
@@ -160,8 +158,11 @@
     <ClInclude Include="src\MehenEngine\LayerStack.h" />
     <ClInclude Include="src\MehenEngine\Log.h" />
     <ClInclude Include="src\MehenEngine\MouseButtonCodes.h" />
+    <ClInclude Include="src\MehenEngine\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\MehenEngine\Renderer\Shader.h" />
     <ClInclude Include="src\MehenEngine\Window.h" />
     <ClInclude Include="src\MhnPCHeader.h" />
+    <ClInclude Include="src\Platform\OpenGl\OpenGLContext.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
@@ -582,16 +583,17 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Platform\OpenGl\OpenGLContext.cpp" />
     <ClCompile Include="src\MehenEngine\Application.cpp" />
     <ClCompile Include="src\MehenEngine\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\MehenEngine\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\MehenEngine\Layer.cpp" />
     <ClCompile Include="src\MehenEngine\LayerStack.cpp" />
     <ClCompile Include="src\MehenEngine\Log.cpp" />
+    <ClCompile Include="src\MehenEngine\Renderer\Shader.cpp" />
     <ClCompile Include="src\MhnPCHeader.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGl\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>

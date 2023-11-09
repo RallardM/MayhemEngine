@@ -26,14 +26,46 @@ namespace MehenEngine
 	OpenGLContext::OpenGLContext(GLFWwindow* windowHandle)
 		: m_windowHandle(windowHandle)
 	{
-		MHN_ENGINE_ASSERT(windowHandle, "Window handle is null!");
+		MEHEN_ENGINE_ASSERT(windowHandle, "Window handle is null!");
 	}
 
 	void OpenGLContext::Init()
 	{
 		glfwMakeContextCurrent(m_windowHandle);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		MHN_ENGINE_ASSERT(status, "Failed to initialize Glad!");
+		MEHEN_ENGINE_ASSERT(status, "Failed to initialize Glad!");
+
+		const GLubyte* version = glGetString(GL_VERSION);
+		if (version != nullptr) 
+		{
+			std::string versionStr(reinterpret_cast<const char*>(version));
+			MEHEN_ENGINE_INFO("  Version: {}", versionStr);
+		}
+		else 
+		{
+			MEHEN_ENGINE_INFO("Failed to get OpenGL version");
+		}
+
+		const GLubyte* vendor = glGetString(GL_VENDOR);
+		if (vendor != nullptr) {
+			std::string vendorStr(reinterpret_cast<const char*>(vendor));
+			MEHEN_ENGINE_INFO("  Vendor: {}", vendorStr);
+		}
+		else 
+		{
+			MEHEN_ENGINE_INFO("Failed to get OpenGL vendor");
+		}
+
+		const GLubyte* renderer = glGetString(GL_RENDERER);
+		if (renderer != nullptr) {
+			std::string rendererStr(reinterpret_cast<const char*>(renderer));
+			MEHEN_ENGINE_INFO("  Renderer: {}", rendererStr);
+		}
+		else {
+			MEHEN_ENGINE_INFO("Failed to get OpenGL renderer");
+		}
+
+		MEHEN_ENGINE_ASSERT(GLVersion.major > 4 || (GLVersion.major == 4 && GLVersion.minor >= 5), "MehenEngine requires at least OpenGL version 4.5!");
 	}
 
 	void OpenGLContext::SwapBuffers()

@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef  MHN_PLATFORM_WINDOWS
+#ifdef  MEHEN_PLATFORM_WINDOWS
 
 extern MehenEngine::Application* MehenEngine::CreateApplication();
 
