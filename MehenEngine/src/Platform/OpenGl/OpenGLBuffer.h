@@ -14,8 +14,12 @@ namespace MehenEngine
 		virtual void Bind() const override;
 		virtual void Unbind() const override;
 
+		virtual const BufferLayout& GetLayout() const override { return m_layout; }
+		virtual void SetLayout(const BufferLayout& layout) override { m_layout = layout; }
+
 	private:
 		uint32_t m_rendererId;
+		BufferLayout m_layout;
 
 	};
 

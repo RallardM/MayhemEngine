@@ -25,7 +25,7 @@ namespace MehenEngine
 {
 	// ########################################################### Vertex Buffer ###########################################################
 
-	MehenEngine::OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32_t size)
+	MehenEngine::OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32_t size) 
 	{
 		glCreateBuffers(1, &m_rendererId);
 		glBindBuffer(GL_ARRAY_BUFFER, m_rendererId);
