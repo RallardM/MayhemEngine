@@ -29,28 +29,6 @@ namespace MehenEngine
 
 	Application* Application::_Instance = nullptr;
 
-	// Temporary
-	static GLenum ShaderDataTypeToOpenGLBaseType(E_ShaderDataType type)
-	{
-		switch (type)
-		{
-		case E_ShaderDataType::Float:    return GL_FLOAT;
-		case E_ShaderDataType::Float2:   return GL_FLOAT;
-		case E_ShaderDataType::Float3:   return GL_FLOAT;
-		case E_ShaderDataType::Float4:   return GL_FLOAT;
-		case E_ShaderDataType::Mat3:     return GL_FLOAT;
-		case E_ShaderDataType::Mat4:     return GL_FLOAT;
-		case E_ShaderDataType::Int:      return GL_INT;
-		case E_ShaderDataType::Int2:     return GL_INT;
-		case E_ShaderDataType::Int3:     return GL_INT;
-		case E_ShaderDataType::Int4:     return GL_INT;
-		case E_ShaderDataType::Bool:     return GL_BOOL;
-		}
-
-		MEHEN_ENGINE_ASSERT(false, "Unknown ShaderDataType!");
-		return 0;
-	}
-
 	Application::Application()
 	{
 		MEHEN_ENGINE_ASSERT(!_Instance, "Application already exists!");
@@ -62,9 +40,7 @@ namespace MehenEngine
 		m_imguiLayer = new ImGuiLayer();
 		PushOverlay(m_imguiLayer);
 
-		// Vertex Array
-		glGenVertexArrays(1, &m_vertexArray);
-		glBindVertexArray(m_vertexArray);
+		m_vertexArray.reset(VertexArray::Create());
 
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 0.1f, 0.1f, 0.1f, 1.0f,
@@ -74,34 +50,17 @@ namespace MehenEngine
 
 		m_vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 
-		{
-			BufferLayout layout = {
-				{ E_ShaderDataType::Float3, "a_Position" },
-				{ E_ShaderDataType::Float4, "a_Color"}
-			};
+		BufferLayout layout = {
+			{ E_ShaderDataType::Float3, "a_Position" },
+			{ E_ShaderDataType::Float4, "a_Color"}
+		};
 
-			m_vertexBuffer->SetLayout(layout);
-		}
-
-		uint32_t index = 0;
-		const auto& layout = m_vertexBuffer->GetLayout();
-		for (const auto& element : layout)
-		{
-			glEnableVertexAttribArray(index);
-			glVertexAttribPointer(
-				index,
-				element.GetComponentCount(), 
-				ShaderDataTypeToOpenGLBaseType(element.m_type), 
-				element.m_normalized ? GL_TRUE : GL_FALSE,
-				layout.GetStride(),
-				(const void*)element.m_offset);
-
-			//glVertexAttribPointer(index, ShaderDataTypeSize(element.m_type), GL_FLOAT, GL_FALSE, layout.GetStride(), nullptr);
-			index++;
-		}
+		m_vertexBuffer->SetLayout(layout);
+		m_vertexArray->AddVertexBuffer(m_vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
 		m_indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		m_vertexArray->SetIndexBuffer(m_indexBuffer);
 
 		// Shader
 		std::string vertexSrc = R"(
@@ -146,7 +105,7 @@ namespace MehenEngine
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			m_shader->Bind();
-			glBindVertexArray(m_vertexArray);
+			m_vertexArray->Bind();
 			glDrawElements(GL_TRIANGLES, m_indexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			for (Layer* layer : m_layerStack)

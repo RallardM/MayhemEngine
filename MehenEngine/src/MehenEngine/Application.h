@@ -12,6 +12,7 @@
 // TEMPORARY
 #include "MehenEngine/Renderer/Shader.h"
 #include "MehenEngine/Renderer/Buffer.h"
+#include "Renderer/VertexArray.h"
 
 namespace MehenEngine
 {
@@ -35,16 +36,15 @@ namespace MehenEngine
 
 		static Application* _Instance;
 
-		std::unique_ptr<Shader> m_shader;
-		std::unique_ptr<VertexBuffer> m_vertexBuffer;
-		std::unique_ptr<IndexBuffer> m_indexBuffer;
-		std::unique_ptr<Window> m_window;
+		std::shared_ptr<Shader> m_shader;
+		std::shared_ptr<VertexBuffer> m_vertexBuffer;
+		std::shared_ptr<VertexArray> m_vertexArray;
+		std::shared_ptr<IndexBuffer> m_indexBuffer;
+		std::shared_ptr<Window> m_window;
 
 		ImGuiLayer* m_imguiLayer;
 
 		LayerStack m_layerStack;
-
-		unsigned int m_vertexArray, m_vertexBufferId, m_indexBufferId;
 
 		bool m_running = true;
 	};
