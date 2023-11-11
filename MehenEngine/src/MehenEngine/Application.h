@@ -36,11 +36,14 @@ namespace MehenEngine
 
 		static Application* _Instance;
 
+		// Triangle
 		std::shared_ptr<Shader> m_shader;
-		std::shared_ptr<VertexBuffer> m_vertexBuffer;
 		std::shared_ptr<VertexArray> m_vertexArray;
-		std::shared_ptr<IndexBuffer> m_indexBuffer;
 		std::shared_ptr<Window> m_window;
+
+		// Square
+		std::shared_ptr<VertexArray> m_squareVA;
+		std::shared_ptr<Shader> m_blackShader;
 
 		ImGuiLayer* m_imguiLayer;
 

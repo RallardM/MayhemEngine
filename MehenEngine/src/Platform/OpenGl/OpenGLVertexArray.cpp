@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// Tutorial : https://youtu.be/rkxrw8dNrvI?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
+ // Tutorial : https://youtu.be/rkxrw8dNrvI?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
 #include "MhnPCHeader.h"
 #include "OpenGLVertexArray.h"
 
@@ -49,6 +49,11 @@ namespace MehenEngine
 		glGenVertexArrays(1, &m_rendererId);
 	}
 
+	OpenGLVertexArray::~OpenGLVertexArray()
+	{
+		glDeleteVertexArrays(1, &m_rendererId);
+	}
+
 	void OpenGLVertexArray::Bind() const
 	{
 		glBindVertexArray(m_rendererId);
@@ -62,7 +67,7 @@ namespace MehenEngine
 	void OpenGLVertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer)
 	{
 		MEHEN_ENGINE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout!");
-		
+
 		glBindVertexArray(m_rendererId);
 		vertexBuffer->Bind();
 

@@ -48,19 +48,43 @@ namespace MehenEngine
 			 0.0f,  0.5f, 0.0f, 0.1f, 0.15f, 0.25f, 1.0f
 		};
 
-		m_vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
+		std::shared_ptr<VertexBuffer> vertexBuffer;
+		vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		BufferLayout layout = {
 			{ E_ShaderDataType::Float3, "a_Position" },
 			{ E_ShaderDataType::Float4, "a_Color"}
 		};
 
-		m_vertexBuffer->SetLayout(layout);
-		m_vertexArray->AddVertexBuffer(m_vertexBuffer);
+		vertexBuffer->SetLayout(layout);
+		m_vertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		m_indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
-		m_vertexArray->SetIndexBuffer(m_indexBuffer);
+		std::shared_ptr<IndexBuffer> indexBuffer;
+		indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		m_vertexArray->SetIndexBuffer(indexBuffer);
+
+		m_squareVA.reset(VertexArray::Create());
+
+		float squareVertices[3 * 4] = {
+			-0.5f, -0.5f, 0.0f,
+			 0.5f, -0.5f, 0.0f,
+			 0.5f,  0.5f, 0.0f,
+			-0.5f,  0.5f, 0.0f
+		};
+
+		std::shared_ptr<VertexBuffer> squareVB;
+		squareVB.reset(VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+
+		squareVB->SetLayout({
+			{ E_ShaderDataType::Float3, "a_Position" }
+			});
+		m_squareVA->AddVertexBuffer(squareVB);
+
+		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
+		std::shared_ptr<IndexBuffer> squareIB;
+		squareIB.reset(IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		m_squareVA->SetIndexBuffer(squareIB);
 
 		// Shader
 		std::string vertexSrc = R"(
@@ -91,6 +115,33 @@ namespace MehenEngine
 		)";
 
 		m_shader.reset(new Shader(vertexSrc, fragmentSrc));
+
+		// Shader
+		std::string blackVertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+
+			out vec4 v_Color;
+
+			void main()
+			{
+				gl_Position = vec4(a_Position, 1.0);
+			}
+		)";
+
+		std::string blackFragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			void main()
+			{
+				color = vec4(0.0, 0.0, 0.0, 1.0);
+			}
+		)";
+
+		m_blackShader.reset(new Shader(blackVertexSrc, blackFragmentSrc));
 	}
 
 	Application::~Application()
@@ -104,9 +155,13 @@ namespace MehenEngine
 			glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
 
+			m_blackShader->Bind();
+			m_squareVA->Bind();
+			glDrawElements(GL_TRIANGLES, m_squareVA->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+
 			m_shader->Bind();
 			m_vertexArray->Bind();
-			glDrawElements(GL_TRIANGLES, m_indexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
+			glDrawElements(GL_TRIANGLES, m_vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			for (Layer* layer : m_layerStack)
 			{
