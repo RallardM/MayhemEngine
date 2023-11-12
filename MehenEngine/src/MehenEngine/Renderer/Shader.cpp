@@ -143,6 +143,12 @@ namespace MehenEngine
 		glUseProgram(0);
 	}
 
+	void Shader::UploadUniformFloat4(const std::string& name, const glm::vec4& vector)
+	{
+		GLint location = glGetUniformLocation(m_rendererId, name.c_str());
+		glUniform4f(location, vector.x, vector.y, vector.z, vector.w);
+	}
+
 	void Shader::UploadUniformMat4(const std::string& name, const glm::mat4& matrix)
 	{
 		GLint location = glGetUniformLocation(m_rendererId, name.c_str());
