@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string>
-#include <glm/glm.hpp>
 
 namespace MehenEngine
 {
@@ -9,17 +8,12 @@ namespace MehenEngine
 	{
 
 	public:
-		Shader(const std::string& vertexSource, const std::string& fragmentSource);
-		~Shader();
+		virtual ~Shader() = default;
 
-		void Bind() const;
-		void Unbind() const;
+		virtual void Bind() const = 0;
+		virtual void Unbind() const = 0;
 
-		void UploadUniformFloat4(const std::string& name, const glm::vec4& vector);
-		void UploadUniformMat4(const std::string& name, const glm::mat4& matrix);
-
-	private:
-		uint32_t m_rendererId;
+		static Shader* Create(const std::string& vertexSource, const std::string& fragmentSource);
 
 	};
 }

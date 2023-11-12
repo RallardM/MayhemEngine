@@ -16,8 +16,12 @@
 
 #include <MehenEngine.h>
 
+#include "Platform/OpenGL/OpenGLShader.h"
+
 #include "imgui/imgui.h"
+
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 class ExampleLayer : public MehenEngine::Layer
 {
@@ -105,7 +109,7 @@ public:
 			}
 		)";
 
-		m_shader.reset(new MehenEngine::Shader(vertexSrc, fragmentSrc));
+		m_shader.reset(MehenEngine::Shader::Create(vertexSrc, fragmentSrc));
 
 		// Shader
 		std::string blackVertexSrc = R"(
@@ -128,14 +132,16 @@ public:
 			#version 330 core
 			
 			layout(location = 0) out vec4 color;
+
+			uniform vec3 u_Color;
 			
 			void main()
 			{
-				color = vec4(0.0, 0.0, 0.0, 1.0);
+				color = vec4(u_Color, 1.0);
 			}
 		)";
 
-		m_blackShader.reset(new MehenEngine::Shader(blackVertexSrc, blackFragmentSrc));
+		m_blackShader.reset(MehenEngine::Shader::Create(blackVertexSrc, blackFragmentSrc));
 	}
 
 	void OnUpdate(MehenEngine::Timestep deltaTime) override
@@ -205,6 +211,11 @@ public:
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_squarePosition)
 			* glm::rotate(glm::mat4(1.0f), glm::radians(m_squareRotation), glm::vec3(0, 0, 1));
 
+
+		std::dynamic_pointer_cast<MehenEngine::OpenGLShader>(m_blackShader)->Bind();
+		std::dynamic_pointer_cast<MehenEngine::OpenGLShader>(m_blackShader)->UploadUniformFloat3("u_Color", m_squareColor);
+
+
 		MehenEngine::Renderer::Submit(m_blackShader, m_squareVA, transform);
 		MehenEngine::Renderer::Submit(m_shader, m_vertexArray);
 
@@ -213,6 +224,9 @@ public:
 
 	virtual void OnImGuiRender() override
 	{
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_squareColor));
+		ImGui::End();
 
 	}
 
@@ -231,8 +245,11 @@ private:
 	std::shared_ptr<MehenEngine::Shader> m_blackShader;
 
 	MehenEngine::OrthographicCamera m_camera;
+
+	glm::vec3 m_squareColor = { 0.0f, 0.0f, 0.0f };
 	glm::vec3 m_squarePosition;
 	glm::vec3 m_cameraPosition;
+
 	float m_cameraMoveSpeed = 1.0f;
 	float m_squareMoveSpeed = 1.0f;
 	float m_cameraRotation = 0.0f;
