@@ -134,31 +134,33 @@ public:
 		m_blackShader.reset(new MehenEngine::Shader(blackVertexSrc, blackFragmentSrc));
 	}
 
-	void OnUpdate() override
+	void OnUpdate(MehenEngine::Timestep deltaTime) override
 	{
+		MEHEN_GAME_TRACE("Delta time: {0}s ({1}ms)", deltaTime.GetSeconds(), deltaTime.GetMilliseconds());
+
 		if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_A))
 		{
-			m_cameraPosition.x -= m_cameraSpeed;
+			m_cameraPosition.x -= m_cameraSpeed * deltaTime;
 		}
 		else if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_D))
 		{
-			m_cameraPosition.x += m_cameraSpeed;
+			m_cameraPosition.x += m_cameraSpeed * deltaTime;
 		}
 		if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_W))
 		{
-			m_cameraPosition.y += m_cameraSpeed;
+			m_cameraPosition.y += m_cameraSpeed * deltaTime;
 		}
 		else if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_S))
 		{
-			m_cameraPosition.y -= m_cameraSpeed;
+			m_cameraPosition.y -= m_cameraSpeed * deltaTime;
 		}
 		if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_Q))
 		{
-			m_cameraRotation += m_cameraRotationSpeed;
+			m_cameraRotation += m_cameraRotationSpeed * deltaTime;
 		}
 		else if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_E))
 		{
-			m_cameraRotation -= m_cameraRotationSpeed;
+			m_cameraRotation -= m_cameraRotationSpeed * deltaTime;
 		}
 
 		MehenEngine::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
@@ -196,9 +198,9 @@ private:
 
 	MehenEngine::OrthographicCamera m_camera;
 	glm::vec3 m_cameraPosition;
-	float m_cameraSpeed = 0.01f;
+	float m_cameraSpeed = 1.0f;
 	float m_cameraRotation = 0.0f;
-	float m_cameraRotationSpeed = 2.0f;
+	float m_cameraRotationSpeed = 100.0f;
 
 };
 

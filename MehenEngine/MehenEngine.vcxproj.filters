@@ -1371,6 +1371,7 @@
     <ClInclude Include="src\MehenEngine\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Platform\OpenGl\OpenGLRendererAPI.h" />
     <ClInclude Include="src\MehenEngine\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\MehenEngine\Core\Timestep.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\MehenEngine\Application.cpp">

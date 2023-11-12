@@ -146,6 +146,7 @@
     <ClInclude Include="src\MehenEngine.h" />
     <ClInclude Include="src\MehenEngine\Application.h" />
     <ClInclude Include="src\MehenEngine\Core.h" />
+    <ClInclude Include="src\MehenEngine\Core\Timestep.h" />
     <ClInclude Include="src\MehenEngine\EntryPoint.h" />
     <ClInclude Include="src\MehenEngine\Events\ApplicationEvent.h" />
     <ClInclude Include="src\MehenEngine\Events\Event.h" />

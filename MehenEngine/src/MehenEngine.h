@@ -6,6 +6,8 @@
 #include "MehenEngine/Layer.h"
 #include "MehenEngine/Log.h"
 
+#include "MehenEngine/Core/Timestep.h"
+
 #include "MehenEngine/Input.h"
 #include "MehenEngine/KeyCodes.h"
 #include "MehenEngine/MouseButtonCodes.h"

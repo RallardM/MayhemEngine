@@ -7,6 +7,8 @@
 #include "MehenEngine/Events/Event.h"
 #include "MehenEngine/Events/ApplicationEvent.h"
 
+#include "MehenEngine/Core/Timestep.h"
+
 #include "MehenEngine/ImGui/ImGuiLayer.h"
 
 namespace MehenEngine
@@ -30,13 +32,10 @@ namespace MehenEngine
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		static Application* _Instance;
-
 		std::shared_ptr<Window> m_window;
-
 		ImGuiLayer* m_imguiLayer;
-
 		LayerStack m_layerStack;
-
+		float m_lastFrameTime = 0.0f;
 		bool m_running = true;
 	};
 

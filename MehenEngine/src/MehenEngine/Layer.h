@@ -1,6 +1,7 @@
 #pragma once
 
 #include "MehenEngine/Core.h"
+#include "MehenEngine/Core/Timestep.h"
 #include "MehenEngine/Events/Event.h"
 
 namespace MehenEngine
@@ -13,7 +14,7 @@ namespace MehenEngine
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep deltaTime) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 

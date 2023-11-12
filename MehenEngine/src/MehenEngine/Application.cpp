@@ -22,6 +22,8 @@
 
 #include "MehenEngine/Renderer/Renderer.h"
 
+#include <GLFW/glfw3.h>
+
 namespace MehenEngine
 {
 
@@ -36,6 +38,7 @@ namespace MehenEngine
 
 		m_window = std::unique_ptr<Window>(Window::Create());
 		m_window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		//m_window->SetVSync(false);
 
 		m_imguiLayer = new ImGuiLayer();
 		PushOverlay(m_imguiLayer);
@@ -49,9 +52,13 @@ namespace MehenEngine
 	{
 		while (m_running)
 		{
+			float time = (float)glfwGetTime();
+			Timestep timestep = time - m_lastFrameTime;
+			m_lastFrameTime = time;
+
 			for (Layer* layer : m_layerStack)
 			{
-				layer->OnUpdate();
+				layer->OnUpdate(timestep);
 			}
 
 			m_imguiLayer->Begin();
