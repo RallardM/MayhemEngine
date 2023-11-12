@@ -1370,6 +1370,7 @@
     <ClInclude Include="src\MehenEngine\Renderer\RendererAPI.h" />
     <ClInclude Include="src\MehenEngine\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Platform\OpenGl\OpenGLRendererAPI.h" />
+    <ClInclude Include="src\MehenEngine\Renderer\OrthographicCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\MehenEngine\Application.cpp">
@@ -1413,5 +1414,6 @@
     <ClCompile Include="src\MehenEngine\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\MehenEngine\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Platform\OpenGl\OpenGLRendererAPI.cpp" />
+    <ClCompile Include="src\MehenEngine\Renderer\OrthographicCamera.cpp" />
   </ItemGroup>
 </Project>

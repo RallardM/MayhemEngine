@@ -160,6 +160,7 @@
     <ClInclude Include="src\MehenEngine\MouseButtonCodes.h" />
     <ClInclude Include="src\MehenEngine\Renderer\Buffer.h" />
     <ClInclude Include="src\MehenEngine\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\MehenEngine\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\MehenEngine\Renderer\RenderCommand.h" />
     <ClInclude Include="src\MehenEngine\Renderer\Renderer.h" />
     <ClInclude Include="src\MehenEngine\Renderer\RendererAPI.h" />
@@ -598,6 +599,7 @@
     <ClCompile Include="src\MehenEngine\LayerStack.cpp" />
     <ClCompile Include="src\MehenEngine\Log.cpp" />
     <ClCompile Include="src\MehenEngine\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\MehenEngine\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\MehenEngine\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\MehenEngine\Renderer\Renderer.cpp" />
     <ClCompile Include="src\MehenEngine\Renderer\RendererAPI.cpp" />

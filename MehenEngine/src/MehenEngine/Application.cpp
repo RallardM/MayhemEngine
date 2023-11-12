@@ -30,6 +30,7 @@ namespace MehenEngine
 	Application* Application::_Instance = nullptr;
 
 	Application::Application()
+		: m_camera(-1.0f, 1.0f, -1.0f, 1.0f)
 	{
 		MEHEN_ENGINE_ASSERT(!_Instance, "Application already exists!");
 		_Instance = this;
@@ -93,11 +94,13 @@ namespace MehenEngine
 			layout(location = 0) in vec3 a_Position;
 			layout(location = 1) in vec4 a_Color;
 
+			uniform mat4 u_ViewProjection;
+
 			out vec4 v_Color;
 
 			void main()
 			{
-				gl_Position = vec4(a_Position, 1.0);
+				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
 				v_Color = a_Color;
 			}
 		)";
@@ -122,11 +125,13 @@ namespace MehenEngine
 			
 			layout(location = 0) in vec3 a_Position;
 
+			uniform mat4 u_ViewProjection;
+
 			out vec4 v_Color;
 
 			void main()
 			{
-				gl_Position = vec4(a_Position, 1.0);
+				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
 			}
 		)";
 
@@ -134,7 +139,7 @@ namespace MehenEngine
 			#version 330 core
 			
 			layout(location = 0) out vec4 color;
-
+			
 			void main()
 			{
 				color = vec4(0.0, 0.0, 0.0, 1.0);
@@ -155,13 +160,13 @@ namespace MehenEngine
 			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 			RenderCommand::Clear();
 
-			Renderer::BeginScene();
-			
-			m_blackShader->Bind();
-			Renderer::Submit(m_squareVA); // Submit mesh
+			m_camera.SetPosition({ 0.0f, 0.0f, 0.0f });
+			m_camera.SetRotation(0.0f);
 
-			m_shader->Bind();
-			Renderer::Submit(m_vertexArray); // Submit mesh
+			Renderer::BeginScene(m_camera);
+
+			Renderer::Submit(m_blackShader, m_squareVA);
+			Renderer::Submit(m_shader, m_vertexArray);
 
 			Renderer::EndScene();
 

@@ -9,6 +9,8 @@
 
 #include "MehenEngine/ImGui/ImGuiLayer.h"
 
+#include "MehenEngine/Renderer/OrthographicCamera.h"
+
 // TEMPORARY
 #include "MehenEngine/Renderer/Shader.h"
 #include "MehenEngine/Renderer/Buffer.h"
@@ -35,6 +37,8 @@ namespace MehenEngine
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		static Application* _Instance;
+
+		OrthographicCamera m_camera;
 
 		// Triangle
 		std::shared_ptr<Shader> m_shader;
