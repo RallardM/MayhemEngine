@@ -17,6 +17,7 @@
 #include <MehenEngine.h>
 
 #include "imgui/imgui.h"
+#include <glm/gtc/matrix_transform.hpp>
 
 class ExampleLayer : public MehenEngine::Layer
 {
@@ -24,7 +25,8 @@ public:
 	ExampleLayer() :
 		Layer("Example"),
 		m_camera(-1.6f, 1.6f, -0.9f, 0.9f),
-		m_cameraPosition(0.0f)
+		m_cameraPosition(0.0f),
+		m_squarePosition(0.0f)
 	{
 		m_vertexArray.reset(MehenEngine::VertexArray::Create());
 
@@ -80,12 +82,13 @@ public:
 			layout(location = 1) in vec4 a_Color;
 
 			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
 
 			out vec4 v_Color;
 
 			void main()
 			{
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
 				v_Color = a_Color;
 			}
 		)";
@@ -111,12 +114,13 @@ public:
 			layout(location = 0) in vec3 a_Position;
 
 			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
 
 			out vec4 v_Color;
 
 			void main()
 			{
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
 			}
 		)";
 
@@ -138,21 +142,22 @@ public:
 	{
 		MEHEN_GAME_TRACE("Delta time: {0}s ({1}ms)", deltaTime.GetSeconds(), deltaTime.GetMilliseconds());
 
+		// Move camera
 		if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_A))
 		{
-			m_cameraPosition.x -= m_cameraSpeed * deltaTime;
+			m_cameraPosition.x -= m_cameraMoveSpeed * deltaTime;
 		}
 		else if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_D))
 		{
-			m_cameraPosition.x += m_cameraSpeed * deltaTime;
+			m_cameraPosition.x += m_cameraMoveSpeed * deltaTime;
 		}
 		if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_W))
 		{
-			m_cameraPosition.y += m_cameraSpeed * deltaTime;
+			m_cameraPosition.y += m_cameraMoveSpeed * deltaTime;
 		}
 		else if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_S))
 		{
-			m_cameraPosition.y -= m_cameraSpeed * deltaTime;
+			m_cameraPosition.y -= m_cameraMoveSpeed * deltaTime;
 		}
 		if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_Q))
 		{
@@ -163,6 +168,32 @@ public:
 			m_cameraRotation -= m_cameraRotationSpeed * deltaTime;
 		}
 
+		// Move square
+		if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_LEFT))
+		{
+			m_squarePosition.x -= m_squareMoveSpeed * deltaTime;
+		}
+		else if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_RIGHT))
+		{
+			m_squarePosition.x += m_squareMoveSpeed * deltaTime;
+		}
+		if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_UP))
+		{
+			m_squarePosition.y += m_squareMoveSpeed * deltaTime;
+		}
+		else if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_DOWN))
+		{
+			m_squarePosition.y -= m_squareMoveSpeed * deltaTime;
+		}
+		if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_PAGE_UP))
+		{
+			m_squareRotation += m_squareRotationSpeed * deltaTime;
+		}
+		else if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_PAGE_DOWN))
+		{
+			m_squareRotation -= m_squareRotationSpeed * deltaTime;
+		}
+
 		MehenEngine::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		MehenEngine::RenderCommand::Clear();
 
@@ -171,7 +202,10 @@ public:
 
 		MehenEngine::Renderer::BeginScene(m_camera);
 
-		MehenEngine::Renderer::Submit(m_blackShader, m_squareVA);
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_squarePosition)
+			* glm::rotate(glm::mat4(1.0f), glm::radians(m_squareRotation), glm::vec3(0, 0, 1));
+
+		MehenEngine::Renderer::Submit(m_blackShader, m_squareVA, transform);
 		MehenEngine::Renderer::Submit(m_shader, m_vertexArray);
 
 		MehenEngine::Renderer::EndScene();
@@ -197,10 +231,14 @@ private:
 	std::shared_ptr<MehenEngine::Shader> m_blackShader;
 
 	MehenEngine::OrthographicCamera m_camera;
+	glm::vec3 m_squarePosition;
 	glm::vec3 m_cameraPosition;
-	float m_cameraSpeed = 1.0f;
+	float m_cameraMoveSpeed = 1.0f;
+	float m_squareMoveSpeed = 1.0f;
 	float m_cameraRotation = 0.0f;
+	float m_squareRotation = 0.0f;
 	float m_cameraRotationSpeed = 100.0f;
+	float m_squareRotationSpeed = 100.0f;
 
 };
 
