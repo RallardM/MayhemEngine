@@ -29,8 +29,8 @@ namespace MehenEngine
 	{
 		switch (Renderer::GetAPI())
 		{
-			case E_RendererAPI::None:   MEHEN_ENGINE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-			case E_RendererAPI::OpenGL: return new OpenGLVertexBuffer(vertices, size);
+			case RendererAPI::API::None:   MEHEN_ENGINE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+			case RendererAPI::API::OpenGL: return new OpenGLVertexBuffer(vertices, size);
 		}
 
 		MEHEN_ENGINE_ASSERT(false, "Unknown RendererAPI!");
@@ -42,8 +42,8 @@ namespace MehenEngine
 	{
 		switch (Renderer::GetAPI())
 		{
-			case E_RendererAPI::None:   MEHEN_ENGINE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-			case E_RendererAPI::OpenGL: return new OpenGLIndexBuffer(indices, count);
+			case RendererAPI::API::None:   MEHEN_ENGINE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+			case RendererAPI::API::OpenGL: return new OpenGLIndexBuffer(indices, count);
 		}
 
 		MEHEN_ENGINE_ASSERT(false, "Unknown RendererAPI!");

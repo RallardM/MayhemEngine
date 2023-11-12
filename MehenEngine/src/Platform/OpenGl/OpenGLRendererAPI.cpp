@@ -14,24 +14,27 @@
  * limitations under the License.
  */
 
- // Tutorial : https://youtu.be/BwCqRqqbB1Y?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
+ // Tutorial : https://youtu.be/akxevYYWd9g?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
 
 #include "MhnPCHeader.h"
-#include "Renderer.h"
+#include "OpenGLRendererAPI.h"
+
+#include <glad/glad.h>
 
 namespace MehenEngine
 {
-	void Renderer::BeginScene()
+	void OpenGLRendererAPI::SetClearColor(const glm::vec4& color)
 	{
+		glClearColor(color.r, color.g, color.b, color.a);
 	}
 
-	void Renderer::EndScene()
+	void OpenGLRendererAPI::Clear()
 	{
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
-	void Renderer::Submit(const std::shared_ptr<VertexArray>& vertexArray)
+	void OpenGLRendererAPI::DrawIndexed(const std::shared_ptr<VertexArray>& vertexArray)
 	{
-		vertexArray->Bind();
-		RenderCommand::DrawIndexed(vertexArray);
+		glDrawElements(GL_TRIANGLES, vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 	}
 }

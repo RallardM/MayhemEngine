@@ -20,7 +20,7 @@
 #include "MehenEngine/Log.h"
 #include "Input.h"
 
-#include <Glad/glad.h>
+#include "MehenEngine/Renderer/Renderer.h"
 
 namespace MehenEngine
 {
@@ -152,16 +152,18 @@ namespace MehenEngine
 	{
 		while (m_running)
 		{
-			glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-			glClear(GL_COLOR_BUFFER_BIT);
+			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
+			RenderCommand::Clear();
 
+			Renderer::BeginScene();
+			
 			m_blackShader->Bind();
-			m_squareVA->Bind();
-			glDrawElements(GL_TRIANGLES, m_squareVA->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::Submit(m_squareVA); // Submit mesh
 
 			m_shader->Bind();
-			m_vertexArray->Bind();
-			glDrawElements(GL_TRIANGLES, m_vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::Submit(m_vertexArray); // Submit mesh
+
+			Renderer::EndScene();
 
 			for (Layer* layer : m_layerStack)
 			{

@@ -1,21 +1,19 @@
 #pragma once
 
+#include "RenderCommand.h"
+
 namespace MehenEngine
 {
-	enum class E_RendererAPI : unsigned __int8
-	{
-		None = 0,
-		OpenGL = 1,
-	};
-
 	class Renderer
 	{
 
 	public:
-		inline static E_RendererAPI GetAPI() { return s_RendererAPI; }
+		static void BeginScene();
+		static void EndScene();
 
-	private:
-		static E_RendererAPI s_RendererAPI;
+		static void Submit(const std::shared_ptr<VertexArray>& vertexArray);
+
+		inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 
 	};
 }

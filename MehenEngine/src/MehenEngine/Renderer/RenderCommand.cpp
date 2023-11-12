@@ -14,24 +14,14 @@
  * limitations under the License.
  */
 
- // Tutorial : https://youtu.be/BwCqRqqbB1Y?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
+ // Tutorial : https://youtu.be/akxevYYWd9g?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
 
 #include "MhnPCHeader.h"
-#include "Renderer.h"
+#include "RenderCommand.h"
+
+#include "Platform/OpenGL/OpenGLRendererAPI.h"
 
 namespace MehenEngine
 {
-	void Renderer::BeginScene()
-	{
-	}
-
-	void Renderer::EndScene()
-	{
-	}
-
-	void Renderer::Submit(const std::shared_ptr<VertexArray>& vertexArray)
-	{
-		vertexArray->Bind();
-		RenderCommand::DrawIndexed(vertexArray);
-	}
+	RendererAPI* RenderCommand::s_RendererAPI = new OpenGLRendererAPI;
 }

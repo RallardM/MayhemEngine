@@ -28,8 +28,8 @@ namespace MehenEngine
     {
 		switch (Renderer::GetAPI())
 		{
-		case E_RendererAPI::None:   MEHEN_ENGINE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case E_RendererAPI::OpenGL: return new OpenGLVertexArray();
+		case RendererAPI::API::None:   MEHEN_ENGINE_ASSERT(false, "RendererAPI::API::None is currently not supported!"); return nullptr;
+		case RendererAPI::API::OpenGL: return new OpenGLVertexArray();
 		}
 
 		MEHEN_ENGINE_ASSERT(false, "Unknown RendererAPI!");

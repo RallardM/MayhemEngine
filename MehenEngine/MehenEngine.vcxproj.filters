@@ -1367,6 +1367,9 @@
     <ClInclude Include="src\Platform\OpenGl\OpenGLBuffer.h" />
     <ClInclude Include="src\MehenEngine\Renderer\VertexArray.h" />
     <ClInclude Include="src\Platform\OpenGl\OpenGLVertexArray.h" />
+    <ClInclude Include="src\MehenEngine\Renderer\RendererAPI.h" />
+    <ClInclude Include="src\MehenEngine\Renderer\RenderCommand.h" />
+    <ClInclude Include="src\Platform\OpenGl\OpenGLRendererAPI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\MehenEngine\Application.cpp">
@@ -1407,5 +1410,8 @@
     <ClCompile Include="src\Platform\OpenGl\OpenGLBuffer.cpp" />
     <ClCompile Include="src\MehenEngine\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\Platform\OpenGl\OpenGLVertexArray.cpp" />
+    <ClCompile Include="src\MehenEngine\Renderer\RendererAPI.cpp" />
+    <ClCompile Include="src\MehenEngine\Renderer\RenderCommand.cpp" />
+    <ClCompile Include="src\Platform\OpenGl\OpenGLRendererAPI.cpp" />
   </ItemGroup>
 </Project>
