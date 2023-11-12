@@ -32,7 +32,7 @@ namespace MehenEngine
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		static Application* _Instance;
-		std::shared_ptr<Window> m_window;
+		Ref<Window> m_window;
 		ImGuiLayer* m_imguiLayer;
 		LayerStack m_layerStack;
 		float m_lastFrameTime = 0.0f;

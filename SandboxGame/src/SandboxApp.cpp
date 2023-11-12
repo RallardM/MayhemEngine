@@ -40,7 +40,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.1f, 0.15f, 0.25f, 1.0f
 		};
 
-		std::shared_ptr<MehenEngine::VertexBuffer> vertexBuffer;
+		MehenEngine::Ref<MehenEngine::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(MehenEngine::VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		MehenEngine::BufferLayout layout = {
@@ -52,7 +52,7 @@ public:
 		m_vertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<MehenEngine::IndexBuffer> indexBuffer;
+		MehenEngine::Ref<MehenEngine::IndexBuffer> indexBuffer;
 		indexBuffer.reset(MehenEngine::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_vertexArray->SetIndexBuffer(indexBuffer);
 
@@ -65,7 +65,7 @@ public:
 			-0.5f,  0.5f, 0.0f
 		};
 
-		std::shared_ptr<MehenEngine::VertexBuffer> squareVB;
+		MehenEngine::Ref<MehenEngine::VertexBuffer> squareVB;
 		squareVB.reset(MehenEngine::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 
 		squareVB->SetLayout({
@@ -74,7 +74,7 @@ public:
 		m_squareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<MehenEngine::IndexBuffer> squareIB;
+		MehenEngine::Ref<MehenEngine::IndexBuffer> squareIB;
 		squareIB.reset(MehenEngine::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_squareVA->SetIndexBuffer(squareIB);
 
@@ -237,12 +237,12 @@ public:
 
 private:
 	// Triangle
-	std::shared_ptr<MehenEngine::Shader> m_shader;
-	std::shared_ptr<MehenEngine::VertexArray> m_vertexArray;
+	MehenEngine::Ref<MehenEngine::Shader> m_shader;
+	MehenEngine::Ref<MehenEngine::VertexArray> m_vertexArray;
 
 	// Square
-	std::shared_ptr<MehenEngine::VertexArray> m_squareVA;
-	std::shared_ptr<MehenEngine::Shader> m_blackShader;
+	MehenEngine::Ref<MehenEngine::VertexArray> m_squareVA;
+	MehenEngine::Ref<MehenEngine::Shader> m_blackShader;
 
 	MehenEngine::OrthographicCamera m_camera;
 
