@@ -1,4 +1,12 @@
 # MehenEngine
 This is a game engine based on Game Engine tutorial by The Cherno.
 It is written in C++ and uses OpenGL for rendering.
-## Features
+## TODO
+ - Implement a code stat like Tokei, find one that fits the project :
+		https://github.com/XAMPPRocky/tokei
+ - Implement a 3D api if not already don by Chruno : 
+		https://github.com/bkaradzic/bgfx 
+		https://github.com/dariomanesku/cmftStudio
+		https://github.com/DiligentGraphics/DiligentEngine
+ - Check if a fixed deltatime would be usefull : 
+		https://gafferongames.com/post/fix_your_timestep/
