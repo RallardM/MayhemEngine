@@ -9,16 +9,9 @@
 
 #include "MehenEngine/ImGui/ImGuiLayer.h"
 
-#include "MehenEngine/Renderer/OrthographicCamera.h"
-
-// TEMPORARY
-#include "MehenEngine/Renderer/Shader.h"
-#include "MehenEngine/Renderer/Buffer.h"
-#include "Renderer/VertexArray.h"
-
 namespace MehenEngine
 {
-	class MEHEN_API Application
+	class Application
 	{
 
 	public:
@@ -38,16 +31,7 @@ namespace MehenEngine
 
 		static Application* _Instance;
 
-		OrthographicCamera m_camera;
-
-		// Triangle
-		std::shared_ptr<Shader> m_shader;
-		std::shared_ptr<VertexArray> m_vertexArray;
 		std::shared_ptr<Window> m_window;
-
-		// Square
-		std::shared_ptr<VertexArray> m_squareVA;
-		std::shared_ptr<Shader> m_blackShader;
 
 		ImGuiLayer* m_imguiLayer;
 

@@ -12,6 +12,16 @@
 
 #include "MehenEngine/ImGui/ImGuiLayer.h"
 
+// ---Renderer------------------------
+#include "MehenEngine/Renderer/Renderer.h"
+#include "MehenEngine/Renderer/RenderCommand.h"
+
+#include "MehenEngine/Renderer/Buffer.h"
+#include "MehenEngine/Renderer/Shader.h"
+#include "MehenEngine/Renderer/VertexArray.h"
+
+#include "MehenEngine/Renderer/OrthographicCamera.h"
+
 // ---Entry Point---------------------
 #include "MehenEngine/EntryPoint.h"
 // -----------------------------------
