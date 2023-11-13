@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include <MehenEngine.h>
+#include <Mayhem.h>
 
 #include "Platform/OpenGL/OpenGLShader.h"
 
@@ -23,7 +23,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-class ExampleLayer : public MehenEngine::Layer
+class ExampleLayer : public Mayhem::Layer
 {
 public:
 	ExampleLayer() :
@@ -32,7 +32,7 @@ public:
 		m_cameraPosition(0.0f),
 		m_squarePosition(0.0f)
 	{
-		m_vertexArray.reset(MehenEngine::VertexArray::Create());
+		m_vertexArray.reset(Mayhem::VertexArray::Create());
 
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 0.1f, 0.1f, 0.1f, 1.0f,
@@ -40,23 +40,23 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.1f, 0.15f, 0.25f, 1.0f
 		};
 
-		MehenEngine::Ref<MehenEngine::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(MehenEngine::VertexBuffer::Create(vertices, sizeof(vertices)));
+		Mayhem::Ref<Mayhem::VertexBuffer> vertexBuffer;
+		vertexBuffer.reset(Mayhem::VertexBuffer::Create(vertices, sizeof(vertices)));
 
-		MehenEngine::BufferLayout layout = {
-			{ MehenEngine::E_ShaderDataType::Float3, "a_Position" },
-			{ MehenEngine::E_ShaderDataType::Float4, "a_Color"}
+		Mayhem::BufferLayout layout = {
+			{ Mayhem::E_ShaderDataType::Float3, "a_Position" },
+			{ Mayhem::E_ShaderDataType::Float4, "a_Color"}
 		};
 
 		vertexBuffer->SetLayout(layout);
 		m_vertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		MehenEngine::Ref<MehenEngine::IndexBuffer> indexBuffer;
-		indexBuffer.reset(MehenEngine::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		Mayhem::Ref<Mayhem::IndexBuffer> indexBuffer;
+		indexBuffer.reset(Mayhem::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_vertexArray->SetIndexBuffer(indexBuffer);
 
-		m_squareVA.reset(MehenEngine::VertexArray::Create());
+		m_squareVA.reset(Mayhem::VertexArray::Create());
 
 		float squareVertices[3 * 4] = {
 			-0.5f, -0.5f, 0.0f,
@@ -65,22 +65,22 @@ public:
 			-0.5f,  0.5f, 0.0f
 		};
 
-		MehenEngine::Ref<MehenEngine::VertexBuffer> squareVB;
-		squareVB.reset(MehenEngine::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		Mayhem::Ref<Mayhem::VertexBuffer> squareVB;
+		squareVB.reset(Mayhem::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 
 		squareVB->SetLayout({
-			{ MehenEngine::E_ShaderDataType::Float3, "a_Position" }
+			{ Mayhem::E_ShaderDataType::Float3, "a_Position" }
 			});
 		m_squareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		MehenEngine::Ref<MehenEngine::IndexBuffer> squareIB;
-		squareIB.reset(MehenEngine::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		Mayhem::Ref<Mayhem::IndexBuffer> squareIB;
+		squareIB.reset(Mayhem::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_squareVA->SetIndexBuffer(squareIB);
 
 		// Texture
 
-		m_textureVA.reset(MehenEngine::VertexArray::Create());
+		m_textureVA.reset(Mayhem::VertexArray::Create());
 
 		float textureVertices[5 * 4] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
@@ -89,18 +89,18 @@ public:
 			-0.5f,  0.5f, 0.0f ,0.0f, 1.0f
 		};
 
-		MehenEngine::Ref<MehenEngine::VertexBuffer> m_textureVB;
-		m_textureVB.reset(MehenEngine::VertexBuffer::Create(textureVertices, sizeof(textureVertices)));
+		Mayhem::Ref<Mayhem::VertexBuffer> m_textureVB;
+		m_textureVB.reset(Mayhem::VertexBuffer::Create(textureVertices, sizeof(textureVertices)));
 
 		m_textureVB->SetLayout({
-			{ MehenEngine::E_ShaderDataType::Float3, "a_Position" },
-			{ MehenEngine::E_ShaderDataType::Float2, "a_TexCoord" }
+			{ Mayhem::E_ShaderDataType::Float3, "a_Position" },
+			{ Mayhem::E_ShaderDataType::Float2, "a_TexCoord" }
 			});
 		m_textureVA->AddVertexBuffer(m_textureVB);
 
 		uint32_t textureIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		MehenEngine::Ref<MehenEngine::IndexBuffer> textureIB;
-		textureIB.reset(MehenEngine::IndexBuffer::Create(textureIndices, sizeof(textureIndices) / sizeof(uint32_t)));
+		Mayhem::Ref<Mayhem::IndexBuffer> textureIB;
+		textureIB.reset(Mayhem::IndexBuffer::Create(textureIndices, sizeof(textureIndices) / sizeof(uint32_t)));
 		m_textureVA->SetIndexBuffer(textureIB);
 
 		// Shader
@@ -134,7 +134,7 @@ public:
 			}
 		)";
 
-		m_shader.reset(MehenEngine::Shader::Create(vertexSrc, fragmentSrc));
+		m_shader.reset(Mayhem::Shader::Create(vertexSrc, fragmentSrc));
 
 		// Shader
 		std::string blackVertexSrc = R"(
@@ -166,7 +166,7 @@ public:
 			}
 		)";
 
-		m_blackShader.reset(MehenEngine::Shader::Create(blackVertexSrc, blackFragmentSrc));
+		m_blackShader.reset(Mayhem::Shader::Create(blackVertexSrc, blackFragmentSrc));
 
 		// Texture Shader
 		std::string textureVertexSrc = R"(
@@ -202,91 +202,92 @@ public:
 			}
 		)";
 
-		m_textureShader.reset(MehenEngine::Shader::Create(textureVertexSrc, textureFragmentSrc));
-		m_texture = MehenEngine::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_textureShader.reset(Mayhem::Shader::Create(textureVertexSrc, textureFragmentSrc));
+		m_texture = Mayhem::Texture2D::Create("assets/textures/Checkerboard.png");
 
-		std::dynamic_pointer_cast<MehenEngine::OpenGLShader>(m_textureShader)->Bind();
-		std::dynamic_pointer_cast<MehenEngine::OpenGLShader>(m_textureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<Mayhem::OpenGLShader>(m_textureShader)->Bind();
+		std::dynamic_pointer_cast<Mayhem::OpenGLShader>(m_textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
-	void OnUpdate(MehenEngine::Timestep deltaTime) override
+	void OnUpdate(Mayhem::Timestep deltaTime) override
 	{
-		MEHEN_GAME_TRACE("Delta time: {0}s ({1}ms)", deltaTime.GetSeconds(), deltaTime.GetMilliseconds());
+		MAYHEM_GAME_TRACE("Delta time: {0}s ({1}ms)", deltaTime.GetSeconds(), deltaTime.GetMilliseconds());
 
 		// Move camera
-		if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_A))
+		if (Mayhem::Input::IsKeyPressed(MAYHEM_KEY_A))
 		{
 			m_cameraPosition.x -= m_cameraMoveSpeed * deltaTime;
 		}
-		else if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_D))
+		else if (Mayhem::Input::IsKeyPressed(MAYHEM_KEY_D))
 		{
 			m_cameraPosition.x += m_cameraMoveSpeed * deltaTime;
 		}
-		if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_W))
+		if (Mayhem::Input::IsKeyPressed(MAYHEM_KEY_W))
 		{
 			m_cameraPosition.y += m_cameraMoveSpeed * deltaTime;
 		}
-		else if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_S))
+		else if (Mayhem::Input::IsKeyPressed(MAYHEM_KEY_S))
 		{
 			m_cameraPosition.y -= m_cameraMoveSpeed * deltaTime;
 		}
-		if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_Q))
+		if (Mayhem::Input::IsKeyPressed(MAYHEM_KEY_Q))
 		{
 			m_cameraRotation += m_cameraRotationSpeed * deltaTime;
 		}
-		else if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_E))
+		else if (Mayhem::Input::IsKeyPressed(MAYHEM_KEY_E))
 		{
 			m_cameraRotation -= m_cameraRotationSpeed * deltaTime;
 		}
 
 		// Move square
-		if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_LEFT))
+		if (Mayhem::Input::IsKeyPressed(MAYHEM_KEY_LEFT))
 		{
 			m_squarePosition.x -= m_squareMoveSpeed * deltaTime;
 		}
-		else if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_RIGHT))
+		else if (Mayhem::Input::IsKeyPressed(MAYHEM_KEY_RIGHT))
 		{
 			m_squarePosition.x += m_squareMoveSpeed * deltaTime;
 		}
-		if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_UP))
+		if (Mayhem::Input::IsKeyPressed(MAYHEM_KEY_UP))
 		{
 			m_squarePosition.y += m_squareMoveSpeed * deltaTime;
 		}
-		else if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_DOWN))
+		else if (Mayhem::Input::IsKeyPressed(MAYHEM_KEY_DOWN))
 		{
 			m_squarePosition.y -= m_squareMoveSpeed * deltaTime;
 		}
-		if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_PAGE_UP))
+		if (Mayhem::Input::IsKeyPressed(MAYHEM_KEY_PAGE_UP))
 		{
 			m_squareRotation += m_squareRotationSpeed * deltaTime;
 		}
-		else if (MehenEngine::Input::IsKeyPressed(MEHEN_KEY_PAGE_DOWN))
+		else if (Mayhem::Input::IsKeyPressed(MAYHEM_KEY_PAGE_DOWN))
 		{
 			m_squareRotation -= m_squareRotationSpeed * deltaTime;
 		}
 
-		MehenEngine::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
-		MehenEngine::RenderCommand::Clear();
+		Mayhem::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
+		Mayhem::RenderCommand::Clear();
 
 		m_camera.SetPosition(m_cameraPosition);
 		m_camera.SetRotation(m_cameraRotation);
 
-		MehenEngine::Renderer::BeginScene(m_camera);
+		Mayhem::Renderer::BeginScene(m_camera);
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_squarePosition)
 			* glm::rotate(glm::mat4(1.0f), glm::radians(m_squareRotation), glm::vec3(0, 0, 1));
 
 
-		std::dynamic_pointer_cast<MehenEngine::OpenGLShader>(m_blackShader)->Bind();
-		std::dynamic_pointer_cast<MehenEngine::OpenGLShader>(m_blackShader)->UploadUniformFloat3("u_Color", m_squareColor);
+		std::dynamic_pointer_cast<Mayhem::OpenGLShader>(m_blackShader)->Bind();
+		std::dynamic_pointer_cast<Mayhem::OpenGLShader>(m_blackShader)->UploadUniformFloat3("u_Color", m_squareColor);
 
 		m_texture->Bind();
 
-		MehenEngine::Renderer::Submit(m_blackShader, m_squareVA, transform);
-		MehenEngine::Renderer::Submit(m_shader, m_vertexArray);
+		Mayhem::Renderer::Submit(m_blackShader, m_squareVA, transform);
+		Mayhem::Renderer::Submit(m_shader, m_vertexArray);
+		Mayhem::Renderer::Submit(m_textureShader, m_textureVA);
 		
 
-		MehenEngine::Renderer::EndScene();
+		Mayhem::Renderer::EndScene();
 	}
 
 	virtual void OnImGuiRender() override
@@ -296,26 +297,26 @@ public:
 		ImGui::End();
 	}
 
-	void OnEvent(MehenEngine::Event& event) override
+	void OnEvent(Mayhem::Event& event) override
 	{
 
 	}
 
 private:
 	// Triangle
-	MehenEngine::Ref<MehenEngine::Shader> m_shader;
-	MehenEngine::Ref<MehenEngine::VertexArray> m_vertexArray;
+	Mayhem::Ref<Mayhem::Shader> m_shader;
+	Mayhem::Ref<Mayhem::VertexArray> m_vertexArray;
 
 	// Square
-	MehenEngine::Ref<MehenEngine::VertexArray> m_squareVA;
-	MehenEngine::Ref<MehenEngine::Shader> m_blackShader;
+	Mayhem::Ref<Mayhem::VertexArray> m_squareVA;
+	Mayhem::Ref<Mayhem::Shader> m_blackShader;
 
 	// Texture
-	MehenEngine::Ref<MehenEngine::VertexArray> m_textureVA;
-	MehenEngine::Ref<MehenEngine::Shader> m_textureShader;
-	MehenEngine::Ref<MehenEngine::Texture2D> m_texture;
+	Mayhem::Ref<Mayhem::VertexArray> m_textureVA;
+	Mayhem::Ref<Mayhem::Shader> m_textureShader;
+	Mayhem::Ref<Mayhem::Texture2D> m_texture;
 
-	MehenEngine::OrthographicCamera m_camera;
+	Mayhem::OrthographicCamera m_camera;
 
 	glm::vec3 m_squareColor = { 0.0f, 0.0f, 0.0f };
 	glm::vec3 m_squarePosition;
@@ -330,7 +331,7 @@ private:
 
 };
 
-class Sandbox : public MehenEngine::Application
+class Sandbox : public Mayhem::Application
 {
 public:
 	Sandbox()
@@ -344,7 +345,7 @@ public:
 	}
 };
 
-MehenEngine::Application* MehenEngine::CreateApplication()
+Mayhem::Application* Mayhem::CreateApplication()
 {
 	return new Sandbox();
 }

@@ -4,7 +4,7 @@
 -- %{cfg.system} - windows,
 -- %{cfg.architecture} - x64
 
-workspace "MehenEngine"
+workspace "MayhemEngine"
 	architecture "x64"
 	startproject "SandboxGame"
 
@@ -19,21 +19,21 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
-IncludeDir["GLFW"] = "MehenEngine/vendor/GLFW/include"
-IncludeDir["Glad"] = "MehenEngine/vendor/Glad/include"
-IncludeDir["ImGui"] = "MehenEngine/vendor/imgui"
-IncludeDir["glm"] = "MehenEngine/vendor/glm"
-IncludeDir["stb_image"] = "MehenEngine/vendor/stb_image"
+IncludeDir["GLFW"] = "Mayhem/vendor/GLFW/include"
+IncludeDir["Glad"] = "Mayhem/vendor/Glad/include"
+IncludeDir["ImGui"] = "Mayhem/vendor/imgui"
+IncludeDir["glm"] = "Mayhem/vendor/glm"
+IncludeDir["stb_image"] = "Mayhem/vendor/stb_image"
 
 group "Dependencies"
-		include "MehenEngine/vendor/GLFW"
-		include "MehenEngine/vendor/Glad"
-		include "MehenEngine/vendor/imgui"
+		include "Mayhem/vendor/GLFW"
+		include "Mayhem/vendor/Glad"
+		include "Mayhem/vendor/imgui"
 group ""
 
 -- Main Project --------------------------------------------------
-project "MehenEngine"
-	location "MehenEngine"
+project "Mayhem"
+	location "Mayhem"
 	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
@@ -42,8 +42,8 @@ project "MehenEngine"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-	pchheader "MehenPrecompiledHeaders.h"
-	pchsource "MehenEngine/src/MehenPrecompiledHeaders.cpp"
+	pchheader "MayhemPrecompiledHeaders.h"
+	pchsource "Mayhem/src/MayhemPrecompiledHeaders.cpp"
 
 	files
 	{
@@ -85,23 +85,23 @@ project "MehenEngine"
 		
 		defines
 		{
-			"MEHEN_PLATFORM_WINDOWS",
-			"MEHEN_BUILD_DLL",
+			"MAYHEM_PLATFORM_WINDOWS",
+			"MAYHEM_BUILD_DLL",
 			"GLFW_INCLUDE_NONE"
 		}
 
 	filter "configurations:Debug"
-		defines "MEHEN_DEBUG"
+		defines "MAYHEM_DEBUG"
 		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
-		defines "MEHEN_RELEASE"
+		defines "MAYHEM_RELEASE"
 		runtime "Release"
 		optimize "on"
 
 	filter "configurations:Dist"
-		defines "MEHEN_DIST"
+		defines "MAYHEM_DIST"
 		runtime "Release"
 		optimize "on"
 
@@ -126,15 +126,15 @@ project "SandboxGame"
 
 	includedirs
 	{
-		"MehenEngine/vendor/spdlog/include",
-		"MehenEngine/src",
-		"MehenEngine/vendor",
+		"Mayhem/vendor/spdlog/include",
+		"Mayhem/src",
+		"Mayhem/vendor",
 		"%{IncludeDir.glm}"
 	}
 
 	links
 	{
-		"MehenEngine"
+		"Mayhem"
 	}
 
 	filter "system:windows"
@@ -142,20 +142,20 @@ project "SandboxGame"
 		
 		defines
 		{
-			"MEHEN_PLATFORM_WINDOWS"
+			"MAYHEM_PLATFORM_WINDOWS"
 		}
 
 	filter "configurations:Debug"
-		defines "MEHEN_DEBUG"
+		defines "MAYHEM_DEBUG"
 		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
-		defines "MEHEN_RELEASE"
+		defines "MAYHEM_RELEASE"
 		runtime "Release"
 		optimize "on"
 
 	filter "configurations:Dist"
-		defines "MEHEN_DIST"
+		defines "MAYHEM_DIST"
 		runtime "Release"
 		optimize "on"

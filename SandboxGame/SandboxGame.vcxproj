@@ -78,8 +78,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>MEHEN_PLATFORM_WINDOWS;MEHEN_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\MehenEngine\vendor\spdlog\include;..\MehenEngine\src;..\MehenEngine\vendor;..\MehenEngine\vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MAYHEM_PLATFORM_WINDOWS;MAYHEM_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Mayhem\vendor\spdlog\include;..\Mayhem\src;..\Mayhem\vendor;..\Mayhem\vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -95,8 +95,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>MEHEN_PLATFORM_WINDOWS;MEHEN_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\MehenEngine\vendor\spdlog\include;..\MehenEngine\src;..\MehenEngine\vendor;..\MehenEngine\vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MAYHEM_PLATFORM_WINDOWS;MAYHEM_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Mayhem\vendor\spdlog\include;..\Mayhem\src;..\Mayhem\vendor;..\Mayhem\vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -116,8 +116,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>MEHEN_PLATFORM_WINDOWS;MEHEN_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\MehenEngine\vendor\spdlog\include;..\MehenEngine\src;..\MehenEngine\vendor;..\MehenEngine\vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MAYHEM_PLATFORM_WINDOWS;MAYHEM_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Mayhem\vendor\spdlog\include;..\Mayhem\src;..\Mayhem\vendor;..\Mayhem\vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -137,13 +137,9 @@
     <ClCompile Include="src\SandboxApp.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MehenEngine\MehenEngine.vcxproj">
-      <Project>{A85179E5-1407-F2DA-9DFB-EBB109B0E8DE}</Project>
+    <ProjectReference Include="..\Mayhem\Mayhem.vcxproj">
+      <Project>{C6A79BC2-B249-C698-9B04-DAEC87454DE9}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="assets\textures\Checkerboard.png" />
-    <Image Include="assets\textures\re_and_mehen.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
