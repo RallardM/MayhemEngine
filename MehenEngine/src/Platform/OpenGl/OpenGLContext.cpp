@@ -15,7 +15,7 @@
  */
 // Tutorial : https://youtu.be/YZKEjaCnsjU?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
 
-#include "MhnPCHeader.h"
+#include "MehenPrecompiledHeaders.h"
 #include "OpenGLContext.h"
 
 #include <GLFW/glfw3.h>

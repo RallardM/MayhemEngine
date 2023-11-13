@@ -3,7 +3,7 @@
 #pragma once
 
 #include "MehenEngine/Core.h"
-#include "MhnPCHeader.h"
+#include "MehenPrecompiledHeaders.h"
 
 namespace MehenEngine
 {

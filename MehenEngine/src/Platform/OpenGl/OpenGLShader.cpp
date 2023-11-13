@@ -16,7 +16,7 @@
 
  // Tutorial : https://youtu.be/d5wL6eZnWMU?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
 
-#include "MhnPCHeader.h"
+#include "MehenPrecompiledHeaders.h"
 #include "OpenGLShader.h"
 
 #include <glad/glad.h>

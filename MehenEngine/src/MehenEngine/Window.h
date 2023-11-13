@@ -1,7 +1,7 @@
 // Tutorial : https://youtu.be/88dmtleVywk?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
 #pragma once
 
-#include "MhnPCHeader.h"
+#include "MehenPrecompiledHeaders.h"
 
 #include "MehenEngine/Core.h"
 #include "MehenEngine/Events/Event.h"

@@ -14,27 +14,26 @@
  * limitations under the License.
  */
 
- // Tutorial : https://youtu.be/akxevYYWd9g?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
+// Tutorial : https://youtu.be/qEfohFgQ1-I?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
 
 #include "MehenPrecompiledHeaders.h"
-#include "OpenGLRendererAPI.h"
+#include "Texture.h"
 
-#include <glad/glad.h>
+#include "Renderer.h"
+#include "Platform/OpenGL/OpenGLTexture.h"
 
 namespace MehenEngine
 {
-	void OpenGLRendererAPI::SetClearColor(const glm::vec4& color)
+	Ref<Texture2D> Texture2D::Create(const std::string& path)
 	{
-		glClearColor(color.r, color.g, color.b, color.a);
-	}
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:   MEHEN_ENGINE_ASSERT(false, "RendererAPI::API::None is currently not supported!"); return nullptr;
+		case RendererAPI::API::OpenGL: return std::make_shared<OpenGLTexture2D>(path);
+		}
 
-	void OpenGLRendererAPI::Clear()
-	{
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	}
+		MEHEN_ENGINE_ASSERT(false, "Unknown RendererAPI!");
 
-	void OpenGLRendererAPI::DrawIndexed(const Ref<VertexArray>& vertexArray)
-	{
-		glDrawElements(GL_TRIANGLES, vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+		return nullptr;
 	}
 }

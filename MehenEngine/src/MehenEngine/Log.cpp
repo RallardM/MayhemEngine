@@ -22,7 +22,7 @@
 // %v - message
 // %$ - end color
 
-#include "MhnPCHeader.h"
+#include "MehenPrecompiledHeaders.h"
 
 #include "Log.h"
 #include "spdlog/sinks/stdout_color_sinks.h"

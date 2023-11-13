@@ -20,6 +20,7 @@
 
 #include "MehenEngine/Renderer/Buffer.h"
 #include "MehenEngine/Renderer/Shader.h"
+#include "MehenEngine/Renderer/Texture.h"
 #include "MehenEngine/Renderer/VertexArray.h"
 
 #include "MehenEngine/Renderer/OrthographicCamera.h"

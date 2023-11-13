@@ -78,6 +78,31 @@ public:
 		squareIB.reset(MehenEngine::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_squareVA->SetIndexBuffer(squareIB);
 
+		// Texture
+
+		m_textureVA.reset(MehenEngine::VertexArray::Create());
+
+		float textureVertices[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f ,0.0f, 1.0f
+		};
+
+		MehenEngine::Ref<MehenEngine::VertexBuffer> m_textureVB;
+		m_textureVB.reset(MehenEngine::VertexBuffer::Create(textureVertices, sizeof(textureVertices)));
+
+		m_textureVB->SetLayout({
+			{ MehenEngine::E_ShaderDataType::Float3, "a_Position" },
+			{ MehenEngine::E_ShaderDataType::Float2, "a_TexCoord" }
+			});
+		m_textureVA->AddVertexBuffer(m_textureVB);
+
+		uint32_t textureIndices[6] = { 0, 1, 2, 2, 3, 0 };
+		MehenEngine::Ref<MehenEngine::IndexBuffer> textureIB;
+		textureIB.reset(MehenEngine::IndexBuffer::Create(textureIndices, sizeof(textureIndices) / sizeof(uint32_t)));
+		m_textureVA->SetIndexBuffer(textureIB);
+
 		// Shader
 		std::string vertexSrc = R"(
 			#version 330 core
@@ -142,6 +167,46 @@ public:
 		)";
 
 		m_blackShader.reset(MehenEngine::Shader::Create(blackVertexSrc, blackFragmentSrc));
+
+		// Texture Shader
+		std::string textureVertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec2 v_TexCoord;
+
+			void main()
+			{
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
+			}
+		)";
+
+		std::string textureFragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			in vec2 v_TexCoord;
+
+			uniform sampler2D u_Texture;
+			
+			void main()
+			{
+				color = texture(u_Texture, v_TexCoord);
+			}
+		)";
+
+		m_textureShader.reset(MehenEngine::Shader::Create(textureVertexSrc, textureFragmentSrc));
+		m_texture = MehenEngine::Texture2D::Create("assets/textures/Checkerboard.png");
+
+		std::dynamic_pointer_cast<MehenEngine::OpenGLShader>(m_textureShader)->Bind();
+		std::dynamic_pointer_cast<MehenEngine::OpenGLShader>(m_textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(MehenEngine::Timestep deltaTime) override
@@ -215,9 +280,11 @@ public:
 		std::dynamic_pointer_cast<MehenEngine::OpenGLShader>(m_blackShader)->Bind();
 		std::dynamic_pointer_cast<MehenEngine::OpenGLShader>(m_blackShader)->UploadUniformFloat3("u_Color", m_squareColor);
 
+		m_texture->Bind();
 
 		MehenEngine::Renderer::Submit(m_blackShader, m_squareVA, transform);
 		MehenEngine::Renderer::Submit(m_shader, m_vertexArray);
+		
 
 		MehenEngine::Renderer::EndScene();
 	}
@@ -227,7 +294,6 @@ public:
 		ImGui::Begin("Settings");
 		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_squareColor));
 		ImGui::End();
-
 	}
 
 	void OnEvent(MehenEngine::Event& event) override
@@ -243,6 +309,11 @@ private:
 	// Square
 	MehenEngine::Ref<MehenEngine::VertexArray> m_squareVA;
 	MehenEngine::Ref<MehenEngine::Shader> m_blackShader;
+
+	// Texture
+	MehenEngine::Ref<MehenEngine::VertexArray> m_textureVA;
+	MehenEngine::Ref<MehenEngine::Shader> m_textureShader;
+	MehenEngine::Ref<MehenEngine::Texture2D> m_texture;
 
 	MehenEngine::OrthographicCamera m_camera;
 

@@ -141,6 +141,10 @@
       <Project>{A85179E5-1407-F2DA-9DFB-EBB109B0E8DE}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\textures\Checkerboard.png" />
+    <Image Include="assets\textures\re_and_mehen.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

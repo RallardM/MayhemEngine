@@ -23,6 +23,7 @@ IncludeDir["GLFW"] = "MehenEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "MehenEngine/vendor/Glad/include"
 IncludeDir["ImGui"] = "MehenEngine/vendor/imgui"
 IncludeDir["glm"] = "MehenEngine/vendor/glm"
+IncludeDir["stb_image"] = "MehenEngine/vendor/stb_image"
 
 group "Dependencies"
 		include "MehenEngine/vendor/GLFW"
@@ -41,13 +42,15 @@ project "MehenEngine"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-	pchheader "MhnPCHeader.h"
-	pchsource "MehenEngine/src/MhnPCHeader.cpp"
+	pchheader "MehenPrecompiledHeaders.h"
+	pchsource "MehenEngine/src/MehenPrecompiledHeaders.cpp"
 
 	files
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
@@ -64,7 +67,8 @@ project "MehenEngine"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links
