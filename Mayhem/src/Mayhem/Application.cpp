@@ -40,6 +40,8 @@ namespace Mayhem
 		m_window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 		//m_window->SetVSync(false);
 
+		Renderer::Init();
+
 		m_imguiLayer = new ImGuiLayer();
 		PushOverlay(m_imguiLayer);
 	}

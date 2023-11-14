@@ -168,7 +168,7 @@ public:
 
 		m_blackShader.reset(Mayhem::Shader::Create(blackVertexSrc, blackFragmentSrc));
 
-		// Texture Shader
+		/*// Texture Shader
 		std::string textureVertexSrc = R"(
 			#version 330 core
 			
@@ -203,10 +203,11 @@ public:
 		)";
 
 		m_textureShader.reset(Mayhem::Shader::Create(textureVertexSrc, textureFragmentSrc));
-		m_texture = Mayhem::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_texture = Mayhem::Texture2D::Create("assets/textures/Checkerboard.png");*/
+		//m_alphaTexture = Mayhem::Texture2D::Create("assets/textures/re_and_mehen.png");
 
-		std::dynamic_pointer_cast<Mayhem::OpenGLShader>(m_textureShader)->Bind();
-		std::dynamic_pointer_cast<Mayhem::OpenGLShader>(m_textureShader)->UploadUniformInt("u_Texture", 0);
+		//std::dynamic_pointer_cast<Mayhem::OpenGLShader>(m_textureShader)->Bind();
+		//std::dynamic_pointer_cast<Mayhem::OpenGLShader>(m_textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Mayhem::Timestep deltaTime) override
@@ -280,13 +281,16 @@ public:
 		std::dynamic_pointer_cast<Mayhem::OpenGLShader>(m_blackShader)->Bind();
 		std::dynamic_pointer_cast<Mayhem::OpenGLShader>(m_blackShader)->UploadUniformFloat3("u_Color", m_squareColor);
 
-		m_texture->Bind();
+		//m_texture->Bind();
 
 		Mayhem::Renderer::Submit(m_blackShader, m_squareVA, transform);
 		Mayhem::Renderer::Submit(m_shader, m_vertexArray);
-		Mayhem::Renderer::Submit(m_textureShader, m_textureVA);
-		
+		//Mayhem::Renderer::Submit(m_textureShader, m_textureVA);
 
+		//m_alphaTexture->Bind();
+		//Mayhem::Renderer::Submit(m_textureShader, m_textureVA, 
+		//	glm::translate(glm::mat4(1.0f), glm::vec3(0.5f, 0.5f, 0.0f)) * glm::scale(glm::mat4(1.0f), glm::vec3(0.25f)));
+		
 		Mayhem::Renderer::EndScene();
 	}
 
@@ -314,7 +318,7 @@ private:
 	// Texture
 	Mayhem::Ref<Mayhem::VertexArray> m_textureVA;
 	Mayhem::Ref<Mayhem::Shader> m_textureShader;
-	Mayhem::Ref<Mayhem::Texture2D> m_texture;
+	Mayhem::Ref<Mayhem::Texture2D> m_texture, m_alphaTexture;
 
 	Mayhem::OrthographicCamera m_camera;
 
