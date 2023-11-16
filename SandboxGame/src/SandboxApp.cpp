@@ -110,7 +110,7 @@ public:
 			}
 		)";
 
-		m_shader.reset(Mayhem::Shader::Create(vertexSrc, fragmentSrc));
+		m_shader = Mayhem::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
 
 		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
@@ -144,15 +144,15 @@ public:
 			}
 		)";
 
-		m_blackShader.reset(Mayhem::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
+		m_blackShader = Mayhem::Shader::Create("flatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
 
-		m_textureShader.reset(Mayhem::Shader::Create("assets/shaders/TextureShader.glsl"));
+		auto textureShader = m_shaderLibrary.Load("assets/shaders/TextureShader.glsl");
 
 		m_texture = Mayhem::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_alphaTexture = Mayhem::Texture2D::Create("assets/textures/re_and_mehen.png");
 
-		std::dynamic_pointer_cast<Mayhem::OpenGLShader>(m_textureShader)->Bind();
-		std::dynamic_pointer_cast<Mayhem::OpenGLShader>(m_textureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<Mayhem::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<Mayhem::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 
 	}
 
@@ -235,10 +235,12 @@ public:
 			}
 		}
 
+		auto textureShader = m_shaderLibrary.Get("TextureShader");
+
 		m_texture->Bind();
-		Mayhem::Renderer::Submit(m_textureShader, m_squareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		Mayhem::Renderer::Submit(textureShader, m_squareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 		m_alphaTexture->Bind();
-		Mayhem::Renderer::Submit(m_textureShader, m_squareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		Mayhem::Renderer::Submit(textureShader, m_squareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 
 		// Triangle
@@ -260,6 +262,8 @@ public:
 	}
 
 private:
+	Mayhem::ShaderLibrary m_shaderLibrary;
+
 	// Triangle
 	Mayhem::Ref<Mayhem::Shader> m_shader;
 	Mayhem::Ref<Mayhem::VertexArray> m_vertexArray;
@@ -270,7 +274,7 @@ private:
 
 	// Texture
 	Mayhem::Ref<Mayhem::VertexArray> m_textureVA;
-	Mayhem::Ref<Mayhem::Shader> m_textureShader;
+
 	Mayhem::Ref<Mayhem::Texture2D> m_texture, m_alphaTexture;
 
 	Mayhem::OrthographicCamera m_camera;

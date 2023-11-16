@@ -46,9 +46,19 @@ namespace Mayhem
 		std::string source = ReadFile(filepath);
 		auto shaderSources = PreProcess(source);
 		Compile(shaderSources);
+
+		// Extract name from filepath
+		// assets/shaders/Texture.glsl -> Texture
+		// Tutorial : https://youtu.be/Z9LE3ksHEQQ?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
+		auto lastSlash = filepath.find_last_of("/\\");
+		lastSlash = lastSlash == std::string::npos ? 0 : lastSlash + 1;
+		auto lastDot = filepath.rfind('.');
+		auto count = lastDot == std::string::npos ? filepath.size() - lastSlash : lastDot - lastSlash;
+		m_name = filepath.substr(lastSlash, count);
 	}
 
-	Mayhem::OpenGLShader::OpenGLShader(const std::string& vertexSource, const std::string& fragmentSource)
+	Mayhem::OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSource, const std::string& fragmentSource) : 
+		m_name(name)
 	{
 		std::unordered_map<GLenum, std::string> shaderSources;
 		shaderSources[GL_VERTEX_SHADER] = vertexSource;
