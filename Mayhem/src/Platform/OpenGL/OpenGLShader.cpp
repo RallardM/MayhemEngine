@@ -162,7 +162,9 @@ namespace Mayhem
 	{
 		// Tutorial :https://youtu.be/8wFEzIYRZXg?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
 		GLuint program = glCreateProgram();
-		std::vector<GLenum> glShaderIDs(shaderSources.size());
+		MAYHEM_ENGINE_ASSERT(shaderSources.size() <= 2, "We only support 2 shaders for now!");
+		std::array<GLenum, 2> glShaderIDs;
+		int glShaderIDIndex = 0;
 
 		for (auto& kv : shaderSources)
 		{
@@ -196,7 +198,7 @@ namespace Mayhem
 			}
 
 			glAttachShader(program, shader);
-			glShaderIDs.push_back(shader);
+			glShaderIDs[glShaderIDIndex++] = shader;
 		}
 
 		glLinkProgram(program);
