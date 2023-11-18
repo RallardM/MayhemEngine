@@ -29,6 +29,7 @@ namespace Mayhem
 	{
 		for (Layer* layer : m_layers)
 		{
+			layer->OnDetach();
 			delete layer;
 		}
 	}
