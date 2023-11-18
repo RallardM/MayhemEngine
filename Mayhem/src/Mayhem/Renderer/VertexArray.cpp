@@ -24,12 +24,12 @@
 
 namespace Mayhem
 {
-    VertexArray* Mayhem::VertexArray::Create()
+	Ref<VertexArray> Mayhem::VertexArray::Create()
     {
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:   MAYHEM_ENGINE_ASSERT(false, "RendererAPI::API::None is currently not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL: return new OpenGLVertexArray();
+		case RendererAPI::API::OpenGL: return std::make_shared<OpenGLVertexArray>();
 		}
 
 		MAYHEM_ENGINE_ASSERT(false, "Unknown RendererAPI!");

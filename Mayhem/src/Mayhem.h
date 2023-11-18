@@ -25,7 +25,3 @@
 #include "Mayhem/Renderer/VertexArray.h"
 
 #include "Mayhem/Renderer/OrthographicCamera.h"
-
-// ---Entry Point---------------------
-#include "Mayhem/Core/EntryPoint.h"
-// -----------------------------------
