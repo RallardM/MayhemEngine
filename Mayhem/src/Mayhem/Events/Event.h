@@ -26,7 +26,7 @@ namespace Mayhem
 		EventCategoryMouseButton = BIT(4)
 	};
 
-#define EVENT_CLASS_TYPE(type) static E_EventType GetStaticType() { return E_EventType::##type; }\
+#define EVENT_CLASS_TYPE(type) static E_EventType GetStaticType() { return E_EventType::type; }\
 								virtual E_EventType GetEventType() const override { return GetStaticType(); }\
 								virtual const char* GetName() const override { return #type; }
 
