@@ -61,7 +61,7 @@ namespace Mayhem
 	void LayerStack::PopOverlay(Layer* overlay)
 	{
 		auto it = std::find(m_layers.begin() + m_layerInsertIndex, m_layers.end(), overlay);
-		if (it != m_layers.end())
+		if (it != m_layers.begin() + m_layerInsertIndex)
 		{
 			overlay->OnDetach();
 			m_layers.erase(it);
