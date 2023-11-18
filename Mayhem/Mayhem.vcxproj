@@ -159,6 +159,7 @@
     <ClInclude Include="src\Mayhem\LayerStack.h" />
     <ClInclude Include="src\Mayhem\Log.h" />
     <ClInclude Include="src\Mayhem\MouseButtonCodes.h" />
+    <ClInclude Include="src\Mayhem\OrthographicCameraController.h" />
     <ClInclude Include="src\Mayhem\Renderer\Buffer.h" />
     <ClInclude Include="src\Mayhem\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Mayhem\Renderer\OrthographicCamera.h" />
@@ -603,6 +604,7 @@
     <ClCompile Include="src\Mayhem\Layer.cpp" />
     <ClCompile Include="src\Mayhem\LayerStack.cpp" />
     <ClCompile Include="src\Mayhem\Log.cpp" />
+    <ClCompile Include="src\Mayhem\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Mayhem\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Mayhem\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Mayhem\Renderer\RenderCommand.cpp" />

@@ -4,7 +4,7 @@
 -- %{cfg.system} - windows,
 -- %{cfg.architecture} - x64
 
-workspace "MayhemEngine"
+workspace "Mayhem"
 	architecture "x64"
 	startproject "SandboxGame"
 

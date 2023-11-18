@@ -11,6 +11,7 @@
 #include "Mayhem/Input.h"
 #include "Mayhem/KeyCodes.h"
 #include "Mayhem/MouseButtonCodes.h"
+#include "Mayhem/OrthographicCameraController.h"
 
 #include "Mayhem/ImGui/ImGuiLayer.h"
 

@@ -28,8 +28,7 @@ class ExampleLayer : public Mayhem::Layer
 public:
 	ExampleLayer() :
 		Layer("Example"),
-		m_camera(-1.6f, 1.6f, -0.9f, 0.9f),
-		m_cameraPosition(0.0f)
+		m_cameraController(1280.0f / 720.0f, true)
 	{
 		m_vertexArray.reset(Mayhem::VertexArray::Create());
 
@@ -160,31 +159,8 @@ public:
 	{
 		MAYHEM_GAME_TRACE("Delta time: {0}s ({1}ms)", deltaTime.GetSeconds(), deltaTime.GetMilliseconds());
 
-		// Move camera
-		if (Mayhem::Input::IsKeyPressed(MAYHEM_KEY_A))
-		{
-			m_cameraPosition.x -= m_cameraMoveSpeed * deltaTime;
-		}
-		else if (Mayhem::Input::IsKeyPressed(MAYHEM_KEY_D))
-		{
-			m_cameraPosition.x += m_cameraMoveSpeed * deltaTime;
-		}
-		if (Mayhem::Input::IsKeyPressed(MAYHEM_KEY_W))
-		{
-			m_cameraPosition.y += m_cameraMoveSpeed * deltaTime;
-		}
-		else if (Mayhem::Input::IsKeyPressed(MAYHEM_KEY_S))
-		{
-			m_cameraPosition.y -= m_cameraMoveSpeed * deltaTime;
-		}
-		if (Mayhem::Input::IsKeyPressed(MAYHEM_KEY_Q))
-		{
-			m_cameraRotation += m_cameraRotationSpeed * deltaTime;
-		}
-		else if (Mayhem::Input::IsKeyPressed(MAYHEM_KEY_E))
-		{
-			m_cameraRotation -= m_cameraRotationSpeed * deltaTime;
-		}
+		// Update
+		m_cameraController.OnUpdate(deltaTime);
 
 		// Move square
 		if (Mayhem::Input::IsKeyPressed(MAYHEM_KEY_LEFT))
@@ -212,13 +188,11 @@ public:
 			m_squareRotation -= m_squareRotationSpeed * deltaTime;
 		}
 
+		// Render
 		Mayhem::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		Mayhem::RenderCommand::Clear();
 
-		m_camera.SetPosition(m_cameraPosition);
-		m_camera.SetRotation(m_cameraRotation);
-
-		Mayhem::Renderer::BeginScene(m_camera);
+		Mayhem::Renderer::BeginScene(m_cameraController.GetCamera());
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -258,7 +232,7 @@ public:
 
 	void OnEvent(Mayhem::Event& event) override
 	{
-
+		m_cameraController.OnEvent(event);
 	}
 
 private:
@@ -277,17 +251,13 @@ private:
 
 	Mayhem::Ref<Mayhem::Texture2D> m_texture, m_alphaTexture;
 
-	Mayhem::OrthographicCamera m_camera;
+	Mayhem::OrthographicCameraController m_cameraController;
 
 	glm::vec3 m_squareColor = { 0.0f, 0.0f, 0.0f };
-	glm::vec3 m_squarePosition;
-	glm::vec3 m_cameraPosition;
+	glm::vec3 m_squarePosition = { 0.0f, 0.0f, 0.0f };
 
-	float m_cameraMoveSpeed = 1.0f;
 	float m_squareMoveSpeed = 1.0f;
-	float m_cameraRotation = 0.0f;
 	float m_squareRotation = 0.0f;
-	float m_cameraRotationSpeed = 100.0f;
 	float m_squareRotationSpeed = 100.0f;
 
 };
