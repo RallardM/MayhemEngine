@@ -157,7 +157,7 @@ public:
 
 	void OnUpdate(Mayhem::Timestep deltaTime) override
 	{
-		MAYHEM_GAME_TRACE("Delta time: {0}s ({1}ms)", deltaTime.GetSeconds(), deltaTime.GetMilliseconds());
+		//MAYHEM_GAME_TRACE("Delta time: {0}s ({1}ms)", deltaTime.GetSeconds(), deltaTime.GetMilliseconds());
 
 		// Update
 		m_cameraController.OnUpdate(deltaTime);
@@ -230,9 +230,9 @@ public:
 		ImGui::End();
 	}
 
-	void OnEvent(Mayhem::Event& event) override
+	void OnEvent(Mayhem::Event& e) override
 	{
-		m_cameraController.OnEvent(event);
+		m_cameraController.OnEvent(e);
 	}
 
 private:

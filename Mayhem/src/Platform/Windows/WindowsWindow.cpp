@@ -81,6 +81,7 @@ namespace Mayhem
 				data.Height = height;
 
 				WindowResizeEvent event(width, height);
+				MAYHEM_ENGINE_TRACE("{0}, {1}", width, height);
 				data.EventCallback(event);
 			});
 

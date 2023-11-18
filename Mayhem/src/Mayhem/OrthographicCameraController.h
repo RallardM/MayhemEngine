@@ -20,8 +20,8 @@ namespace Mayhem
 		OrthographicCamera& GetCamera() { return m_camera; }
 		const OrthographicCamera& GetCamera() const { return m_camera; }
 
-		//float GetZoomLevel() const { return m_zoomLevel; }
-		//void SetZoomLevel(float level) { m_zoomLevel = level; }
+		float GetZoomLevel() const { return m_zoomLevel; }
+		void SetZoomLevel(float level) { m_zoomLevel = level; }
 
 	private:
 		bool OnMouseScrolled(MouseScrolledEvent& event);

@@ -30,6 +30,7 @@ namespace Mayhem
 
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
+		bool OnWindowResize(WindowResizeEvent& e);
 
 		static Application* _Instance;
 		Ref<Window> m_window;
@@ -37,6 +38,7 @@ namespace Mayhem
 		LayerStack m_layerStack;
 		float m_lastFrameTime = 0.0f;
 		bool m_running = true;
+		bool m_minimized = false;
 	};
 
 	// To be defined in CLIENT
