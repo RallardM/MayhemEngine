@@ -239,6 +239,7 @@ namespace Mayhem
 		for (auto id : glShaderIDs)
 		{
 			glDetachShader(program, id);
+			glDeleteShader(id);
 		}
 
 		m_rendererId = program;
