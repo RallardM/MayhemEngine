@@ -23,7 +23,7 @@
 
 namespace Mayhem
 {
-	Renderer::SceneData* Renderer::m_sceneData = new Renderer::SceneData;
+	Renderer::SceneData* Renderer::s_sceneData = new Renderer::SceneData;
 
 	void Renderer::Init()
 	{
@@ -37,7 +37,7 @@ namespace Mayhem
 
 	void Renderer::BeginScene(OrthographicCamera& camera)
 	{
-		m_sceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
+		s_sceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
 	}
 
 	void Renderer::EndScene()
@@ -47,7 +47,7 @@ namespace Mayhem
 	void Renderer::Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray, const glm::mat4& transform)
 	{
 		shader->Bind();
-		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4("u_ViewProjection", m_sceneData->ViewProjectionMatrix);
+		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4("u_ViewProjection", s_sceneData->ViewProjectionMatrix);
 		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4("u_Transform", transform);
 		vertexArray->Bind();
 		RenderCommand::DrawIndexed(vertexArray);

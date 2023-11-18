@@ -26,7 +26,7 @@ namespace Mayhem
 			glm::mat4 ViewProjectionMatrix;
 		};
 
-		static SceneData* m_sceneData;
+		static SceneData* s_sceneData;
 
 	};
 }

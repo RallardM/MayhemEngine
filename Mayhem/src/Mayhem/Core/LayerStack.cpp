@@ -49,7 +49,7 @@ namespace Mayhem
 
 	void LayerStack::PopLayer(Layer* layer)
 	{
-		auto it = std::find(m_layers.begin(), m_layers.begin() + m_LayerInsertIndex, layer);
+		auto it = std::find(m_layers.begin(), m_layers.begin() + m_layerInsertIndex, layer);
 		if (it != m_layers.end())
 		{
 			m_layers.erase(it);
