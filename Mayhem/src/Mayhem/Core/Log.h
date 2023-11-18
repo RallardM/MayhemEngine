@@ -26,11 +26,11 @@ namespace Mayhem
 #define MAYHEM_ENGINE_INFO(...)	 ::Mayhem::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define MAYHEM_ENGINE_WARN(...)	 ::Mayhem::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define MAYHEM_ENGINE_ERROR(...)	 ::Mayhem::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define MAYHEM_ENGINE_FATAL(...)	 ::Mayhem::Log::GetCoreLogger()->critical(__VA_ARGS__)
+#define MAYHEM_ENGINE_CRITICAL(...)	 ::Mayhem::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 // Client log macros
 #define MAYHEM_GAME_TRACE(...)      ::Mayhem::Log::GetClientLogger()->trace(__VA_ARGS__)
 #define MAYHEM_GAME_INFO(...)       ::Mayhem::Log::GetClientLogger()->info(__VA_ARGS__)
 #define MAYHEM_GAME_WARN(...)       ::Mayhem::Log::GetClientLogger()->warn(__VA_ARGS__)
 #define MAYHEM_GAME_ERROR(...)      ::Mayhem::Log::GetClientLogger()->error(__VA_ARGS__)
-#define MAYHEM_GAME_FATAL(...)      ::Mayhem::Log::GetClientLogger()->critical(__VA_ARGS__)
+#define MAYHEM_GAME_CRITICAL(...)      ::Mayhem::Log::GetClientLogger()->critical(__VA_ARGS__)
