@@ -81,7 +81,7 @@ namespace Mayhem
 				ShaderDataTypeToOpenGLBaseType(element.m_type),
 				element.m_normalized ? GL_TRUE : GL_FALSE,
 				layout.GetStride(),
-				(const void*)element.m_offset);
+				(const void*)(intptr_t)element.m_offset);
 			m_vertexBufferIndex++;
 		}
 
