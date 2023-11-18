@@ -23,5 +23,5 @@
 
 namespace Mayhem
 {
-	RendererAPI* RenderCommand::s_RendererAPI = new OpenGLRendererAPI;
+	Scope<RendererAPI> RenderCommand::s_rendererAPI = CreateScope<OpenGLRendererAPI>();
 }

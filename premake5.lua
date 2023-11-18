@@ -90,7 +90,6 @@ project "Mayhem"
 		
 		defines
 		{
-			"MAYHEM_PLATFORM_WINDOWS",
 			"MAYHEM_BUILD_DLL",
 			"GLFW_INCLUDE_NONE"
 		}
@@ -144,11 +143,6 @@ project "SandboxGame"
 
 	filter "system:windows"
 		systemversion "latest"
-		
-		defines
-		{
-			"MAYHEM_PLATFORM_WINDOWS"
-		}
 
 	filter "configurations:Debug"
 		defines "MAYHEM_DEBUG"
