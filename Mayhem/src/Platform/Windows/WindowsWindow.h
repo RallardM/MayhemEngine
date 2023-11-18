@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Mayhem/Window.h"
+#include "Mayhem/Core/Window.h"
 #include "Mayhem/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

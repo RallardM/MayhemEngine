@@ -17,7 +17,7 @@
 #include "MayhemPrecompiledHeaders.h"
 #include "Application.h"
 
-#include "Mayhem/Log.h"
+#include "Mayhem/Core/Log.h"
 #include "Input.h"
 
 #include "Mayhem/Renderer/Renderer.h"

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Mayhem/Core.h"
-#include "Mayhem/Layer.h"
+#include "Core.h"
+#include "Layer.h"
 
 #include <vector>
 

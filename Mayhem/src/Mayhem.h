@@ -2,16 +2,16 @@
 
 // For use by Mayhem applications
 
-#include "Mayhem/Application.h"
-#include "Mayhem/Layer.h"
-#include "Mayhem/Log.h"
+#include "Mayhem/Core/Application.h"
+#include "Mayhem/Core/Layer.h"
+#include "Mayhem/Core/Log.h"
 
 #include "Mayhem/Core/Timestep.h"
 
-#include "Mayhem/Input.h"
-#include "Mayhem/KeyCodes.h"
-#include "Mayhem/MouseButtonCodes.h"
-#include "Mayhem/OrthographicCameraController.h"
+#include "Mayhem/Core/Input.h"
+#include "Mayhem/Core/KeyCodes.h"
+#include "Mayhem/Core/MouseButtonCodes.h"
+#include "Mayhem/Renderer/OrthographicCameraController.h"
 
 #include "Mayhem/ImGui/ImGuiLayer.h"
 
@@ -27,5 +27,5 @@
 #include "Mayhem/Renderer/OrthographicCamera.h"
 
 // ---Entry Point---------------------
-#include "Mayhem/EntryPoint.h"
+#include "Mayhem/Core/EntryPoint.h"
 // -----------------------------------

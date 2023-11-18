@@ -144,32 +144,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Mayhem.h" />
-    <ClInclude Include="src\Mayhem\Application.h" />
-    <ClInclude Include="src\Mayhem\Core.h" />
+    <ClInclude Include="src\Mayhem\Core\Application.h" />
+    <ClInclude Include="src\Mayhem\Core\Core.h" />
+    <ClInclude Include="src\Mayhem\Core\EntryPoint.h" />
+    <ClInclude Include="src\Mayhem\Core\Input.h" />
+    <ClInclude Include="src\Mayhem\Core\KeyCodes.h" />
+    <ClInclude Include="src\Mayhem\Core\Layer.h" />
+    <ClInclude Include="src\Mayhem\Core\LayerStack.h" />
+    <ClInclude Include="src\Mayhem\Core\Log.h" />
+    <ClInclude Include="src\Mayhem\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Mayhem\Core\Timestep.h" />
-    <ClInclude Include="src\Mayhem\EntryPoint.h" />
+    <ClInclude Include="src\Mayhem\Core\Window.h" />
     <ClInclude Include="src\Mayhem\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Mayhem\Events\Event.h" />
     <ClInclude Include="src\Mayhem\Events\KeyEvent.h" />
     <ClInclude Include="src\Mayhem\Events\MouseEvent.h" />
     <ClInclude Include="src\Mayhem\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\Mayhem\Input.h" />
-    <ClInclude Include="src\Mayhem\KeyCodes.h" />
-    <ClInclude Include="src\Mayhem\Layer.h" />
-    <ClInclude Include="src\Mayhem\LayerStack.h" />
-    <ClInclude Include="src\Mayhem\Log.h" />
-    <ClInclude Include="src\Mayhem\MouseButtonCodes.h" />
-    <ClInclude Include="src\Mayhem\OrthographicCameraController.h" />
     <ClInclude Include="src\Mayhem\Renderer\Buffer.h" />
     <ClInclude Include="src\Mayhem\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Mayhem\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Mayhem\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\Mayhem\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Mayhem\Renderer\Renderer.h" />
     <ClInclude Include="src\Mayhem\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Mayhem\Renderer\Shader.h" />
     <ClInclude Include="src\Mayhem\Renderer\Texture.h" />
     <ClInclude Include="src\Mayhem\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Mayhem\Window.h" />
     <ClInclude Include="src\MayhemPrecompiledHeaders.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
@@ -598,15 +598,15 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Mayhem\Application.cpp" />
+    <ClCompile Include="src\Mayhem\Core\Application.cpp" />
+    <ClCompile Include="src\Mayhem\Core\Layer.cpp" />
+    <ClCompile Include="src\Mayhem\Core\LayerStack.cpp" />
+    <ClCompile Include="src\Mayhem\Core\Log.cpp" />
     <ClCompile Include="src\Mayhem\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Mayhem\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Mayhem\Layer.cpp" />
-    <ClCompile Include="src\Mayhem\LayerStack.cpp" />
-    <ClCompile Include="src\Mayhem\Log.cpp" />
-    <ClCompile Include="src\Mayhem\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Mayhem\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Mayhem\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\Mayhem\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Mayhem\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Mayhem\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Mayhem\Renderer\RendererAPI.cpp" />

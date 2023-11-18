@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Mayhem/Input.h"
+#include "Mayhem/Core/Input.h"
 
 namespace Mayhem
 {

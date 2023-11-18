@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Mayhem/Core.h"
+#include "Mayhem/Core/Core.h"
 #include "Mayhem/Core/Timestep.h"
 #include "Mayhem/Events/Event.h"
 

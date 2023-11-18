@@ -19,8 +19,8 @@
 #include "MayhemPrecompiledHeaders.h"
 #include "OrthographicCameraController.h"
 
-#include "Mayhem/Input.h"
-#include "Mayhem/KeyCodes.h"
+#include "Mayhem/Core/Input.h"
+#include "Mayhem/Core/KeyCodes.h"
 
 namespace Mayhem
 {

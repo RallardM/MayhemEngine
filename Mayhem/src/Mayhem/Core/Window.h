@@ -3,7 +3,7 @@
 
 #include "MayhemPrecompiledHeaders.h"
 
-#include "Mayhem/Core.h"
+#include "Mayhem/Core/Core.h"
 #include "Mayhem/Events/Event.h"
 
 namespace Mayhem

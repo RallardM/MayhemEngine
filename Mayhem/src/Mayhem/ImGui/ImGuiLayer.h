@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Mayhem/Layer.h"
+#include "Mayhem/Core/Layer.h"
 
 #include "Mayhem/Events/ApplicationEvent.h"
 #include "Mayhem/Events/KeyEvent.h"
