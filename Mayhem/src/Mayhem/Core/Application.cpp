@@ -98,13 +98,11 @@ namespace Mayhem
 	void Application::PushLayer(Layer* layer)
 	{
 		m_layerStack.PushLayer(layer);
-		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* layer)
 	{
 		m_layerStack.PushOverlay(layer);
-		layer->OnAttach();
 	}
 
 	bool Application::OnWindowClose(WindowCloseEvent& e)

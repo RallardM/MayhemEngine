@@ -37,12 +37,14 @@ namespace Mayhem
 	void LayerStack::PushLayer(Layer* layer)
 	{
 		m_layers.emplace(m_layers.begin() + m_layerInsertIndex, layer);
+		layer->OnAttach();
 		m_layerInsertIndex++;
 	}
 
 	void LayerStack::PushOverlay(Layer* overlay)
 	{
 		m_layers.emplace_back(overlay);
+		overlay->OnAttach();
 	}
 
 	void LayerStack::PopLayer(Layer* layer)
@@ -52,6 +54,7 @@ namespace Mayhem
 		{
 			m_layers.erase(it);
 			m_layerInsertIndex--;
+			layer->OnAttach();
 		}
 	}
 
@@ -61,6 +64,7 @@ namespace Mayhem
 		if (it != m_layers.end())
 		{
 			m_layers.erase(it);
+			overlay->OnDetach();
 		}
 	}
 }
