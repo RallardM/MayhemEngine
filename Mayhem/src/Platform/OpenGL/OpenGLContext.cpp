@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// Tutorial : https://youtu.be/YZKEjaCnsjU?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
+ // Tutorial : https://youtu.be/YZKEjaCnsjU?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
 
 #include "MayhemPrecompiledHeaders.h"
 #include "OpenGLContext.h"
@@ -36,12 +36,12 @@ namespace Mayhem
 		MAYHEM_ENGINE_ASSERT(status, "Failed to initialize Glad!");
 
 		const GLubyte* version = glGetString(GL_VERSION);
-		if (version != nullptr) 
+		if (version != nullptr)
 		{
 			std::string versionStr(reinterpret_cast<const char*>(version));
 			MAYHEM_ENGINE_INFO("  Version: {}", versionStr);
 		}
-		else 
+		else
 		{
 			MAYHEM_ENGINE_INFO("Failed to get OpenGL version");
 		}
@@ -51,21 +51,30 @@ namespace Mayhem
 			std::string vendorStr(reinterpret_cast<const char*>(vendor));
 			MAYHEM_ENGINE_INFO("  Vendor: {}", vendorStr);
 		}
-		else 
+		else
 		{
 			MAYHEM_ENGINE_INFO("Failed to get OpenGL vendor");
 		}
 
 		const GLubyte* renderer = glGetString(GL_RENDERER);
-		if (renderer != nullptr) {
+		if (renderer != nullptr)
+		{
 			std::string rendererStr(reinterpret_cast<const char*>(renderer));
 			MAYHEM_ENGINE_INFO("  Renderer: {}", rendererStr);
 		}
-		else {
+		else
+		{
 			MAYHEM_ENGINE_INFO("Failed to get OpenGL renderer");
 		}
 
-		MAYHEM_ENGINE_ASSERT(GLVersion.major > 4 || (GLVersion.major == 4 && GLVersion.minor >= 5), "Mayhem requires at least OpenGL version 4.5!");
+		#ifdef MAYHEM_ENABLE_ASSERTS
+				int versionMajor;
+				int versionMinor;
+				glGetIntegerv(GL_MAJOR_VERSION, &versionMajor);
+				glGetIntegerv(GL_MINOR_VERSION, &versionMinor);
+
+				MAYHEM_ENGINE_ASSERT(versionMajor > 4 || (versionMajor == 4 && versionMinor >= 5), "Mayhem requires at least OpenGL version 4.5!");
+		#endif
 	}
 
 	void OpenGLContext::SwapBuffers()
