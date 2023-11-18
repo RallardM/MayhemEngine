@@ -86,6 +86,7 @@ namespace Mayhem
 		}
 
 		m_vertexBuffers.push_back(vertexBuffer);
+		m_vertexBufferIndex += layout.GetElements().size();
 	}
 
 	void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer)
