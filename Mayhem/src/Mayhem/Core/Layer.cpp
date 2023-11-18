@@ -7,9 +7,4 @@ namespace Mayhem {
 		: m_debugName(name)
 	{
 	}
-
-	Layer::~Layer()
-	{
-	}
-
 }

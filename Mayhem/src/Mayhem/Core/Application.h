@@ -18,7 +18,7 @@ namespace Mayhem
 
 	public:
 		Application();
-		virtual ~Application();
+		virtual ~Application() = default;
 
 		void Run();
 		void OnEvent(Event& e);

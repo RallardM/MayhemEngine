@@ -46,10 +46,6 @@ namespace Mayhem
 		PushOverlay(m_imguiLayer);
 	}
 
-	Application::~Application()
-	{
-	}
-
 	void Application::Run()
 	{
 		while (m_running)
