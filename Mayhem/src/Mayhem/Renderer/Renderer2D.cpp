@@ -30,8 +30,8 @@ namespace Mayhem
 	struct Renderer2DStorage
 	{
 		Ref<VertexArray> QuadVertexArray;
-		Ref<Shader> FlatColorShader;
 		Ref<Shader> TextureShader;
+		Ref<Texture2D> WhiteTexture;
 	};
 
 	static Renderer2DStorage* s_data;
@@ -61,7 +61,10 @@ namespace Mayhem
 		squareIB.reset(IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		s_data->QuadVertexArray->SetIndexBuffer(squareIB);
 
-		s_data->FlatColorShader = Shader::Create("assets/shaders/FlatColor.glsl");
+		s_data->WhiteTexture = Texture2D::Create(1, 1);
+		uint32_t whiteTextureData = 0xffffffff;
+		s_data->WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
+
 		s_data->TextureShader = Shader::Create("assets/shaders/TextureShader.glsl");
 		s_data->TextureShader->Bind();
 		s_data->TextureShader->SetInt("u_Texture", 0);
@@ -74,9 +77,6 @@ namespace Mayhem
 
 	void Renderer2D::BeginScene(const OrthographicCamera& camera)
 	{
-		s_data->FlatColorShader->Bind();
-		s_data->FlatColorShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
-
 		s_data->TextureShader->Bind();
 		s_data->TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 	}
@@ -92,12 +92,12 @@ namespace Mayhem
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
 	{
-		s_data->FlatColorShader->Bind();
-		s_data->FlatColorShader->SetFloat4("u_Color", color);
+		s_data->TextureShader->SetFloat4("u_Color", color);
+		s_data->WhiteTexture->Bind();
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * /* Add rotation here */
 			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
-		s_data->FlatColorShader->SetMat4("u_Transform", transform);
+		s_data->TextureShader->SetMat4("u_Transform", transform);
 
 		s_data->QuadVertexArray->Bind();
 		RenderCommand::DrawIndexed(s_data->QuadVertexArray);
@@ -109,13 +109,12 @@ namespace Mayhem
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture)
 	{
-		s_data->TextureShader->Bind();
+		s_data->TextureShader->SetFloat4("u_Color", glm::vec4(1.0f));
+		texture->Bind();
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * /* Add rotation here */
 			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 		s_data->TextureShader->SetMat4("u_Transform", transform);
-
-		texture->Bind();
 
 		s_data->QuadVertexArray->Bind();
 		RenderCommand::DrawIndexed(s_data->QuadVertexArray);
