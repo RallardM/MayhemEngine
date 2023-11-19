@@ -29,8 +29,9 @@ namespace Mayhem
 {
 	struct Renderer2DStorage
 	{
-		Ref<VertexArray> quadVertexArray;
-		Ref<Shader> flatColorShader;
+		Ref<VertexArray> QuadVertexArray;
+		Ref<Shader> FlatColorShader;
+		Ref<Shader> TextureShader;
 	};
 
 	static Renderer2DStorage* s_data;
@@ -38,28 +39,32 @@ namespace Mayhem
 	void Renderer2D::Init()
 	{
 		s_data = new Renderer2DStorage();
-		s_data->quadVertexArray = VertexArray::Create();
+		s_data->QuadVertexArray = VertexArray::Create();
 
 		float squareVertices[5 * 4] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f,	1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f,	0.0f, 1.0f
 		};
 
 		Ref<VertexBuffer> squareVB;
 		squareVB.reset(VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
-			{ E_ShaderDataType::Float3, "a_Position" }
+			{ E_ShaderDataType::Float3, "a_Position" },
+			{ E_ShaderDataType::Float2, "a_TexCoord" }
 			});
-		s_data->quadVertexArray->AddVertexBuffer(squareVB);
+		s_data->QuadVertexArray->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
 		Ref<IndexBuffer> squareIB;
 		squareIB.reset(IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
-		s_data->quadVertexArray->SetIndexBuffer(squareIB);
+		s_data->QuadVertexArray->SetIndexBuffer(squareIB);
 
-		s_data->flatColorShader = Shader::Create("assets/shaders/FlatColor.glsl");
+		s_data->FlatColorShader = Shader::Create("assets/shaders/FlatColor.glsl");
+		s_data->TextureShader = Shader::Create("assets/shaders/TextureShader.glsl");
+		s_data->TextureShader->Bind();
+		s_data->TextureShader->SetInt("u_Texture", 0);
 	}
 
 	void Renderer2D::Shutdown()
@@ -69,8 +74,11 @@ namespace Mayhem
 
 	void Renderer2D::BeginScene(const OrthographicCamera& camera)
 	{
-		s_data->flatColorShader->Bind();
-		s_data->flatColorShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
+		s_data->FlatColorShader->Bind();
+		s_data->FlatColorShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
+
+		s_data->TextureShader->Bind();
+		s_data->TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 	}
 
 	void Renderer2D::EndScene()
@@ -84,14 +92,32 @@ namespace Mayhem
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
 	{
-		s_data->flatColorShader->Bind();
-		s_data->flatColorShader->SetFloat4("u_Color", color);
+		s_data->FlatColorShader->Bind();
+		s_data->FlatColorShader->SetFloat4("u_Color", color);
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * /* Add rotation here */
 			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
-		s_data->flatColorShader->SetMat4("u_Transform", transform);
+		s_data->FlatColorShader->SetMat4("u_Transform", transform);
 
-		s_data->quadVertexArray->Bind();
-		RenderCommand::DrawIndexed(s_data->quadVertexArray);
+		s_data->QuadVertexArray->Bind();
+		RenderCommand::DrawIndexed(s_data->QuadVertexArray);
+	}
+	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture2D>& texture)
+	{
+		DrawQuad({ position.x, position.y, 0.0f }, size, texture);
+	}
+
+	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture)
+	{
+		s_data->TextureShader->Bind();
+
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * /* Add rotation here */
+			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+		s_data->TextureShader->SetMat4("u_Transform", transform);
+
+		texture->Bind();
+
+		s_data->QuadVertexArray->Bind();
+		RenderCommand::DrawIndexed(s_data->QuadVertexArray);
 	}
 }
