@@ -5,8 +5,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "Platform/OpenGl/OpenGLShader.h"
-
 Sandbox2D::Sandbox2D() :
 	Layer("Sandbox2D"),
 	m_cameraController(1280.0f / 720.0f, true)
@@ -34,7 +32,8 @@ void Sandbox2D::OnUpdate(Mayhem::Timestep deltaTime)
 	Mayhem::Renderer2D::BeginScene(m_cameraController.GetCamera());
 
 	Mayhem::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, m_squareColor);
-
+	Mayhem::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, { 0.2f, 0.3f, 0.8f, 1.0f });
+	
 	Mayhem::Renderer2D::EndScene();
 
 	// TODO: Add these functions: Shader::SetMat4, Shader::SetFloat4
