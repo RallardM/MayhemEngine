@@ -147,6 +147,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Mayhem\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Mayhem.h" />
     <ClInclude Include="src\Mayhem\Core\Application.h" />
     <ClInclude Include="src\Mayhem\Core\Core.h" />
@@ -602,6 +603,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Mayhem\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Mayhem\Core\Application.cpp" />
     <ClCompile Include="src\Mayhem\Core\Layer.cpp" />
     <ClCompile Include="src\Mayhem\Core\LayerStack.cpp" />
