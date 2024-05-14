@@ -30,7 +30,7 @@ namespace Mayhem
 		m_internalFormat = GL_RGBA;
 		m_dataFormat = GL_RGBA;
 
-		MAYHEM_ENGINE_ASSERT(internalFormat & dataFormat, "Format not supported!");
+		MAYHEM_ENGINE_ASSERT(m_internalFormat & m_dataFormat, "Format not supported!");
 
 		glCreateTextures(GL_TEXTURE_2D, 1, &m_rendererId);
 		glTextureStorage2D(m_rendererId, 1, m_internalFormat, m_width, m_height);

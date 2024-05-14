@@ -123,6 +123,9 @@
     <ClInclude Include="src\Mayhem\Renderer\Renderer.h">
       <Filter>src\Mayhem\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Mayhem\Renderer\Renderer2D.h">
+      <Filter>src\Mayhem\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Mayhem\Renderer\RendererAPI.h">
       <Filter>src\Mayhem\Renderer</Filter>
     </ClInclude>
@@ -184,6 +187,9 @@
       <Filter>vendor\glm\glm\detail</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\detail\compute_common.hpp">
+      <Filter>vendor\glm\glm\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\glm\detail\compute_vector_decl.hpp">
       <Filter>vendor\glm\glm\detail</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\detail\compute_vector_relational.hpp">
@@ -342,7 +348,7 @@
     <ClInclude Include="vendor\glm\glm\detail\type_vec4.inl">
       <Filter>vendor\glm\glm\detail</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\glm\glm\detail\type_vec4_simd.inl">
+    <ClInclude Include="vendor\glm\glm\detail\type_vec_simd.inl">
       <Filter>vendor\glm\glm\detail</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\exponential.hpp">
@@ -1089,7 +1095,7 @@
     <ClInclude Include="vendor\glm\glm\gtx\fast_trigonometry.inl">
       <Filter>vendor\glm\glm\gtx</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\glm\glm\gtx\float_notmalize.inl">
+    <ClInclude Include="vendor\glm\glm\gtx\float_normalize.inl">
       <Filter>vendor\glm\glm\gtx</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\gtx\functions.hpp">
@@ -1213,9 +1219,6 @@
       <Filter>vendor\glm\glm\gtx</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\gtx\number_precision.hpp">
-      <Filter>vendor\glm\glm\gtx</Filter>
-    </ClInclude>
-    <ClInclude Include="vendor\glm\glm\gtx\number_precision.inl">
       <Filter>vendor\glm\glm\gtx</Filter>
     </ClInclude>
     <ClInclude Include="vendor\glm\glm\gtx\optimum_pow.hpp">
@@ -1413,9 +1416,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Mayhem\Renderer\Renderer2D.h">
-      <Filter>src\Mayhem\Renderer</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Mayhem\Core\Application.cpp">
@@ -1449,6 +1449,9 @@
       <Filter>src\Mayhem\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Mayhem\Renderer\Renderer.cpp">
+      <Filter>src\Mayhem\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mayhem\Renderer\Renderer2D.cpp">
       <Filter>src\Mayhem\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Mayhem\Renderer\RendererAPI.cpp">
@@ -1492,9 +1495,6 @@
     </ClCompile>
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Mayhem\Renderer\Renderer2D.cpp">
-      <Filter>src\Mayhem\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
