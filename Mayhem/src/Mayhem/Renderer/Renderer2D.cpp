@@ -38,36 +38,7 @@ namespace Mayhem
 
 	void Renderer2D::Init()
 	{
-		//s_data = new Renderer2DStorage();
-		//s_data->QuadVertexArray = VertexArray::Create();
-
-		//float squareVertices[5 * 4] = {
-		//	-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
-		//	 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
-		//	 0.5f,  0.5f, 0.0f,	1.0f, 1.0f,
-		//	-0.5f,  0.5f, 0.0f,	0.0f, 1.0f
-		//};
-
-		//Ref<VertexBuffer> squareVB;
-		//squareVB.reset(VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
-		//squareVB->SetLayout({
-		//	{ E_ShaderDataType::Float3, "a_Position" },
-		//	{ E_ShaderDataType::Float2, "a_TexCoord" }
-		//	});
-		//s_data->QuadVertexArray->AddVertexBuffer(squareVB);
-
-		//uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		//Ref<IndexBuffer> squareIB;
-		//squareIB.reset(IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
-		//s_data->QuadVertexArray->SetIndexBuffer(squareIB);
-
-		//s_data->WhiteTexture = Texture2D::Create(1, 1);
-		//uint32_t whiteTextureData = 0xffffffff;
-		//s_data->WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
-
-		//s_data->TextureShader = Shader::Create("assets/shaders/TextureShader.glsl");
-		//s_data->TextureShader->Bind();
-		//s_data->TextureShader->SetInt("u_Texture", 0);
+		MAYHEM_PROFILE_FUNCTION();
 
 		s_data = new Renderer2DStorage();
 		s_data->QuadVertexArray = VertexArray::Create();
@@ -103,17 +74,22 @@ namespace Mayhem
 
 	void Renderer2D::Shutdown()
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		delete s_data;
 	}
 
 	void Renderer2D::BeginScene(const OrthographicCamera& camera)
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		s_data->TextureShader->Bind();
 		s_data->TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 	}
 
 	void Renderer2D::EndScene()
 	{
+		MAYHEM_PROFILE_FUNCTION();
 	}
 
 	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color)
@@ -123,16 +99,7 @@ namespace Mayhem
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
 	{
-		//s_data->TextureShader->SetFloat4("u_Color", color);
-		//s_data->WhiteTexture->Bind();
-
-		////glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * /* Add rotation here */
-		////	glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
-
-		//glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
-		//s_data->TextureShader->SetMat4("u_Transform", transform);
-		//s_data->QuadVertexArray->Bind();
-		//RenderCommand::DrawIndexed(s_data->QuadVertexArray);
+		MAYHEM_PROFILE_FUNCTION();
 
 		s_data->TextureShader->SetFloat4("u_Color", color);
 		s_data->WhiteTexture->Bind();
@@ -150,21 +117,7 @@ namespace Mayhem
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture)
 	{
-		//s_data->TextureShader->SetFloat4("u_Color", glm::vec4(1.0f));
-		////s_data->TextureShader->SetFloat4("u_Color", { 0.2f, 0.3f, 0.8f, 0.5f });
-		////s_data->TextureShader->Bind();
-		//texture->Bind();
-
-		////glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * /* Add rotation here */
-		////	glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
-		////s_data->TextureShader->SetMat4("u_Transform", transform);
-
-		//glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
-		//s_data->TextureShader->SetMat4("u_Transform", transform);
-
-		//s_data->QuadVertexArray->Bind();
-		//RenderCommand::DrawIndexed(s_data->QuadVertexArray);
-
+		MAYHEM_PROFILE_FUNCTION();
 
 		s_data->TextureShader->SetFloat4("u_Color", glm::vec4(1.0f));
 		texture->Bind();

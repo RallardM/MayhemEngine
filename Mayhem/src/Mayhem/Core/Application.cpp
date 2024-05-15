@@ -33,11 +33,12 @@ namespace Mayhem
 
 	Application::Application()
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		MAYHEM_ENGINE_ASSERT(!_Instance, "Application already exists!");
 		_Instance = this;
-
-		m_window = std::unique_ptr<Window>(Window::Create());
-		m_window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		m_window = Window::Create();
+		m_window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
 		//m_window->SetVSync(false);
 
 		Renderer::Init();
@@ -46,30 +47,50 @@ namespace Mayhem
 		PushOverlay(m_imguiLayer);
 	}
 
+	Application::~Application()
+	{
+		MAYHEM_PROFILE_FUNCTION();
+
+		Renderer::Shutdown();
+	}
+
 	void Application::Run()
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		while (m_running)
 		{
+			MAYHEM_PROFILE_SCOPE("RunLoop");
+
 			float time = (float)glfwGetTime();
 			Timestep timestep = time - m_lastFrameTime;
 			m_lastFrameTime = time;
 
 			if (!m_minimized)
 			{
-				for (Layer* layer : m_layerStack)
 				{
-					layer->OnUpdate(timestep);
+					MAYHEM_PROFILE_SCOPE("LayerStack OnUpdate");
+
+					for (Layer* layer : m_layerStack)
+					{
+						layer->OnUpdate(timestep);
+					}
 				}
+
+				m_imguiLayer->Begin();
+
+				{
+					MAYHEM_PROFILE_SCOPE("LayerStack OnImGuiRender");
+
+					for (Layer* layer : m_layerStack)
+					{
+						layer->OnImGuiRender();
+					}
+				}
+
+				m_imguiLayer->End();
 			}
 
-			m_imguiLayer->Begin();
-
-			for (Layer* layer : m_layerStack)
-			{
-				layer->OnImGuiRender();
-			}
-
-			m_imguiLayer->End();
 
 			m_window->OnUpdate();
 		}
@@ -77,6 +98,8 @@ namespace Mayhem
 
 	void Application::OnEvent(Event& e)
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
@@ -93,12 +116,18 @@ namespace Mayhem
 
 	void Application::PushLayer(Layer* layer)
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		m_layerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* layer)
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		m_layerStack.PushOverlay(layer);
+		layer->OnAttach();
 	}
 
 	bool Application::OnWindowClose(WindowCloseEvent& e)
@@ -109,6 +138,8 @@ namespace Mayhem
 
 	bool Application::OnWindowResize(WindowResizeEvent& e)
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		if (e.GetWidth() == 0 || e.GetHeight() == 0)
 		{
 			m_minimized = true;

@@ -27,6 +27,8 @@ namespace Mayhem
 		m_width(width), 
 		m_height(height)
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		m_internalFormat = GL_RGBA;
 		m_dataFormat = GL_RGBA;
 
@@ -45,9 +47,17 @@ namespace Mayhem
 	OpenGLTexture2D::OpenGLTexture2D(const std::string& path) :
 		m_path(path)
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		int width, height, channels;
 		stbi_set_flip_vertically_on_load(1);
-		stbi_uc* data = stbi_load(path.c_str(), &width, &height, &channels, 0);
+		stbi_uc* data = nullptr;
+
+		{
+			MAYHEM_PROFILE_SCOPE("stbi_load - OpenGLTexture2D::OpenGLTexture2D(const std::string&)");
+			data = stbi_load(path.c_str(), &width, &height, &channels, 0);
+		}
+
 		MAYHEM_ENGINE_ASSERT(data, "Failed to load image!");
 		m_width = width;
 		m_height = height;
@@ -86,11 +96,15 @@ namespace Mayhem
 
 	OpenGLTexture2D::~OpenGLTexture2D()
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		glDeleteTextures(1, &m_rendererId);
 	}
 
 	void OpenGLTexture2D::SetData(void* data, uint32_t size)
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		uint32_t bytesPerPixels = m_dataFormat == GL_RGBA ? 4 : 3;
 		MAYHEM_ENGINE_ASSERT(size == m_width * m_height * bytesPerPixels, "Data must be entire texture!")
 		glTextureSubImage2D(m_rendererId, 0, 0, 0, m_width, m_height, m_dataFormat, GL_UNSIGNED_BYTE, data);
@@ -98,6 +112,8 @@ namespace Mayhem
 
 	void OpenGLTexture2D::Bind(uint32_t slot) const
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		glBindTextureUnit(slot, m_rendererId);
 	}
 }

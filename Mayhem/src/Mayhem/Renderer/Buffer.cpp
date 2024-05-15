@@ -21,7 +21,7 @@
 
 #include "Renderer.h"
 
-#include "Platform/OpenGL/OpenGLBuffer.h"
+#include "Platform/OpenGL/OpenGLVertexBuffer.h"
 
 namespace Mayhem
 {

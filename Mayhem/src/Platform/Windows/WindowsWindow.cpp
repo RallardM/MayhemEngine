@@ -26,30 +26,35 @@
 
 namespace Mayhem
 {
-	static bool s_GLFWInitialized = false;
+	static uint8_t s_GLFWWindowCount = 0;
 
 	static void GLFWErrorCallback(int error, const char* description)
 	{
 		MAYHEM_ENGINE_ERROR("GLFW Error ({0}): {1}", error, description);
 	}
 
-	Window* Window::Create(const WindowProps& props)
+	Scope<Window> Window::Create(const WindowProps& props)
 	{
-		return new WindowsWindow(props);
+		return CreateScope<WindowsWindow>(props);
 	}
 
 	WindowsWindow::WindowsWindow(const WindowProps& props)
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		Init(props);
 	}
 
 	WindowsWindow::~WindowsWindow()
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		Shutdown();
 	}
 
 	void WindowsWindow::Init(const WindowProps& props)
 	{
+		MAYHEM_PROFILE_FUNCTION();
 		m_data.Title = props.Title;
 		m_data.Width = props.Width;
 		m_data.Height = props.Height;
@@ -57,17 +62,23 @@ namespace Mayhem
 
 		MAYHEM_ENGINE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
-		if (!s_GLFWInitialized)
+		if (s_GLFWWindowCount == 0)
 		{
+			MAYHEM_PROFILE_SCOPE("glfw init");
 			int success = glfwInit();
 			MAYHEM_ENGINE_ASSERT(success, "Could not initialize GLFW!");
 			glfwSetErrorCallback(GLFWErrorCallback);
-			s_GLFWInitialized = true;
 		}
 
-		m_window = glfwCreateWindow((int)props.Width, (int)props.Height, m_data.Title.c_str(), nullptr, nullptr);
 
-		m_context = CreateScope<OpenGLContext>(m_window);
+		{
+			MAYHEM_PROFILE_SCOPE("glfwCreateWindow");
+			m_window = glfwCreateWindow((int)props.Width, (int)props.Height, m_data.Title.c_str(), nullptr, nullptr);
+			++s_GLFWWindowCount;
+		}
+
+
+		m_context = GraphicsContext::Create(m_window);
 		m_context->Init();
 
 		glfwSetWindowUserPointer(m_window, &m_data);
@@ -168,18 +179,28 @@ namespace Mayhem
 
 	void WindowsWindow::Shutdown()
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		glfwDestroyWindow(m_window);
 	}
 
 	void WindowsWindow::OnUpdate()
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		glfwPollEvents();
 		m_context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
 	{
-		glfwSwapInterval(enabled ? 1 : 0);
+		MAYHEM_PROFILE_FUNCTION();
+
+		if (enabled)
+			glfwSwapInterval(1);
+		else
+			glfwSwapInterval(0);
+
 		m_data.VSync = enabled;
 	}
 

@@ -25,14 +25,6 @@ private:
 
 	Mayhem::Ref<Mayhem::Texture2D> m_checkerboardTexture;
 
-	struct ProfileResult
-	{
-		const char* Name;
-		float Time;
-	};
-
-	std::vector<ProfileResult> m_profileResults;
-
 	glm::vec4 m_squareColor = { 0.0f, 0.0f, 0.0f, 1.0f };
 	glm::vec3 m_squarePosition = { 0.0f, 0.0f, 0.0f };
 

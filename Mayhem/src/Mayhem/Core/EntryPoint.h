@@ -7,13 +7,18 @@ extern Mayhem::Application* Mayhem::CreateApplication();
 int main(int argc, char** argv)
 {
 	Mayhem::Log::Init();
-	MAYHEM_ENGINE_WARN("Initialized Log!");
-	int a = 5;
-	MAYHEM_GAME_INFO("Hello! Var={0}", a);
 
+	MAYHEM_PROFILE_BEGIN_SESSION("Startup", "MayhemProfile-Startup.json");
 	auto app = Mayhem::CreateApplication();
+	MAYHEM_PROFILE_END_SESSION();
+
+	MAYHEM_PROFILE_BEGIN_SESSION("Runtime", "MayhemProfile-Runtime.json");
 	app->Run();
+	MAYHEM_PROFILE_END_SESSION();
+
+	MAYHEM_PROFILE_BEGIN_SESSION("Shutdown", "MayhemProfile-Shutdown.json");
 	delete app;
+	MAYHEM_PROFILE_END_SESSION();
 }
 
 #endif

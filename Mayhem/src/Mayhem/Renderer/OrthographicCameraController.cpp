@@ -34,6 +34,8 @@ namespace Mayhem
 
 	void OrthographicCameraController::OnUpdate(float deltaTime, bool rotation)
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		// Move camera
 		if (Input::IsKeyPressed(MAYHEM_KEY_A))
 		{
@@ -74,6 +76,8 @@ namespace Mayhem
 
 	void OrthographicCameraController::OnEvent(Event& event)
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher(event);
 		dispatcher.Dispatch<MouseScrolledEvent>(MAYHEM_BIND_EVENT_FN(OrthographicCameraController::OnMouseScrolled));
 		dispatcher.Dispatch<WindowResizeEvent>(MAYHEM_BIND_EVENT_FN(OrthographicCameraController::OnWindowResized));
@@ -81,6 +85,8 @@ namespace Mayhem
 
 	bool OrthographicCameraController::OnMouseScrolled(MouseScrolledEvent& event)
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		m_zoomLevel -= event.GetYOffset() * 0.25f;
 		m_zoomLevel = std::max(m_zoomLevel, 0.25f);
 		m_camera.SetProjection(-m_aspectRatio * m_zoomLevel, m_aspectRatio* m_zoomLevel, -m_zoomLevel, m_zoomLevel);
@@ -89,6 +95,8 @@ namespace Mayhem
 
 	bool OrthographicCameraController::OnWindowResized(WindowResizeEvent& event)
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		m_aspectRatio = (float)event.GetWidth() / (float)event.GetHeight();
 		m_camera.SetProjection(-m_aspectRatio * m_zoomLevel, m_aspectRatio* m_zoomLevel, -m_zoomLevel, m_zoomLevel);
 		return false;

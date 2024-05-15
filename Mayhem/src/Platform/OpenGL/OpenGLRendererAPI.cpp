@@ -23,11 +23,16 @@
 
 namespace Mayhem
 {
+
 	void OpenGLRendererAPI::Init()
 	{
 		// Tutorial : https://youtu.be/N94fHNZEHas?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
+
+		MAYHEM_PROFILE_FUNCTION();
+
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 		glEnable(GL_DEPTH_TEST);
 	}
 

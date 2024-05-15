@@ -31,6 +31,8 @@ namespace Mayhem
 
 	void OpenGLContext::Init()
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		glfwMakeContextCurrent(m_windowHandle);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		MAYHEM_ENGINE_ASSERT(status, "Failed to initialize Glad!");
@@ -79,6 +81,8 @@ namespace Mayhem
 
 	void OpenGLContext::SwapBuffers()
 	{
+		MAYHEM_PROFILE_FUNCTION();
+
 		glfwSwapBuffers(m_windowHandle);
 	}
 }
