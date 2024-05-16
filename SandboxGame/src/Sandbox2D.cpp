@@ -39,12 +39,20 @@ void Sandbox2D::OnUpdate(Mayhem::Timestep deltaTime)
 
 	// Renderer Draw
 	{
+		static float rotation = 0.0f;
+		rotation += deltaTime * 50.0f;
+
 		MAYHEM_PROFILE_SCOPE("Renderer Draw");
 		Mayhem::Renderer2D::BeginScene(m_cameraController.GetCamera());
-		Mayhem::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
+		//Mayhem::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
 		//Mayhem::Renderer2D::DrawRotatedQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, glm::radians(-45.0f), { 0.8f, 0.2f, 0.3f, 1.0f });
+		//Mayhem::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, { 0.2f, 0.3f, 0.8f, 1.0f });
+		//Mayhem::Renderer2D::DrawQuad({ -5.0f, -5.0f, -0.1f }, { 10.0f, 10.0f }, m_checkerboardTexture, 10.0f);
+		Mayhem::Renderer2D::DrawRotatedQuad({ 1.0f, 0.0f }, { 0.8f, 0.8f }, -45.0f, { 0.8f, 0.2f, 0.3f, 1.0f });
+		Mayhem::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
 		Mayhem::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, { 0.2f, 0.3f, 0.8f, 1.0f });
-		//Mayhem::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 10.0f, 10.0f }, m_checkerboardTexture, 10.0f, { 1.0f, 1.0f, 1.0f, 1.0f });
+		//Mayhem::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 20.0f, 20.0f }, m_checkerboardTexture, 10.0f);
+		Mayhem::Renderer2D::DrawRotatedQuad({ -2.0f, 0.0f, 0.0f }, { 1.0f, 1.0f }, rotation, m_checkerboardTexture, 20.0f);
 		Mayhem::Renderer2D::EndScene();
 	}
 
@@ -73,7 +81,7 @@ void Sandbox2D::OnImGuiRender()
 	ImGui::End();
 }
 
-void Sandbox2D::OnEvent(Mayhem::Event& e)
+void Sandbox2D::OnEvent(Mayhem::Event& event)
 {
-	m_cameraController.OnEvent(e);
+	m_cameraController.OnEvent(event);
 }
