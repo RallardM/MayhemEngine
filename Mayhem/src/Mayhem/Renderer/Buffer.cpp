@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// Tutorial : https://youtu.be/BwCqRqqbB1Y?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
+ // Tutorial : https://youtu.be/BwCqRqqbB1Y?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
 
 #include "MayhemPrecompiledHeaders.h"
 #include "Buffer.h"
@@ -25,12 +25,12 @@
 
 namespace Mayhem
 {
-	Ref<VertexBuffer> VertexBuffer::Create(float* vertices, uint32_t size)
+	Ref<VertexBuffer> VertexBuffer::Create(uint32_t count)
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::API::None:   MAYHEM_ENGINE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-			case RendererAPI::API::OpenGL: return CreateRef<OpenGLVertexBuffer>(vertices, size);
+		case RendererAPI::API::None:   MAYHEM_ENGINE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+		case RendererAPI::API::OpenGL: return CreateRef<OpenGLVertexBuffer>(count);
 		}
 
 		MAYHEM_ENGINE_ASSERT(false, "Unknown RendererAPI!");
@@ -38,12 +38,25 @@ namespace Mayhem
 		return nullptr;
 	}
 
-	Ref<IndexBuffer> IndexBuffer::Create(uint32_t* indices, uint32_t size)
+	Ref<VertexBuffer> VertexBuffer::Create(float* vertices, uint32_t count)
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::API::None:   MAYHEM_ENGINE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-			case RendererAPI::API::OpenGL: return CreateRef<OpenGLIndexBuffer>(indices, size);
+		case RendererAPI::API::None:   MAYHEM_ENGINE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+		case RendererAPI::API::OpenGL: return CreateRef<OpenGLVertexBuffer>(vertices, count);
+		}
+
+		MAYHEM_ENGINE_ASSERT(false, "Unknown RendererAPI!");
+
+		return nullptr;
+	}
+
+	Ref<IndexBuffer> IndexBuffer::Create(uint32_t* indices, uint32_t count)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:   MAYHEM_ENGINE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+		case RendererAPI::API::OpenGL: return CreateRef<OpenGLIndexBuffer>(indices, count);
 		}
 
 		MAYHEM_ENGINE_ASSERT(false, "Unknown RendererAPI!");
