@@ -26,9 +26,6 @@
 
 namespace Mayhem
 {
-
-#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
-
 	Application* Application::_Instance = nullptr;
 
 	Application::Application()
@@ -38,7 +35,7 @@ namespace Mayhem
 		MAYHEM_ENGINE_ASSERT(!_Instance, "Application already exists!");
 		_Instance = this;
 		m_window = Window::Create();
-		m_window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
+		m_window->SetEventCallback(MAYHEM_BIND_EVENT_FN(Application::OnEvent));
 		//m_window->SetVSync(false);
 
 		Renderer::Init();
@@ -96,18 +93,18 @@ namespace Mayhem
 		}
 	}
 
-	void Application::OnEvent(Event& e)
+	void Application::OnEvent(Event& event)
 	{
 		MAYHEM_PROFILE_FUNCTION();
 
-		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
-		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
+		EventDispatcher dispatcher(event);
+		dispatcher.Dispatch<WindowCloseEvent>(MAYHEM_BIND_EVENT_FN(Application::OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(MAYHEM_BIND_EVENT_FN(Application::OnWindowResize));
 
 		for (auto it = m_layerStack.end(); it != m_layerStack.begin();)
 		{
-			(*--it)->OnEvent(e);
-			if (e.m_handled)
+			(*--it)->OnEvent(event);
+			if (event.m_handled)
 			{
 				break;
 			}
@@ -130,24 +127,24 @@ namespace Mayhem
 		layer->OnAttach();
 	}
 
-	bool Application::OnWindowClose(WindowCloseEvent& e)
+	bool Application::OnWindowClose(WindowCloseEvent& event)
 	{
 		m_running = false;
 		return true;
 	}
 
-	bool Application::OnWindowResize(WindowResizeEvent& e)
+	bool Application::OnWindowResize(WindowResizeEvent& event)
 	{
 		MAYHEM_PROFILE_FUNCTION();
 
-		if (e.GetWidth() == 0 || e.GetHeight() == 0)
+		if (event.GetWidth() == 0 || event.GetHeight() == 0)
 		{
 			m_minimized = true;
 			return false;
 		}
 
 		m_minimized = false;
-		Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+		Renderer::OnWindowResize(event.GetWidth(), event.GetHeight());
 
 		return false;
 	}

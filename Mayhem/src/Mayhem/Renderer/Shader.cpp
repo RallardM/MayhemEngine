@@ -29,7 +29,7 @@ namespace Mayhem
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:   MAYHEM_ENGINE_ASSERT(false, "RendererAPI::API::None is currently not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL: return std::make_shared<OpenGLShader>(filepath);
+		case RendererAPI::API::OpenGL: return CreateRef<OpenGLShader>(filepath);
 		}
 
 		MAYHEM_ENGINE_ASSERT(false, "Unknown RendererAPI!");
@@ -42,7 +42,7 @@ namespace Mayhem
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:   MAYHEM_ENGINE_ASSERT(false, "RendererAPI::API::None is currently not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL: return std::make_shared<OpenGLShader>(name, vertexSource, fragmentSource);
+		case RendererAPI::API::OpenGL: return CreateRef<OpenGLShader>(name, vertexSource, fragmentSource);
 		}
 
 		MAYHEM_ENGINE_ASSERT(false, "Unknown RendererAPI!");

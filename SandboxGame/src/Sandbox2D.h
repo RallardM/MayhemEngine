@@ -21,11 +21,11 @@ private:
 
 	// Temporary
 	Mayhem::Ref<Mayhem::VertexArray> m_squareVA;
-	Mayhem::Ref<Mayhem::Shader> m_flatColorShader;
+	//Mayhem::Ref<Mayhem::Shader> m_flatColorShader;
 
 	Mayhem::Ref<Mayhem::Texture2D> m_checkerboardTexture;
 
-	glm::vec4 m_squareColor = { 0.0f, 0.0f, 0.0f, 1.0f };
+	glm::vec4 m_squareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 	glm::vec3 m_squarePosition = { 0.0f, 0.0f, 0.0f };
 
 	float m_squareMoveSpeed = 1.0f;
