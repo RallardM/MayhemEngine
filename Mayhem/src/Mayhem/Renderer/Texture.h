@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "Mayhem/Core/Core.h"
+#include "Mayhem/Core/Base.h"
 
 namespace Mayhem
 {

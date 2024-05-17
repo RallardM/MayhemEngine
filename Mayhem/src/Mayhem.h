@@ -22,6 +22,7 @@
 
 #include "Mayhem/Renderer/Buffer.h"
 #include "Mayhem/Renderer/Shader.h"
+#include "Mayhem/Renderer/Framebuffer.h"
 #include "Mayhem/Renderer/Texture.h"
 #include "Mayhem/Renderer/VertexArray.h"
 

@@ -6,7 +6,7 @@
 
 namespace Mayhem
 {
-	class MAYHEM_API WindowResizeEvent : public Event
+	class WindowResizeEvent : public Event
 	{
 	public:
 		WindowResizeEvent(unsigned int width, unsigned int height)
@@ -30,7 +30,7 @@ namespace Mayhem
 
 	};
 
-	class MAYHEM_API WindowCloseEvent : public Event
+	class WindowCloseEvent : public Event
 	{
 	public:
 		WindowCloseEvent() {}
@@ -40,7 +40,7 @@ namespace Mayhem
 
 	};
 
-	class MAYHEM_API AppTickEvent : public Event
+	class AppTickEvent : public Event
 	{
 	public:
 		AppTickEvent() {}
@@ -50,7 +50,7 @@ namespace Mayhem
 
 	};
 
-	class MAYHEM_API AppUpdateEvent : public Event
+	class AppUpdateEvent : public Event
 	{
 	public:
 		AppUpdateEvent() {}
@@ -60,7 +60,7 @@ namespace Mayhem
 
 	};
 
-	class MAYHEM_API AppRenderEvent : public Event
+	class AppRenderEvent : public Event
 	{
 	public:
 		AppRenderEvent() {}

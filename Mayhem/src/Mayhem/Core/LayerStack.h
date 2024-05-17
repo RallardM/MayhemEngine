@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Core.h"
+#include "Base.h"
 #include "Layer.h"
 
 #include <vector>
 
 namespace Mayhem
 {
-	class MAYHEM_API LayerStack
+	class LayerStack
 	{
 
 	public:

@@ -2,13 +2,13 @@
 
 #pragma once
 
-#include "Mayhem/Core/Core.h"
-#include "Mayhem/Core/KeyCodes.h"
-#include "Mayhem/Core/MouseCodes.h"
+#include "Base.h"
+#include "MouseCodes.h"
+#include "KeyCodes.h"
 
 namespace Mayhem
 {
-	class MAYHEM_API Input
+	class Input
 	{
 
 	protected:

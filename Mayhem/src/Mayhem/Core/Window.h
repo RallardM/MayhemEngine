@@ -3,7 +3,7 @@
 
 #include "MayhemPrecompiledHeaders.h"
 
-#include "Mayhem/Core/Core.h"
+#include "Mayhem/Core/Base.h"
 #include "Mayhem/Events/Event.h"
 
 namespace Mayhem
@@ -23,7 +23,7 @@ namespace Mayhem
 	};
 
 	// Interface representing a desktop system based Window
-	class MAYHEM_API Window
+	class Window
 	{
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;

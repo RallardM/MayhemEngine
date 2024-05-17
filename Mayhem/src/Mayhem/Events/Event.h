@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "Mayhem/Core/Core.h"
+#include "Mayhem/Core/Base.h"
 #include "MayhemPrecompiledHeaders.h"
 
 namespace Mayhem
@@ -32,7 +32,7 @@ namespace Mayhem
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
-	class MAYHEM_API Event
+	class Event
 	{
 		friend class EventDispatcher;
 	public:

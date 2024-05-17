@@ -147,9 +147,11 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Mayhem\Core\Base.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
+    <ClInclude Include="src\Mayhem\Renderer\Framebuffer.h" />
     <ClInclude Include="src\Mayhem.h" />
     <ClInclude Include="src\Mayhem\Core\Application.h" />
-    <ClInclude Include="src\Mayhem\Core\Core.h" />
     <ClInclude Include="src\Mayhem\Core\EntryPoint.h" />
     <ClInclude Include="src\Mayhem\Core\Input.h" />
     <ClInclude Include="src\Mayhem\Core\KeyCodes.h" />
@@ -604,6 +606,8 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
+    <ClCompile Include="src\Mayhem\Renderer\Framebuffer.cpp" />
     <ClCompile Include="src\Mayhem\Core\Application.cpp" />
     <ClCompile Include="src\Mayhem\Core\Layer.cpp" />
     <ClCompile Include="src\Mayhem\Core\LayerStack.cpp" />

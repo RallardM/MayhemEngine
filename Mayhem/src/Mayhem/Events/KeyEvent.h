@@ -7,7 +7,7 @@
 
 namespace Mayhem
 {
-	class MAYHEM_API KeyEvent : public Event
+	class KeyEvent : public Event
 	{
 	public:
 		KeyCode GetKeyCode() const { return m_KeyCode; }
@@ -22,7 +22,7 @@ namespace Mayhem
 
 	};
 
-	class MAYHEM_API KeyPressedEvent : public KeyEvent
+	class KeyPressedEvent : public KeyEvent
 	{
 	public:
 		KeyPressedEvent(KeyCode keycode, int repeatCount)
@@ -44,7 +44,7 @@ namespace Mayhem
 
 	};
 
-	class MAYHEM_API KeyReleasedEvent : public KeyEvent
+	class KeyReleasedEvent : public KeyEvent
 	{
 	public:
 		KeyReleasedEvent(KeyCode keycode)
@@ -61,7 +61,7 @@ namespace Mayhem
 
 	};
 
-	class MAYHEM_API KeyTypedEvent : public KeyEvent
+	class KeyTypedEvent : public KeyEvent
 	{
 	public:
 		KeyTypedEvent(KeyCode keycode)

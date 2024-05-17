@@ -60,9 +60,6 @@
     <ClInclude Include="src\Mayhem\Core\Application.h">
       <Filter>src\Mayhem\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Mayhem\Core\Core.h">
-      <Filter>src\Mayhem\Core</Filter>
-    </ClInclude>
     <ClInclude Include="src\Mayhem\Core\EntryPoint.h">
       <Filter>src\Mayhem\Core</Filter>
     </ClInclude>
@@ -1417,6 +1414,9 @@
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
     <ClInclude Include="src\Mayhem\Debug\Instrumentor.h" />
+    <ClInclude Include="src\Mayhem\Renderer\Framebuffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
+    <ClInclude Include="src\Mayhem\Core\Base.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Mayhem\Core\Application.cpp">
@@ -1498,5 +1498,7 @@
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
     <ClCompile Include="src\Mayhem\Renderer\GraphicsContext.cpp" />
+    <ClCompile Include="src\Mayhem\Renderer\Framebuffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
   </ItemGroup>
 </Project>

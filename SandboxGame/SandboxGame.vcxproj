@@ -151,6 +151,11 @@
       <Project>{C6A79BC2-B249-C698-9B04-DAEC87454DE9}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="MayhemProfile-Runtime.json" />
+    <None Include="MayhemProfile-Shutdown.json" />
+    <None Include="MayhemProfile-Startup.json" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

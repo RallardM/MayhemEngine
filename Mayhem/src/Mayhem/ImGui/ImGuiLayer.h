@@ -8,7 +8,7 @@
 
 namespace Mayhem
 {
-	class MAYHEM_API ImGuiLayer : public Layer
+	class ImGuiLayer : public Layer
 	{
 
 	public:

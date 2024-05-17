@@ -22,6 +22,7 @@ private:
 	// Temporary
 	Mayhem::Ref<Mayhem::VertexArray> m_squareVA;
 	//Mayhem::Ref<Mayhem::Shader> m_flatColorShader;
+	Mayhem::Ref<Mayhem::Framebuffer> m_framebuffer;
 
 	Mayhem::Ref<Mayhem::Texture2D> m_checkerboardTexture;
 

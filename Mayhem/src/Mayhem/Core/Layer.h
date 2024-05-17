@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Mayhem/Core/Core.h"
+#include "Mayhem/Core/Base.h"
 #include "Mayhem/Core/Timestep.h"
 #include "Mayhem/Events/Event.h"
 
 namespace Mayhem
 {
-	class MAYHEM_API Layer
+	class Layer
 	{
 	public:
 		Layer(const std::string& name = "Layer");

@@ -17,6 +17,11 @@ void Sandbox2D::OnAttach()
 	MAYHEM_PROFILE_FUNCTION();
 
 	m_checkerboardTexture = Mayhem::Texture2D::Create("assets/textures/Checkerboard.png");
+
+	Mayhem::FramebufferSpecification fbSpec;
+	fbSpec.Width = 1280;
+	fbSpec.Height = 720;
+	m_framebuffer = Mayhem::Framebuffer::Create(fbSpec);
 }
 
 void Sandbox2D::OnDetach()
@@ -35,6 +40,7 @@ void Sandbox2D::OnUpdate(Mayhem::Timestep deltaTime)
 	Mayhem::Renderer2D::ResetStats();
 	{
 		MAYHEM_PROFILE_SCOPE("Renderer Prep");
+		m_framebuffer->Bind();
 		Mayhem::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Mayhem::RenderCommand::Clear();
 	}
@@ -62,6 +68,7 @@ void Sandbox2D::OnUpdate(Mayhem::Timestep deltaTime)
 			}
 		}
 		Mayhem::Renderer2D::EndScene();
+		m_framebuffer->Unbind();
 	}
 }
 
@@ -143,8 +150,8 @@ void Sandbox2D::OnImGuiRender()
 
 		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_squareColor));
 
-		uint32_t textureID = m_checkerboardTexture->GetRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ 256.0f, 256.0f });
+		uint32_t textureID = m_framebuffer->GetColorAttachmentRendererID();
+		ImGui::Image((void*)textureID, ImVec2{ 1280.0f, 720.0f });
 		ImGui::End();
 
 		ImGui::End();
