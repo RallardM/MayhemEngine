@@ -9,3 +9,6 @@ bin-int/
 **.vcxproj
 **.vcxproj.filters
 **.vcxproj.user
+/SandboxGame/MayhemProfile-Runtime.json
+/SandboxGame/MayhemProfile-Shutdown.json
+/SandboxGame/MayhemProfile-Startup.json
