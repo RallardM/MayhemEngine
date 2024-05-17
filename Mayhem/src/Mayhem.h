@@ -10,7 +10,7 @@
 
 #include "Mayhem/Core/Input.h"
 #include "Mayhem/Core/KeyCodes.h"
-#include "Mayhem/Core/MouseButtonCodes.h"
+#include "Mayhem/Core/MouseCodes.h"
 #include "Mayhem/Renderer/OrthographicCameraController.h"
 
 #include "Mayhem/ImGui/ImGuiLayer.h"

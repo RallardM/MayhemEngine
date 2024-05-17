@@ -29,10 +29,8 @@ namespace Mayhem
 	{
 		MAYHEM_PROFILE_FUNCTION();
 
-		m_internalFormat = GL_RGBA;
+		m_internalFormat = GL_RGBA8;
 		m_dataFormat = GL_RGBA;
-
-		MAYHEM_ENGINE_ASSERT(m_internalFormat & m_dataFormat, "Format not supported!");
 
 		glCreateTextures(GL_TEXTURE_2D, 1, &m_rendererId);
 		glTextureStorage2D(m_rendererId, 1, m_internalFormat, m_width, m_height);
@@ -52,18 +50,15 @@ namespace Mayhem
 		int width, height, channels;
 		stbi_set_flip_vertically_on_load(1);
 		stbi_uc* data = nullptr;
-
 		{
-			MAYHEM_PROFILE_SCOPE("stbi_load - OpenGLTexture2D::OpenGLTexture2D(const std::string&)");
+			MAYHEM_PROFILE_SCOPE("stbi_load - OpenGLTexture2D::OpenGLTexture2D(const std:string&)");
 			data = stbi_load(path.c_str(), &width, &height, &channels, 0);
 		}
-
 		MAYHEM_ENGINE_ASSERT(data, "Failed to load image!");
 		m_width = width;
 		m_height = height;
 
 		GLenum internalFormat = 0, dataFormat = 0;
-
 		if (channels == 4)
 		{
 			internalFormat = GL_RGBA8;

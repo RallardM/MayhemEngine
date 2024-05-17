@@ -35,9 +35,10 @@ in vec2 v_TexCoord;
 in float v_TexIndex;
 in float v_TilingFactor;
 
-uniform sampler2D u_Texture[32];
+uniform sampler2D u_Textures[32];
 
 void main()
 {
-	color = texture(u_Texture[int(v_TexIndex)], v_TexCoord * v_TilingFactor) * v_Color;
+	color = texture(u_Textures[int(v_TexIndex)], v_TexCoord * v_TilingFactor) * v_Color;
+	//color = v_Color;
 }

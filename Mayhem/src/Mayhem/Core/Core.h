@@ -43,6 +43,9 @@
 	#error "Unknown platform!"
 #endif // End of platform detection
 
+#ifdef MAYHEM_DEBUG
+	#define MAYHEM_ENABLE_ASSERTS
+#endif
 
 // DLL support
 #ifdef MAYHEM_PLATFORM_WINDOWS

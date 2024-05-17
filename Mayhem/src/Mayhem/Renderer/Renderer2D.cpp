@@ -18,11 +18,11 @@
  // Tutorial : https://youtu.be/biGF6oLxgtQ?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
 
 #include "MayhemPrecompiledHeaders.h"
-#include "Renderer2D.h"
+#include "Mayhem/Renderer/Renderer2D.h"
 
-#include "VertexArray.h"
-#include "Shader.h"
-#include "RenderCommand.h"
+#include "Mayhem/Renderer/VertexArray.h"
+#include "Mayhem/Renderer/Shader.h"
+#include "Mayhem/Renderer/RenderCommand.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -39,7 +39,7 @@ namespace Mayhem
 
 	struct Renderer2DData
 	{
-		static const uint32_t MaxQuads = 10000;
+		static const uint32_t MaxQuads = 20000;
 		static const uint32_t MaxVertices = MaxQuads * 4;
 		static const uint32_t MaxIndices = MaxQuads * 6;
 		static const uint32_t MaxTextureSlots = 32;
@@ -105,8 +105,8 @@ namespace Mayhem
 		uint32_t whiteTextureData = 0xffffffff;
 		s_data.WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
 
-		int samplers[s_data.MaxTextureSlots];
-		for (int i = 0; i < s_data.MaxTextureSlots; i++)
+		int32_t samplers[s_data.MaxTextureSlots] = { 0 };
+		for (uint32_t i = 0; i < s_data.MaxTextureSlots; i++)
 			samplers[i] = i;
 
 		s_data.TextureShader = Shader::Create("assets/shaders/TextureShader.glsl");
@@ -117,8 +117,8 @@ namespace Mayhem
 		s_data.TextureSlots[0] = s_data.WhiteTexture;
 
 		s_data.QuadVertexPositions[0] = { -0.5f, -0.5f, 0.0f, 1.0f };
-		s_data.QuadVertexPositions[1] = { 0.5f, -0.5f, 0.0f, 1.0f };
-		s_data.QuadVertexPositions[2] = { 0.5f,  0.5f, 0.0f, 1.0f };
+		s_data.QuadVertexPositions[1] = {  0.5f, -0.5f, 0.0f, 1.0f };
+		s_data.QuadVertexPositions[2] = {  0.5f,  0.5f, 0.0f, 1.0f };
 		s_data.QuadVertexPositions[3] = { -0.5f,  0.5f, 0.0f, 1.0f };
 
 	}
@@ -169,6 +169,9 @@ namespace Mayhem
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
 	{
 		MAYHEM_PROFILE_FUNCTION();
+
+		if (s_data.QuadIndexCount >= Renderer2DData::MaxIndices)
+			FlushAndReset();
 
 		const float textureIndex = 0.0f; // White texture
 		const float tilingFactor = 1.0f;
@@ -225,6 +228,9 @@ namespace Mayhem
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4& tintColor)
 	{
 		MAYHEM_PROFILE_FUNCTION();
+
+		if (s_data.QuadIndexCount >= Renderer2DData::MaxIndices)
+			FlushAndReset();
 
 		constexpr glm::vec4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
 
@@ -290,6 +296,9 @@ namespace Mayhem
 	void Renderer2D::DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const glm::vec4& color)
 	{
 		MAYHEM_PROFILE_FUNCTION();
+
+		if (s_data.QuadIndexCount >= Renderer2DData::MaxIndices)
+			FlushAndReset();
 
 		const float textureIndex = 0.0f; // White texture
 		const float tilingFactor = 1.0f;

@@ -81,7 +81,7 @@
     <ClInclude Include="src\Mayhem\Core\Log.h">
       <Filter>src\Mayhem\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Mayhem\Core\MouseButtonCodes.h">
+    <ClInclude Include="src\Mayhem\Core\MouseCodes.h">
       <Filter>src\Mayhem\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Mayhem\Core\Timestep.h">

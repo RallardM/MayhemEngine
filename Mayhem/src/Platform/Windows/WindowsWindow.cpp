@@ -18,9 +18,13 @@
 #include "MayhemPrecompiledHeaders.h"
 #include "WindowsWindow.h"
 
+#include "Mayhem/Core/Input.h"
+
 #include "Mayhem/Events/ApplicationEvent.h"
 #include "Mayhem/Events/MouseEvent.h"
 #include "Mayhem/Events/KeyEvent.h"
+
+#include "Mayhem/Renderer/Renderer.h"
 
 #include "Platform/OpenGL/OpenGLContext.h"
 
@@ -73,10 +77,13 @@ namespace Mayhem
 
 		{
 			MAYHEM_PROFILE_SCOPE("glfwCreateWindow");
+#if defined(MAYHEM_DEBUG)
+			if (Renderer::GetAPI() == RendererAPI::API::OpenGL)
+				glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+#endif
 			m_window = glfwCreateWindow((int)props.Width, (int)props.Height, m_data.Title.c_str(), nullptr, nullptr);
 			++s_GLFWWindowCount;
 		}
-
 
 		m_context = GraphicsContext::Create(m_window);
 		m_context->Init();
@@ -92,7 +99,6 @@ namespace Mayhem
 				data.Height = height;
 
 				WindowResizeEvent event(width, height);
-				MAYHEM_ENGINE_TRACE("{0}, {1}", width, height);
 				data.EventCallback(event);
 			});
 
@@ -111,19 +117,19 @@ namespace Mayhem
 				{
 				case GLFW_PRESS:
 				{
-					KeyPressedEvent event(key, 0);
+					KeyPressedEvent event(static_cast<KeyCode>(key), 0);
 					data.EventCallback(event);
 					break;
 				}
 				case GLFW_RELEASE:
 				{
-					KeyReleasedEvent event(key);
+					KeyReleasedEvent event(static_cast<KeyCode>(key));
 					data.EventCallback(event);
 					break;
 				}
 				case GLFW_REPEAT:
 				{
-					KeyPressedEvent event(key, 1);
+					KeyPressedEvent event(static_cast<KeyCode>(key), 1);
 					data.EventCallback(event);
 					break;
 				}
@@ -134,7 +140,7 @@ namespace Mayhem
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-				KeyTypedEvent event(keycode);
+				KeyTypedEvent event(static_cast<KeyCode>(keycode));
 				data.EventCallback(event);
 			});
 

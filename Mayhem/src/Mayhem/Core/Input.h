@@ -3,6 +3,8 @@
 #pragma once
 
 #include "Mayhem/Core/Core.h"
+#include "Mayhem/Core/KeyCodes.h"
+#include "Mayhem/Core/MouseCodes.h"
 
 namespace Mayhem
 {
@@ -16,17 +18,17 @@ namespace Mayhem
 		Input(const Input&) = delete;
 		Input& operator=(const Input&) = delete;
 
-		inline static bool IsKeyPressed(int keycode) { return _Instance->IsKeyPressedImpl(keycode); }
+		inline static bool IsKeyPressed(KeyCode keycode) { return _Instance->IsKeyPressedImpl(keycode); }
 
-		inline static bool IsMouseButtonPressed(int button) { return _Instance->IsMouseButtonPressedImpl(button); }
+		inline static bool IsMouseButtonPressed(MouseCode button) { return _Instance->IsMouseButtonPressedImpl(button); }
 		inline static std::pair<float, float> GetMousePosition() { return _Instance->GetMousePositionImpl(); }
 		inline static float GetMouseX() { return _Instance->GetMouseXImpl(); }
 		inline static float GetMouseY() { return _Instance->GetMouseYImpl(); }
 
 	protected:
-		virtual bool IsKeyPressedImpl(int keycode) = 0;
+		virtual bool IsKeyPressedImpl(KeyCode keycode) = 0;
 
-		virtual bool IsMouseButtonPressedImpl(int button) = 0;
+		virtual bool IsMouseButtonPressedImpl(MouseCode button) = 0;
 		virtual std::pair<float, float>  GetMousePositionImpl() = 0;
 		virtual float GetMouseXImpl() = 0;
 		virtual float GetMouseYImpl() = 0;

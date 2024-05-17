@@ -156,7 +156,7 @@
     <ClInclude Include="src\Mayhem\Core\Layer.h" />
     <ClInclude Include="src\Mayhem\Core\LayerStack.h" />
     <ClInclude Include="src\Mayhem\Core\Log.h" />
-    <ClInclude Include="src\Mayhem\Core\MouseButtonCodes.h" />
+    <ClInclude Include="src\Mayhem\Core\MouseCodes.h" />
     <ClInclude Include="src\Mayhem\Core\Timestep.h" />
     <ClInclude Include="src\Mayhem\Core\Window.h" />
     <ClInclude Include="src\Mayhem\Debug\Instrumentor.h" />

@@ -59,7 +59,7 @@ namespace Mayhem
 		m_name = filepath.substr(lastSlash, count);
 	}
 
-	Mayhem::OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSource, const std::string& fragmentSource) :
+	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSource, const std::string& fragmentSource) :
 		m_name(name)
 	{
 		MAYHEM_PROFILE_FUNCTION();
@@ -70,21 +70,21 @@ namespace Mayhem
 		Compile(shaderSources);
 	}
 
-	Mayhem::OpenGLShader::~OpenGLShader()
+	OpenGLShader::~OpenGLShader()
 	{
 		MAYHEM_PROFILE_FUNCTION();
 
 		glDeleteProgram(m_rendererId);
 	}
 
-	void Mayhem::OpenGLShader::Bind() const
+	void OpenGLShader::Bind() const
 	{
 		MAYHEM_PROFILE_FUNCTION();
 
 		glUseProgram(m_rendererId);
 	}
 
-	void Mayhem::OpenGLShader::Unbind() const
+	void OpenGLShader::Unbind() const
 	{
 		MAYHEM_PROFILE_FUNCTION();
 
@@ -163,7 +163,7 @@ namespace Mayhem
 		glUniform3f(location, vector.x, vector.y, vector.z);
 	}
 
-	void Mayhem::OpenGLShader::UploadUniformFloat4(const std::string& name, const glm::vec4& vector)
+	void OpenGLShader::UploadUniformFloat4(const std::string& name, const glm::vec4& vector)
 	{
 		GLint location = glGetUniformLocation(m_rendererId, name.c_str());
 		glUniform4f(location, vector.x, vector.y, vector.z, vector.w);
@@ -175,7 +175,7 @@ namespace Mayhem
 		glUniformMatrix3fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 
-	void Mayhem::OpenGLShader::UploadUniformMat4(const std::string& name, const glm::mat4& matrix)
+	void OpenGLShader::UploadUniformMat4(const std::string& name, const glm::mat4& matrix)
 	{
 		GLint location = glGetUniformLocation(m_rendererId, name.c_str());
 		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
@@ -248,7 +248,7 @@ namespace Mayhem
 
 		GLuint program = glCreateProgram();
 		MAYHEM_ENGINE_ASSERT(shaderSources.size() <= 2, "We only support 2 shaders for now");
-		std::array<GLenum, 2> glShaderIDs;
+		std::array<GLenum, 2> glShaderIDs = { 0 };
 		int glShaderIDIndex = 0;
 		for (auto& kv : shaderSources)
 		{
