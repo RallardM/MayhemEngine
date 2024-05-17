@@ -1,4 +1,5 @@
 #pragma once
+#include "Mayhem/Core/Core.h"
 
 #ifdef  MAYHEM_PLATFORM_WINDOWS
 

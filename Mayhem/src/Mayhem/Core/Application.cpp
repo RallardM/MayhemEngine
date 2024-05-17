@@ -93,6 +93,11 @@ namespace Mayhem
 		}
 	}
 
+	void Application::Close()
+	{
+		m_running = false;
+	}
+
 	void Application::OnEvent(Event& event)
 	{
 		MAYHEM_PROFILE_FUNCTION();

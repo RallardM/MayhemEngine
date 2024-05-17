@@ -19,7 +19,6 @@ public:
 private:
 	Mayhem::ShaderLibrary m_shaderLibrary;
 
-	Mayhem::Ref<Mayhem::Shader> m_flatColorShader;
 
 	// Triangle
 	Mayhem::Ref<Mayhem::Shader> m_shader;
@@ -27,7 +26,8 @@ private:
 
 	// Square
 	Mayhem::Ref<Mayhem::VertexArray> m_squareVA;
-	Mayhem::Ref<Mayhem::Shader> m_blackShader;
+	Mayhem::Ref<Mayhem::Shader> m_flatColorShader;
+	//Mayhem::Ref<Mayhem::Shader> m_blackShader;
 
 	// Texture
 	Mayhem::Ref<Mayhem::VertexArray> m_textureVA;

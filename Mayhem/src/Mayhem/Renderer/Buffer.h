@@ -46,7 +46,7 @@ namespace Mayhem
 		uint32_t m_size;
 		bool m_normalized;
 
-		BufferElement() {}
+		BufferElement() = default;
 
 		BufferElement(E_ShaderDataType type, const std::string& name, bool normalized = false) :
 			m_name(name), m_type(type), m_size(ShaderDataTypeSize(type)), m_offset(0), m_normalized(normalized)

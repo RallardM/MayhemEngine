@@ -11,6 +11,8 @@
 
 #include "Mayhem/ImGui/ImGuiLayer.h"
 
+int main(int argc, char** argv);
+
 namespace Mayhem
 {
 	class Application
@@ -20,14 +22,18 @@ namespace Mayhem
 		Application();
 		virtual ~Application();
 
-		void Run();
 		void OnEvent(Event& e);
+
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* layer);
 
 		inline Window& GetWindow() { return *m_window; }
+		
+		void Close();
+
 		inline static Application& Get() { return *_Instance; }
 
+		void Run();
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
